@@ -12,7 +12,7 @@ class Award {
 	}
 	
     static constraints = {
-		title(nullable:false, maxSize:150)
+		title(nullable:false, maxSize:150, unique:true)
 		description(nullable:false)
 		value(nullable:false)
     }

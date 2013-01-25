@@ -12,5 +12,7 @@ class PostHistory {
 	static belongsTo = [contributor:Contributor, post:Post] 
 	
     static constraints = {
+		date(nullable:false)
+		type(nullable:false)
     }
 }

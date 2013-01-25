@@ -5,7 +5,7 @@ abstract class Post {
 	String content
 	Date lastEditionDate
 	Date creationDate
-	long mark
+	long mark = 0
 	boolean isAccepted
 	
 	static hasMany = [tags:Tag]
