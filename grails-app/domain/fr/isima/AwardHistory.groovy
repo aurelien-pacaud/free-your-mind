@@ -7,5 +7,6 @@ class AwardHistory {
 	static belongsTo = [award:Award , contributor:Contributor]
 	
     static constraints = {
+		date(nullable:false)
     }
 }

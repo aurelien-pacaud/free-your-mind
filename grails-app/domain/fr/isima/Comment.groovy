@@ -8,6 +8,6 @@ class Comment {
 	Date creationDate
 	
     static constraints = {
-		content(nullable:false)		
+		content(nullable:false, blank:false)		
     }
 }
