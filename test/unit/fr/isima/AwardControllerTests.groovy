@@ -11,7 +11,7 @@ import org.junit.*
 @TestFor(AwardController)
 class AwardControllerTests {
 
-    void testSomething() {
+    void testCreateNewAward() {
        assertTrue(true);
     }
 }

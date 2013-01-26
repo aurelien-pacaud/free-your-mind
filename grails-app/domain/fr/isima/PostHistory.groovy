@@ -5,14 +5,14 @@ class PostHistory {
 	Date date
 	PostType type
 	
-	enum PostType{
-		ASKED, ANSWERD, REVISION, ACCEPTED
-	}
-	
 	static belongsTo = [contributor:Contributor, post:Post] 
 	
     static constraints = {
 		date(nullable:false)
 		type(nullable:false)
     }
+}
+
+enum PostType{
+	ASKED, ANSWERD, REVISION, ACCEPTED
 }

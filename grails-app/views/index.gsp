@@ -117,6 +117,11 @@
 					</g:each>
 				</ul>
 			</div>
+			
+			<g:form controller="Award" action="createNewAward">
+				<g:textField name="awardTitle"/>
+				<g:submitButton name="insertAward" value="Add"/>
+			</g:form>
 		</div>
 	</body>
 </html>
