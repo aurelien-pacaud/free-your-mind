@@ -65,4 +65,4 @@ heroku git:remote -a free-your-mind
 
 #Finally, we can deploy using Git
 #Heroku Git-based deployment (https://devcenter.heroku.com/articles/git)
-yes | git push heroku master
+yes | git push -f heroku master
