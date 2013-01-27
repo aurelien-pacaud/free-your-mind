@@ -122,6 +122,9 @@
 				<g:textField name="awardTitle"/>
 				<g:submitButton name="insertAward" value="Add"/>
 			</g:form>
+			
+			<g:link controller="Award" action="display">Show all awards</g:link>
+			<g:link controller="Post" action="display">Show all questions</g:link>
 		</div>
 	</body>
 </html>

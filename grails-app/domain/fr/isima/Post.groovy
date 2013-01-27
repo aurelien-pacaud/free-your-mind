@@ -8,7 +8,7 @@ abstract class Post {
 	long mark = 0
 	boolean isAccepted = false
 	
-	static hasMany = [tags:Tag]
+	static hasMany = [tags:Tag, comments:Comment]
 	
     static constraints = {
 		content(nullable:false, blank:false)
