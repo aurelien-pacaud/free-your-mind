@@ -16,6 +16,8 @@ class Contributor {
 	boolean isAdmin = false
 	long reputation = 0
 	
+	static hasMany = [posts:Post, comments:Comment]
+	
     static constraints = {
 		login(nullable:false, blank:false, minSize:3, unique:true)
 		password(nullable:false, blank:false, minSize:6, maxSize:15)

@@ -8,6 +8,6 @@ class PostController {
 	
 	def display = {
 		
-		[post: Post.findAll("from Post as p where p.title != NULL order by p.creationDate")]
+		[post: Question.getAll()]
 	}
 }

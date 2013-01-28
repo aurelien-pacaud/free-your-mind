@@ -6,10 +6,10 @@ abstract class Post {
 	Date lastEditionDate
 	Date creationDate
 	long mark = 0
-	boolean isAccepted = false
 	
-	static hasMany = [tags:Tag, comments:Comment]
-	
+	static belongsTo = [contributor:Contributor]
+	static hasMany = [comments:Comment]
+		
     static constraints = {
 		content(nullable:false, blank:false)
     }

@@ -1,9 +1,11 @@
 package fr.isima
 
 class Answer extends Post{
-
-	static belongsTo = [question:Question]
 	
+	boolean isAccepted = false
+	
+	static belongsTo = [question:Question]
+		
     static constraints = {
     }
 }

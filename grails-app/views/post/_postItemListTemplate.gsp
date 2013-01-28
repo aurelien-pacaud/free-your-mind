@@ -32,21 +32,21 @@ background-color: #f89406;
 <div class="itemPost">
 	
 	<div style="float : left; text-align : center; margin-right : 5px;">${post.mark}<br />Vote</div>
+	<div style="float : left; text-align : center; margin-right : 5px;">${post.nbView}<br />Views</div>
 	<div>
 		<g:if test="${!post.isClosed}">
 			<div class="label label-warning">New</div>
 		</g:if>
 		<g:if test="${post.isClosed}">
 			<div class="label label-important">Closed</div>
-		</g:if>
-		<g:if test="${post.isAccepted}">
-			<div class="label label-success">Accepted</div>
-		</g:if>				
+		</g:if>	
+		
+		<g:render template="/tag/tagTemplate" var="tag" collection="${post.tags}" />		
 	</div>
 	<g:link controller="Question" action="display" id="${post.id}" style="font-size : 20px;">${post.title}</g:link>
+	<g:link controller="Contributor" action="show" id="${post.contributor.id}" style="font-size : 13px;">${post.contributor.login}</g:link>
 	<g:formatDate format="yyyy-MM-dd" date="${post.creationDate}" style="float : right;"/>
 	
 	<div style="clear : both;"></div>
-	<g:render template="/tag/tagTemplate" var="tag" collection="${post.tags}" />
 	<hr />
 </div>

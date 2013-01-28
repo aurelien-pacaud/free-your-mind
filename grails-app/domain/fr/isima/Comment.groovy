@@ -1,6 +1,6 @@
 package fr.isima
 
-class Comment {
+class Comment extends Post {
 
 	String content
 	Date lastEditionDate
