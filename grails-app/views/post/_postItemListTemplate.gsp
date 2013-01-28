@@ -29,9 +29,14 @@ background-color: #f89406;
 }
 
 .itemPost {
-	width : 220px;
+	margin :3px;
 }
 
+hr {
+	background-color: black;
+	height: 1px;
+	border: 0;
+}
 </style>
 
 <div class="itemPost">

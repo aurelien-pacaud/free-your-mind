@@ -594,3 +594,10 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+
+#logo {
+	
+	width  : 960px;
+	min-height : 50px;
+	background-color : green; 
+}
