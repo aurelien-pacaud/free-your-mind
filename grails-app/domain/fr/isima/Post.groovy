@@ -5,7 +5,8 @@ abstract class Post {
 	String content
 	Date lastEditionDate
 	Date creationDate
-	long mark = 0
+	long mark = 0	
+	boolean isAccepted = false
 	
 	static belongsTo = [contributor:Contributor]
 	static hasMany = [comments:Comment]

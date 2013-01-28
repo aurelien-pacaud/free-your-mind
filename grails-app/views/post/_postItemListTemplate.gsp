@@ -27,25 +27,35 @@ background-color: #b94a48;
 .label-warning, .badge-warning {
 background-color: #f89406;
 }
+
+.itemPost {
+	width : 220px;
+}
+
 </style>
 
 <div class="itemPost">
 	
 	<div style="float : left; text-align : center; margin-right : 5px;">${post.mark}<br />Vote</div>
 	<div style="float : left; text-align : center; margin-right : 5px;">${post.nbView}<br />Views</div>
-	<div>
-		<g:if test="${!post.isClosed}">
-			<div class="label label-warning">New</div>
-		</g:if>
+	
+	<div>		
 		<g:if test="${post.isClosed}">
 			<div class="label label-important">Closed</div>
 		</g:if>	
-		
-		<g:render template="/tag/tagTemplate" var="tag" collection="${post.tags}" />		
+		<g:if test="${!post.isClosed}">
+			<div class="label label-warning">New</div>
+		</g:if>
+		<g:link controller="Question" action="display" id="${post.id}">${post.title}</g:link>
+	
+		<div style="float:right">						
+			<g:render template="/tag/tagTemplate" var="tag" collection="${post.tags}" />		
+		</div>		
+		<br />
+		<div style="float:right">					
+			<g:link controller="Contributor" action="show" id="${post.contributor.id}">${post.contributor.login}</g:link>		
+		</div>		
 	</div>
-	<g:link controller="Question" action="display" id="${post.id}" style="font-size : 20px;">${post.title}</g:link>
-	<g:link controller="Contributor" action="show" id="${post.contributor.id}" style="font-size : 13px;">${post.contributor.login}</g:link>
-	<g:formatDate format="yyyy-MM-dd" date="${post.creationDate}" style="float : right;"/>
 	
 	<div style="clear : both;"></div>
 	<hr />
