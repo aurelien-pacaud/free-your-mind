@@ -4,6 +4,7 @@ class IndexController {
 
     def index = { 
 		
-		[questions: Question.getAll()]
+		def questions = Question.getAll()
+		[questions: questions, tags: Tag.getAll(), questionNb : questions.size()]
 	}
 }

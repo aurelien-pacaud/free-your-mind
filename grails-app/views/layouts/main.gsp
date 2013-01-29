@@ -18,11 +18,21 @@
 		<r:layoutResources />
 	</head>
 	<body>
-		<div id="logo"></div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-		<g:javascript library="application"/>
-		<r:layoutResources />
+		<div id="topMenu">
+			<ul>
+				<li id="firstMenu"><g:link controller="Question" action="list">Questions</g:link></li>
+				<li><g:link controller="Tag" action="list">Tags</g:link></li>
+				<li><g:link controller="Contributor" action="list">Users</g:link></li>
+				<li><g:link controller="Question" action="create">Ask Question</g:link></li>
+				<li id="lastMenu"><a>Login</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<g:layoutBody/>
+			<div class="footer" role="contentinfo"></div>
+			<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+			<g:javascript library="application"/>
+			<r:layoutResources />
+		</div>
 	</body>
 </html>
