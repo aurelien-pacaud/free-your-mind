@@ -9,6 +9,7 @@ class Contributor {
 	String lastName	
 	Date birthDate
 	String location
+	String email;
 	
 	Date registrationDate
 	long nbProfileViews = 0
@@ -22,5 +23,8 @@ class Contributor {
 		login(nullable:false, blank:false, minSize:3, unique:true)
 		password(nullable:false, blank:false, minSize:6, maxSize:15)
 		birthDate(nullable:false, blank:false)
+		lastConnectionDate(nullable:true)
     }
+	
+	
 }

@@ -107,6 +107,10 @@ background-color: #f89406;
 	margin :3px;
 }
 
+.itemUser {
+	margin :3px;
+}
+
 hr {
 	background-color: black;
 	height: 1px;
@@ -116,3 +120,56 @@ hr {
 .postAccepted {
 	background-color : #99CC66; 
 }
+
+.user_form {
+  margin: 0 0 20px;
+}
+
+// CSS BootStrap
+
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: 40px;
+  color: #333333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+legend small {
+  font-size: 15px;
+  color: #999999;
+}
+
+label,
+input,
+button,
+select,
+textarea {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
