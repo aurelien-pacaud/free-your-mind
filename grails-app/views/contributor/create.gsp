@@ -6,35 +6,60 @@
 	</head>
 	<body>
 		<br />
-		<div style="width : 70%; float : left;">
+		<div style="width : 70%; padding-left: 15%">
 			<h2>Create a new account</h2>
 			<g:renderErrors bean="${user}" />
 			<g:form class="user_form" action="createUser" controller="contributor">
 				<fieldset>
-					<label>First name</label>
-				  	<g:textField name="firstName" />
-				  	<br/><br/>
-				  	<label>Last name</label>
-				  	<g:textField name="lastName" />
-				  	<br/><br/>
-				  	<label>Login</label>
-				  	<g:textField name="login" type="password" />
-				  	<br/><br/>
-				  	<label>Password</label>
-				  	<g:textField name="password" />
-				  	<br/><br/>
-				  	<label>Email</label>
-				  	<g:textField name="email"  type="email"/>
-				  	<br/><br/>
-				  	<label>Birth date</label>
-				  	<g:datePicker name="birthDate" precision="day" />
-				  	<br/><br/>
-				  	<label>Location</label>
-				  	<g:textField name="location" />
+					<g:if test="${user == null}">
+						<label>First name</label>
+					  	<g:textField name="firstName"/>
+					  	<br/><br/>
+					  	<label>Last name</label>
+					  	<g:textField name="lastName"/>
+					  	<br/><br/>
+					  	<label>Login</label>
+					  	<g:textField name="login" type="password" />
+					  	<br/><br/>
+					  	<label>Password</label>
+					  	<g:textField name="password" />
+					  	<br/><br/>
+					  	<label>Email</label>
+					  	<g:textField name="email"  type="email"/>
+					  	<br/><br/>
+					  	<label>Birth date</label>
+					  	<g:datePicker name="birthDate" precision="day" />
+					  	<br/><br/>
+					  	<label>Location</label>
+					  	<g:textField name="location" />
+				  	</g:if>
+				  	<g:else>
+				  		<label>First name</label>
+					  	<g:textField name="firstName" value="${user.firstName}"/>
+					  	<br/><br/>
+					  	<label>Last name</label>
+					  	<g:textField name="lastName" value="${user.lastName}" />
+					  	<br/><br/>
+					  	<label>Login</label>
+					  	<g:textField name="login" type="password" value="${user.login}"/>
+					  	<br/><br/>
+					  	<label>Password</label>
+					  	<g:textField name="password"  value="${user.password}"/>
+					  	<br/><br/>
+					  	<label>Email</label>
+					  	<g:textField name="email"  type="email"  value="${user.email}"/>
+					  	<br/><br/>
+					  	<label>Birth date</label>
+					  	<g:datePicker name="birthDate" precision="day"  value="${user.birthDate}"/>
+					  	<br/><br/>
+					  	<label>Location</label>
+					  	<g:textField name="location"  value="${user.location}"/>
+				  	</g:else>
 				  	<br/><br/>	 			  	
 				  	<input type="submit" value="Submit"></input>
 				</fieldset>
 			</g:form>
+			<br/>
 		</div>
 	</body>
 </html>
