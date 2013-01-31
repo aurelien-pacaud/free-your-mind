@@ -6,6 +6,7 @@ input, select, textarea {
 
 body {
 	margin : 0;
+	height : 100%;
 }
 
 h2 {
@@ -29,6 +30,7 @@ html {
 #content {
 	background: #ffffff;
 	margin: 0 auto;
+	height: 100%;
 }
 
 /* Menu bar. */
@@ -173,3 +175,11 @@ label {
   margin-bottom: 5px;
 }
 
+.value {
+	float: left;
+}
+
+.value_errors {
+	float: left;
+	background-color: red;
+}

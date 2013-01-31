@@ -35,25 +35,39 @@
 				  	</g:if>
 				  	<g:else>
 				  		<label>First name</label>
-					  	<g:textField name="firstName" value="${user.firstName}"/>
+				  		<div class='value${hasErrors(bean:user,field:'firstName','_errors')}'>
+							<g:textField name="firstName" value="${user.firstName}"/>
+						</div>
 					  	<br/><br/>
 					  	<label>Last name</label>
-					  	<g:textField name="lastName" value="${user.lastName}" />
+					  	<div class='value${hasErrors(bean:user,field:'lastName','_errors')}'>
+					  		<g:textField name="lastName" value="${user.lastName}" />
+					  	</div>
 					  	<br/><br/>
 					  	<label>Login</label>
-					  	<g:textField name="login" type="password" value="${user.login}"/>
+					  	<div class='value${hasErrors(bean:user,field:'login','_errors')}'>
+					  		<g:textField name="login" type="password" value="${user.login}"/>
+					  	</div>
 					  	<br/><br/>
 					  	<label>Password</label>
-					  	<g:textField name="password"  value="${user.password}"/>
+					  	<div class='value${hasErrors(bean:user,field:'password','_errors')}'>
+					  		<g:textField name="password"  value="${user.password}"/>
+					  	</div>
 					  	<br/><br/>
 					  	<label>Email</label>
-					  	<g:textField name="email"  type="email"  value="${user.email}"/>
+					  	<div class='value${hasErrors(bean:user,field:'email','_errors')}'>
+					  		<g:textField name="email"  type="email"  value="${user.email}"/>
+					  	</div>
 					  	<br/><br/>
 					  	<label>Birth date</label>
-					  	<g:datePicker name="birthDate" precision="day"  value="${user.birthDate}"/>
+					  	<div class='value${hasErrors(bean:user,field:'birthDate','_errors')}'>
+					  		<g:datePicker name="birthDate" precision="day"  value="${user.birthDate}"/>
+					  	</div>
 					  	<br/><br/>
 					  	<label>Location</label>
-					  	<g:textField name="location"  value="${user.location}"/>
+					  	<div class='value${hasErrors(bean:user,field:'location','_errors')}'>
+					  		<g:textField name="location"  value="${user.location}"/>
+					  	</div>
 				  	</g:else>
 				  	<br/><br/>	 			  	
 				  	<input type="submit" value="Submit"></input>
