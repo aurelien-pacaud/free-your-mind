@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<br />
-		<div style="width : 70%; padding-left: 15%">
+		<div class="content">
 			<h2>Create a new account</h2>
 			<g:renderErrors bean="${user}" />
 			<g:form class="user_form" action="createUser" controller="contributor">

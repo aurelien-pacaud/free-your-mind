@@ -6,7 +6,6 @@ input, select, textarea {
 
 body {
 	margin : 0;
-	height : 100%;
 }
 
 h2 {
@@ -127,8 +126,7 @@ hr {
   margin: 0 0 20px;
 }
 
-// CSS BootStrap
-
+/* ------- User creation ------- */
 
 fieldset {
   padding: 0;
@@ -146,6 +144,11 @@ legend {
   color: #333333;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
 }
 
 legend small {
@@ -170,11 +173,6 @@ textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
 .value {
 	float: left;
 }
@@ -182,4 +180,44 @@ label {
 .value_errors {
 	float: left;
 	background-color: red;
+}
+
+
+/* ------- User --------- */
+
+div .content {
+	width : 70%; 
+	padding-left: 15%;
+}
+
+/* ------- User list ------- */
+div .userItemList {
+	float: left;
+}
+
+div .usersLine {
+	float	: left;
+	width	: 25%; 
+	height	: 90px;
+}
+
+/* ------- User profile ------- */
+
+div .leftCol {
+	float : left;
+	padding-right : 20px;
+	width : 20%;
+}
+
+div .rightCol {
+	float : left;
+	width : 70%;
+}
+
+div.summary {
+		
+}
+
+div .activity {
+	
 }
