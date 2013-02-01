@@ -10,7 +10,7 @@ body {
 
 h2 {
 	
-	color          : #669933;
+	color          : #000;
 	border-bottom  : 1px #cccccc solid;
 	padding-bottom : 8px; 
 }
@@ -18,7 +18,7 @@ h2 {
 /* BASE LAYOUT */
 
 html {
-	background-color : #CCCCCC;	
+	background-color : #F6F6F6;	
 	height           : 100%;
 	
 	margin           : 0;
@@ -27,15 +27,15 @@ html {
 
 
 #content {
-	background: #ffffff;
+	background: #FFF;
 	margin: 0 auto;
 	height: 100%;
 }
 
 /* Menu bar. */
 #topMenu {	
-	min-height       : 40px;
-	background-color : #CCCC66;
+	min-height       : 44px;
+	background-color : #3D6AA2;
 	width            : 100%;
 }
 
@@ -46,7 +46,7 @@ html {
 	list-style-type : none;
 }
 
-#topMenu ul li a {
+#topMenu ul li a, #topMenu {
 	display         : block;
 	float           : left; 
 	line-height     : 40px;
@@ -55,6 +55,15 @@ html {
 	font-weight     : bold;
 	margin-right    : 15px; 
 	text-shadow     : 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+a {	
+	color           : #355E95;
+	text-decoration : none;
+}
+
+a:hover {
+	color : #000;
 }
 
 #topMenu ul li a:hover {
@@ -110,7 +119,7 @@ background-color: #f89406;
 }
 
 hr {
-	background-color: black;
+	background-color: #cccccc;
 	height: 1px;
 	border: 0;
 }
@@ -123,7 +132,6 @@ hr {
   margin: 0 0 20px;
 }
 
-<<<<<<< HEAD
 div#tags {
  border : 1px #5c5c5c solid;  
  height : 20px;

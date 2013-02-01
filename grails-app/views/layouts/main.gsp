@@ -23,6 +23,7 @@
 	</head>
 	<body>
 		<div id="topMenu">
+			<div style="float:left; margin-right : 25px;"><g:img file="fym-logo.png" style="width : 40px; height : 40px; vertical-align : middle;"/>Fym</div>
 			<ul>
 				<li id="firstMenu"><g:link controller="Index" action="index">Questions</g:link></li>
 				<li><g:link controller="Tag" action="list">Tags</g:link></li>

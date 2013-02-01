@@ -10,7 +10,7 @@
 		<g:if test="${!post.isClosed}">
 			<div class="label label-warning">New</div>
 		</g:if>
-		<g:link controller="Question" action="display" id="${post.id}">${post.title}</g:link>
+		<g:link controller="Question" action="display" id="${post.id}"><b>${post.title}</b></g:link>
 	
 		<div style="float:right">						
 			<g:render template="/tag/tagTemplate" var="tag" collection="${post.tags}" />		
