@@ -4,7 +4,7 @@ class Question extends Post{
 
 	String title
 	long nbView = 0
-	boolean isClosed
+	boolean isClosed = false
 		
 	static hasMany = [tags:Tag, answers:Answer]
 	

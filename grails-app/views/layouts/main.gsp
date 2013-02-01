@@ -14,13 +14,17 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+		
+		
+		<g:javascript library="jquery" plugin="jquery"/>		
+		<g:javascript library="jquery-ui"/>
 		<g:layoutHead/>
 		<r:layoutResources />
 	</head>
 	<body>
 		<div id="topMenu">
 			<ul>
-				<li id="firstMenu"><g:link controller="Question" action="list">Questions</g:link></li>
+				<li id="firstMenu"><g:link controller="Index" action="index">Questions</g:link></li>
 				<li><g:link controller="Tag" action="list">Tags</g:link></li>
 				<li><g:link controller="Contributor" action="list">Users</g:link></li>
 				<li><g:link controller="Question" action="create">Ask Question</g:link></li>

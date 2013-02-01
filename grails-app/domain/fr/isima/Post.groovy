@@ -3,8 +3,8 @@ package fr.isima
 abstract class Post {
 
 	String content
-	Date lastEditionDate
-	Date creationDate
+	Date lastEditionDate = new Date()
+	Date creationDate = new Date()
 	long mark = 0	
 	boolean isAccepted = false
 	
