@@ -10,7 +10,6 @@ class ContributorController {
 	 * Display the user which id is specified 
 	 */
 	def show = {
-		
 		[user: Contributor.get(params.get("id"))]
 	}
 	

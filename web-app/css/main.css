@@ -29,6 +29,7 @@ html {
 #content {
 	background: #ffffff;
 	margin: 0 auto;
+	height: 100%;
 }
 
 /* Menu bar. */
@@ -122,6 +123,7 @@ hr {
   margin: 0 0 20px;
 }
 
+<<<<<<< HEAD
 div#tags {
  border : 1px #5c5c5c solid;  
  height : 20px;
@@ -157,6 +159,7 @@ div#tags input {
 
 // CSS BootStrap
 
+/* ------- User creation ------- */
 
 /*fieldset {
   padding: 0;
@@ -174,6 +177,11 @@ legend {
   color: #333333;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
 }
 
 legend small {
@@ -202,3 +210,52 @@ label {
   display: block;
   margin-bottom: 5px;
 }*/
+
+.value {
+	float: left;
+}
+
+.value_errors {
+	float: left;
+	background-color: red;
+}
+
+
+/* ------- User --------- */
+
+div .content {
+	width : 70%; 
+	padding-left: 15%;
+}
+
+/* ------- User list ------- */
+div .userItemList {
+	float: left;
+}
+
+div .usersLine {
+	float	: left;
+	width	: 25%; 
+	height	: 90px;
+}
+
+/* ------- User profile ------- */
+
+div .leftCol {
+	float : left;
+	padding-right : 20px;
+	width : 20%;
+}
+
+div .rightCol {
+	float : left;
+	width : 70%;
+}
+
+div.summary {
+		
+}
+
+div .activity {
+	
+}
