@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Free your mind</title>		
+		<title>Free your mind -- Users</title>		
 	</head>
 	<body>	
 		<br/>
@@ -11,13 +11,8 @@
 			<br/>
 			<g:link controller="contributor" action="create">Create a new user</g:link>
 			<br/><br/>
-			<g:set var="cpt" value="${0}"/>
-			<g:each in="${users}" var="user">
-			  <div class="usersLine">
-			  	<tmpl:contributorItemListTemplate user="${user}"/>
-			  </div>
-			  <g:set var="cpt" value="${cpt + 1}" />
-			</g:each>
+			<g:render template="contributorItemListTemplate" var="user" collection="${users}"/>
+			<div class="clean"></div>
 		</div>
 		<br/>	
 	</body>

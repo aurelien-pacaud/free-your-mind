@@ -20,7 +20,7 @@ class QuestionController {
 					   		return [id: tag.id, name: tag.name]
 					   }
 						
-		render(view: 'new', model: [tags: jsonMap as JSON])
+		render view: 'new', model: [tags: jsonMap as JSON]
 	}
 	
 	def add = {
@@ -38,7 +38,9 @@ class QuestionController {
 		
 		def question = new Question(title: title, content: content, tags: tags, contributor:Contributor.get(1));
 		
-		question.save();
-		redirect(action: "index", controller: "index");
+		if (!question.save())
+			render view: 'new', model: [question: question]
+		else
+			redirect action: "display", id: question.id
 	}
 }

@@ -1,21 +1,4 @@
 /* FONT STACK */
-body,
-input, select, textarea {
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-}
-
-body {
-	margin : 0;
-}
-
-h2 {
-	
-	color          : #000;
-	border-bottom  : 1px #cccccc solid;
-	padding-bottom : 8px; 
-}
-
-/* BASE LAYOUT */
 
 html {
 	background-color : #F6F6F6;	
@@ -25,11 +8,63 @@ html {
 	padding          : 0;
 }
 
+body {
+	margin : 0;
+}
+
+body,
+input, select, textarea {
+	font-family : "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
 
 #content {
-	background: #FFF;
-	margin: 0 auto;
-	height: 100%;
+	background : #FFF;
+	margin     : 0 auto;
+	height     : 100%;
+}
+
+/* Title style. */
+h2 {	
+	color          : #000;
+	border-bottom  : 1px #cccccc solid;
+	
+	padding        : 0;
+	padding-bottom : 8px;
+	margin         : 0; 
+}
+
+/* Global style. */
+a {	
+	color           : #355E95;
+	text-decoration : none;
+}
+
+a:hover {
+	color : #000;
+}
+
+
+img {
+	border: 0;
+}
+
+hr {
+	background-color: #cccccc;
+	height: 1px;
+	border: 0;
+}
+
+input, select, textarea, select, div#tags {
+	background-color : #fcfcfc;
+	border           : 1px solid #cccccc;
+	font-size        : 1em;
+	padding          : 0.2em 0.4em;
+	font             : 100% Trebuchet MS, Arial, Helvetica, Sans-Serif;
+	color            : #333;
+}
+
+input:focus, textarea:focus {
+	outline : none;   
 }
 
 /* Menu bar. */
@@ -39,8 +74,7 @@ html {
 	width            : 100%;
 }
 
-#topMenu ul {
-	
+#topMenu ul {	
 	padding         : 0;
 	margin          : 0;
 	list-style-type : none;
@@ -57,119 +91,85 @@ html {
 	text-shadow     : 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
-a {	
-	color           : #355E95;
-	text-decoration : none;
-}
-
-a:hover {
-	color : #000;
-}
-
 #topMenu ul li a:hover {
 	color       : #000;
 	text-shadow : none;
 }
 
-#firstMenu {
-	margin-left : 8px;
-}
-
+/* Last menu item style.*/
 #lastMenu {
 	float : right;
 }
 
-img {
-	border: 0;
+/* Tags and badges style. */
+.label, .badge {	
+	display          : inline-block;
+	padding          : 2px 4px;
+	font-size        : 11.844px;
+	font-weight      : bold;
+	line-height      : 14px;
+	color            : #ffffff;
+	text-shadow      : 0 -1px 0 rgba(0, 0, 0, 0.25);
+	white-space      : nowrap;
+	vertical-align   : middle;
+	background-color : #999999;
+	margin-left      : 2px;
+	margin-right     : 2px;
 }
 
-/* Tag */
-.label, .badge {
-display: inline-block;
-padding: 2px 4px;
-font-size: 11.844px;
-font-weight: bold;
-line-height: 14px;
-color: #ffffff;
-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-white-space: nowrap;
-vertical-align: middle;
-background-color: #999999;
-margin-left : 2px;
+.label-info, .badge-info {	
+	background-color : #3a87ad;
 }
 
-.label-info, .badge-info {
-background-color: #3a87ad;
+.label-success, .badge-success, .postAccepted {	
+	background-color : #468847;
 }
 
-.label-success, .badge-success {
-background-color: #468847;
+.label-important, .badge-important {	
+	background-color : #b94a48;
 }
 
-.label-important, .badge-important {
-background-color: #b94a48;
+.label-warning, .badge-warning {	
+	background-color : #f89406;
 }
 
-.label-warning, .badge-warning {
-background-color: #f89406;
+/* Form input style. */
+div#tags {
+	display    : inline;
+	cursor     : text;
+	maring-top : 2px;
+}
+
+div#tags > input {
+	border  : none;
+	padding : 0;
+}
+
+.tagClose {
+    font-size       : 11.844px;
+    text-decoration : none;
+    font-weight     : bold;
+    line-height     : 14px;
+    color           : #ffffff;
+    text-shadow     : 0 -1px 0 rgba(0, 0, 0, 0.25);
+    white-space     : nowrap;
+    vertical-align  : middle;
+    cursor          : pointer;
 }
 
 .itemPost {
 	margin :3px;
 }
 
-hr {
-	background-color: #cccccc;
-	height: 1px;
-	border: 0;
-}
-
-.postAccepted {
-	background-color : #99CC66; 
-}
-
 .user_form {
   margin: 0 0 20px;
-}
-
-div#tags {
- border : 1px #5c5c5c solid;  
- height : 20px;
- width: 500px;
- padding : 2px;
-}
-
-div#tags input:focus {
- outline:none;   
-}
-
-div#tags input {
-    margin-left : 3px;
-    outline:none;
-    border : none;
-}
-
-.tagClose {
-    font-size: 11.844px;
-    text-decoration : none;
-    font-weight: bold;
-    line-height: 14px;
-    color: #ffffff;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor : hand;
-}
-
-.tagClose:hover {
-    cursor : pointer;
 }
 
 // CSS BootStrap
 
 /* ------- User creation ------- */
 
-/*fieldset {
+fieldset {
   padding: 0;
   margin: 0;
   border: 0;
@@ -197,27 +197,29 @@ legend small {
   color: #999999;
 }
 
-label,
-input,
-button,
-select,
-textarea {
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 20px;
-}
-
-input,
-button,
-select,
-textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
 
 label {
   display: block;
   margin-bottom: 5px;
-}*/
+}
+
+input.error ,
+select.error ,
+textarea.error  {
+  border-color: #b94a48;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+input.error :focus,
+select.error :focus,
+textarea.error :focus {
+  border-color: #953b39;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+}
 
 .value {
 	float: left;
@@ -266,4 +268,8 @@ div.summary {
 
 div .activity {
 	
+}
+
+.clear {
+	clear : both;
 }
