@@ -6,3 +6,5 @@ class TagController {
 
 	static scaffold = true
 }
+
+

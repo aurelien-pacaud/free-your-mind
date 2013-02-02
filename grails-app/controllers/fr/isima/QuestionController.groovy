@@ -1,8 +1,6 @@
 package fr.isima
 
-import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
-
 
 class QuestionController {
 	
@@ -12,15 +10,8 @@ class QuestionController {
 	}
 	
 	def create = {
-		
-		HashMap jsonMap = new HashMap()
-		def tagsList = Tag.getAll()
-		
-		jsonMap.tags = tagsList.collect{tag ->
-					   		return [id: tag.id, name: tag.name]
-					   }
 						
-		render view: 'new', model: [tags: jsonMap as JSON]
+		render view: 'new', model: [tags: Tag.json()]
 	}
 	
 	def add = {
@@ -28,18 +19,19 @@ class QuestionController {
 		def title = params.get("title")
 		def content = params.get("content")
 		def tagsId = params.get("tagsId")	
-		
+		def tagIds = []
 		def tags = []
 		
 		tagsId.split(";").each { id ->
 			
 			tags.add(Tag.get(id))
+			tagIds.add(id);
 		}	
 		
 		def question = new Question(title: title, content: content, tags: tags, contributor:Contributor.get(1));
 		
 		if (!question.save())
-			render view: 'new', model: [question: question]
+			render view: 'new', model: [question: question, tags: Tag.json(), tagIds: tagIds]
 		else
 			redirect action: "display", id: question.id
 	}

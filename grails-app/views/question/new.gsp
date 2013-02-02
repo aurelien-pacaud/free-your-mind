@@ -14,15 +14,15 @@
 		</g:hasErrors>
 		
 		<g:form controller="question" action="add">
-			<label for="title">Title</label><g:textField name="title" id="title"/>			
+			<label for="title">Title</label><g:textField name="title" id="title" required="true" />			
 			<label for="tags">Tags</label>
 			<div id="tags">
     			<g:textField id="tag" type="text" name="tags"/>
 			</div>
-			<g:hiddenField id="tagsId" type="hidden" name="tagsId"/>
+			<g:hiddenField id="tagsId" type="hidden" name="tagsId" value=""/>
 
 			<label for="content">Content</label>
-			<g:textArea name="content" id="content"/><br />
+			<g:textArea name="content" id="questionContent" required="true"/><br />
 			<g:submitButton name="sumbit" value="Submit"/>
 		</g:form>
 		
@@ -46,6 +46,22 @@
 				var source = ${tags}.tags;
 				var selectedTags = [];
 
+				/* If errors occured during the question submition.*/				
+				if (${tagIds == null ? false : true}) {
+					
+					var ids = ${tagIds == null ? [] : tagIds};
+
+					for(var i = 0; i < ids.length; ++i) {
+	
+						for(var j = 0; j < source.length; ++j) {
+
+							if (ids[i] == source[j].id) {
+								addTag(source[j].id, source[j].name);
+							}					
+						}
+					}	
+				}	
+				
 				$("#tags").click(function() {
 					$("#tag").focus();
 				});
@@ -69,13 +85,8 @@
 	                    return false;
 	                },
 	                select: function(event, ui) {
-		                		                
-	                   $(tag.format(ui.item.name, ui.item.id)).insertBefore($("#tag"));
-	                   $("#tag").val(''); 
-	                   $("#tagsId").val($("#tagsId").val() + ui.item.id + ";")
-	                   
-	                   selectedTags.push(ui.item.id);
-	                   
+
+		               addTag(ui.item.id, ui.item.name);		                	                   
 	                   return false;
 	                }
 				}).data('autocomplete')._renderItem = function(ul, item) {
@@ -105,17 +116,27 @@
 	                updateTagsId();
 				});
 
+				function addTag(id, name) {
+					
+					$(tag.format(name, id)).insertBefore($("#tag"));
+	                $("#tag").val(''); 
+
+	                selectedTags.push(id);
+	                $("#tagsId").val(selectedTags.join(";"));	                
+				}
+	            
 	            function updateTagsId() {
 
 					$("#tagsId").val('');
 					selectedTags = [];
 					
 					$("#tags > span").each(function(index) {
-						var id = $(this).children("input").val();
 						
-						$("#tagsId").val($("#tagsId").val() + id + ";")
-						selectedTags.push(parseInt(id));
+						var id = $(this).children("input").val();
+						selectedTags.push(parseInt(id));						
 					});
+
+					$("#tagsId").val(selectedTags.join(";"))
 				}
 			});
 		</script>

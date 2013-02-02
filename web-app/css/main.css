@@ -134,9 +134,9 @@ input:focus, textarea:focus {
 
 /* Form input style. */
 div#tags {
-	display    : inline;
-	cursor     : text;
-	maring-top : 2px;
+	display     : inline;
+	cursor      : text;
+	margin-left : 2px;
 }
 
 div#tags > input {
