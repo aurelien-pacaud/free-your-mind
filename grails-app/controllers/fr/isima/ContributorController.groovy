@@ -33,15 +33,12 @@ class ContributorController {
 		def String location = params.get("location")
 		def Date birthDate = params.get("birthDate")
 		
-		
 		def Contributor c = new Contributor(firstName: firstName, lastName: lastName, login: login, password: password, 
 						email: email, location: location, birthDate: birthDate,isAdmin: false, 
 						nbProfileViews: 0, registrationDate: new Date());
 		
+		
 		if (!c.validate()) {
-			println "error"
-			println c.firstName;
-			
 			render(view: "create", model:[user: c])
 		} else {
 			c.save();

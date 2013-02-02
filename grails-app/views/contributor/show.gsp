@@ -1,11 +1,13 @@
+show 
+
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Free your mind</title>		
+		<title>Free your mind -- User Profil</title>		
 	</head>
 	<body>	
-		<br/>
 		<div class="content">
 			<div class="summary">
 				<h2>${user.firstName}</h2>
@@ -54,6 +56,7 @@
 				</div>
 			</div>
 			<div class="activity">
+				ACTIVITY
 			</div>
 		</div>
 	</body>

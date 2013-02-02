@@ -20,7 +20,6 @@ input, select, textarea {
 #content {
 	background : #FFF;
 	margin     : 0 auto;
-	height     : 100%;
 }
 
 /* Title style. */
@@ -161,30 +160,13 @@ div#tags > input {
 	margin :3px;
 }
 
-.user_form {
-  margin: 0 0 20px;
-}
 
-// CSS BootStrap
+
 
 /* ------- User creation ------- */
 
-fieldset {
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
-legend {
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 20px;
-  font-size: 21px;
-  line-height: 40px;
-  color: #333333;
-  border: 0;
-  border-bottom: 1px solid #e5e5e5;
+.user_form {
+  margin: 20px 0 20px 50px;
 }
 
 label {
@@ -192,15 +174,21 @@ label {
   margin-bottom: 5px;
 }
 
-legend small {
-  font-size: 15px;
-  color: #999999;
+label,
+input,
+button,
+select,
+textarea {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
 }
 
-
-label {
-  display: block;
-  margin-bottom: 5px;
+input,
+button,
+select,
+textarea {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 input.error ,
@@ -221,32 +209,23 @@ textarea.error :focus {
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
 }
 
-.value {
-	float: left;
-}
-
-.value_errors {
-	float: left;
-	background-color: red;
-}
-
 
 /* ------- User --------- */
 
 div .content {
 	width : 70%; 
 	padding-left: 15%;
+	padding-top: 80px
 }
+
 
 /* ------- User list ------- */
-div .userItemList {
-	float: left;
+table .userItem{
+	width : 1%;
 }
 
-div .usersLine {
-	float	: left;
-	width	: 25%; 
-	height	: 90px;
+table .usersLine {	
+	height : 100px;
 }
 
 /* ------- User profile ------- */
@@ -254,20 +233,21 @@ div .usersLine {
 div .leftCol {
 	float : left;
 	padding-right : 20px;
-	width : 20%;
+	width : 25%;
+	
 }
 
 div .rightCol {
-	float : left;
+	float : right;
 	width : 70%;
 }
 
 div.summary {
-		
+	height: 250px;
 }
 
 div .activity {
-	
+}	
 }
 
 .clear {
