@@ -8,6 +8,11 @@ class TagController {
 		
 		render view: "show", model: [tag: Tag.get(params.get("id")), locality: "tag"]
 	}
+	
+	def list = {
+		
+		render view: "list", model: [tags: Tag.getAll(), locality: "tag"]
+	}
 }
 
 

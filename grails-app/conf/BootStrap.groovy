@@ -13,6 +13,13 @@ class BootStrap {
 		new Tag(name: "C", description: "C").save()
 		new Tag(name: "Groovy", description: "Groovy").save()
 		
+		new Tag(name: "C#", description: "C++ is a widely-used, statically-typed, free-form, compiled, multi-paradigm, multi-level, " +
+			"imperative, general-purpose, object-oriented programming language based on C.").save()
+
+		new Tag(name: "Grails", description: "C++ is a widely-used, statically-typed, free-form, compiled, multi-paradigm, multi-level, " +
+			"imperative, general-purpose, object-oriented programming language based on C.").save()
+
+		
 		Tag.metaClass.static.json = {
 			
 			HashMap jsonMap = new HashMap()
