@@ -43,4 +43,28 @@ class PostService {
 			postHistory.save()
 		}
 	}
+	
+	/**
+	 * Method use to inc the mark of the post.
+	 *
+	 * @param post Post to update.
+	 */
+	def incMark(Post post) {
+		
+		post.mark++;
+		
+		post.save();
+	}
+	
+	/**
+	 * Method use to down the mark of the post.
+	 *
+	 * @param post Post to update.
+	 */
+	def downMark(Post post) {
+		
+		post.mark--;
+		
+		post.save();
+	}
 }

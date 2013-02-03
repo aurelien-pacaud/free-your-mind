@@ -14,6 +14,15 @@
 		<g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" />
 		<br />
 		<g:render template="/comment/commentTemplate" var="comment" collection="${question.comments}" />
+		
+		<g:link controller="post" action="incMark" id="${question.id}">
+		   <input type="button" value="+"/> 
+		</g:link>
+		${question.mark}
+		<g:link controller="post" action="downMark" id="${question.id}"> 		   
+		   <input type="button" value="-"/> 
+		</g:link>
+		
 		<br />
 		<g:link controller="Answer" action="create">Answered to this question</g:link>
 		
