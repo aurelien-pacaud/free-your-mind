@@ -25,14 +25,15 @@
 		<div id="topMenu">
 			<div style="float:left; margin-right : 25px;"><g:img file="fym-logo.png" style="width : 40px; height : 40px; vertical-align : middle;"/>Fym</div>
 			<ul>
-				<li><g:link controller="Index" action="index">Questions</g:link></li>
-				<li><g:link controller="Tag" action="list">Tags</g:link></li>
-				<li><g:link controller="Contributor" action="list">Users</g:link></li>
-				<li><g:link controller="Question" action="create">Ask Question</g:link></li>
+				<li><g:link controller="Index" action="index" class="${locality.equals('index') ? 'active' : '' }">Questions</g:link></li>
+				<li><g:link controller="Tag" action="list" class="${locality.equals('tag') ? 'active' : '' }">Tags</g:link></li>
+				<li><g:link controller="Contributor" action="list" class="${locality.equals('user') ? 'active' : '' }">Users</g:link></li>
+				<li><g:link controller="Question" action="create" class="${locality.equals('ask') ? 'active' : '' }">Ask Question</g:link></li>
 				<li id="lastMenu"><a>Login</a></li>
 			</ul>
 		</div>
 		<div id="content">
+			
 			<g:layoutBody/>
 		</div>
 	</body>

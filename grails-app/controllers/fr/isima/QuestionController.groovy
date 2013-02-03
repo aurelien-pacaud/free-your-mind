@@ -2,7 +2,10 @@ package fr.isima
 
 import org.springframework.dao.DataIntegrityViolationException
 
+
 class QuestionController {
+	
+	def postService
 	
 	def display = {
 		
@@ -11,7 +14,7 @@ class QuestionController {
 	
 	def create = {
 						
-		render view: 'new', model: [tags: Tag.json()]
+		render view: 'new', model: [tags: Tag.json(), locality: "ask"]
 	}
 	
 	def add = {
@@ -29,10 +32,13 @@ class QuestionController {
 		}	
 		
 		def question = new Question(title: title, content: content, tags: tags, contributor:Contributor.get(1));
-		
-		if (!question.save())
-			render view: 'new', model: [question: question, tags: Tag.json(), tagIds: tagIds]
-		else
+				
+		try {
+			postService.create(question)			
 			redirect action: "display", id: question.id
+		}
+		catch (e) {
+			render view: 'new', model: [question: question, tags: Tag.json(), tagIds: tagIds]
+		}
 	}
 }

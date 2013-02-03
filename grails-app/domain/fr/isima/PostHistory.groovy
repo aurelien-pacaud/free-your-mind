@@ -13,6 +13,6 @@ class PostHistory {
     }
 }
 
-enum PostType{
+enum PostType {
 	ASKED, ANSWERD, REVISION, ACCEPTED
 }
