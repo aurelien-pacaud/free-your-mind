@@ -1,17 +1,24 @@
 package fr.isima
 
-
-
-import grails.test.mixin.*
-import org.junit.*
-
-/**
- * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
- */
 @TestFor(QuestionService)
+@Mock([Contributor, Question, PostHistory])
 class QuestionServiceTests {
 
-    void testSomething() {
-        assertTrue(true)
+	def serviceQ = new QuestionService()
+	def serviceP = new PostService()
+	def user = new Contributor(login: "Toto", password: "tttttttt")
+	def post = new Question(title: "Title", content: "Content test", contributor: user)
+	
+	/**
+	 *  Test of incView method.
+	 */
+    void testIncView() {
+
+		serviceP.create(post)
+				
+		serviceQ.incViewCpt(post)
+		assertEquals 1, post.nbView
+		serviceQ.incViewCpt(post)
+		assertEquals 2, post.nbView
     }
 }

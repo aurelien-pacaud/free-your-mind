@@ -8,8 +8,9 @@ class BootStrap {
 		
 		new Tag(name: "C++", description: "C++ is a widely-used, statically-typed, free-form, compiled, multi-paradigm, multi-level, " + 
 									      "imperative, general-purpose, object-oriented programming language based on C.").save()
-		new Tag(name: "Java", description: "Java").save()
-		new Tag(name: "C", description: "V").save()
+		new Tag(name: "Java", description: "Java is an object-oriented language and runtime environment (JRE). Java programs are platform " + 
+										   "independent because the program execution is handled by a Virtual Machine called the Java VM or JVM.").save()
+		new Tag(name: "C", description: "C").save()
 		new Tag(name: "Groovy", description: "Groovy").save()
 		
 		Tag.metaClass.static.json = {
