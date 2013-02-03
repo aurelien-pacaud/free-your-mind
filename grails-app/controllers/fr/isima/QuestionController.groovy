@@ -29,7 +29,9 @@ class QuestionController {
 			
 			tags.add(Tag.get(id))
 			tagIds.add(id);
-		}	
+		}
+		
+		log.info tags
 		
 		def question = new Question(title: title, content: content, tags: tags, contributor:Contributor.get(1));
 				

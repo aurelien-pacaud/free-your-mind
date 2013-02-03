@@ -71,6 +71,10 @@ environments {
 
 // log4j configuration
 log4j = {
+	
+	appenders {
+        console name: "stdout", threshold: org.apache.log4j.Level.INFO
+    }
     // Example of changing the log pattern for the default console appender:
     //
     //appenders {

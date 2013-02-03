@@ -14,7 +14,7 @@
 		<div style="width : 28%; float : right;">
 			<div>
 				<h2>Tags</h2>
-				<g:render template="/tag/tagTemplate" var="tag" collection="${tags}" />
+				<g:render template="/tag/tagTemplateWithNbofQuestion" var="tag" collection="${tags}" />
 			</div>
 			<br />
 			<div>

@@ -15,7 +15,7 @@ class PostServiceTests {
 	 *  Test Ok of create method.	
 	 */
     void testCreateOk() {			
-		
+	
 		service.create(postOk)
 		
 		assertNotNull(Question.get(postOk.id))
