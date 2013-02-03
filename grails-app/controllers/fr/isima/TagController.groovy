@@ -6,7 +6,7 @@ class TagController {
 
 	def show = {
 		
-		render view: "show", model: [tag: Tag.get(params.get("id"))]
+		render view: "show", model: [tag: Tag.get(params.get("id")), locality: "tag"]
 	}
 }
 

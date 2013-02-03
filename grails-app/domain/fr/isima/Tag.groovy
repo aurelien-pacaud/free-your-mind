@@ -3,6 +3,7 @@ package fr.isima
 class Tag {
 
 	String name
+	String description
 	
 	static belongsTo = Question
 	static hasMany = [questions: Question]

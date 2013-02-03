@@ -6,10 +6,14 @@ import org.springframework.dao.DataIntegrityViolationException
 class QuestionController {
 	
 	def postService
+	def questionService
 	
 	def display = {
 		
-		[questions: Question.get(params.get("id"))]
+		def question = Question.get(params.get("id"))
+		
+		questionService.incViewCpt(question)		
+		[question: question]
 	}
 	
 	def create = {

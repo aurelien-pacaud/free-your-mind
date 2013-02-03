@@ -66,6 +66,10 @@ input:focus, textarea:focus {
 	outline : none;   
 }
 
+p {
+	text-align : justify;
+}
+
 /* Menu bar. */
 #topMenu {	
 	min-height       : 44px;

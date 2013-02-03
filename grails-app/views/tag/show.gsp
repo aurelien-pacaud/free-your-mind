@@ -8,7 +8,8 @@
 		<br />		
 		<div style="width : 28%; float : left;">
 			<div>
-				<h2>Tags <g:render template="/tag/tagTemplate" var="tag" bean="${tag}" /></h2>				
+				<h2>Tags <g:render template="/tag/tagTemplate" var="tag" bean="${tag}" /></h2>	
+				<p>${tag.description}</p>			
 			</div>
 		</div>
 		
@@ -16,5 +17,6 @@
 			<h2>Related questions</h2>
 			<g:render template="/post/postItemListTemplate" var="post" collection="${tag.questions}" />
 		</div>
+		<div style="clear : both;"></div>
 	</body>
 </html>
