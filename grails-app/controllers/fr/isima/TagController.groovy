@@ -4,7 +4,10 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class TagController {
 
-	static scaffold = true
+	def show = {
+		
+		render view: "show", model: [tag: Tag.get(params.get("id"))]
+	}
 }
 
 
