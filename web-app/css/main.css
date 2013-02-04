@@ -18,14 +18,15 @@ input, select, textarea {
 }
 
 #content {
-	background : #FFF;
-	margin     : 0 auto;
+	margin : 0 auto;
+	width  : 960px;
 }
 
 /* Title style. */
 h2 {	
 	color          : #000;
 	border-bottom  : 1px #cccccc solid;
+	font-size      : 18px;
 	
 	padding        : 0;
 	padding-bottom : 8px;
@@ -67,14 +68,15 @@ input:focus, textarea:focus {
 }
 
 p {
-	text-align : justify;
+	text-align    : justify;
 }
 
 /* Menu bar. */
 #topMenu {	
 	min-height       : 44px;
 	background-color : #3D6AA2;
-	width            : 100%;
+	width            : 960px;
+	margin           : 0 auto;
 }
 
 #topMenu ul {	
@@ -83,7 +85,7 @@ p {
 	list-style-type : none;
 }
 
-#topMenu ul li a, #topMenu {
+#topMenu ul li a {
 	display         : block;
 	float           : left; 
 	line-height     : 40px;

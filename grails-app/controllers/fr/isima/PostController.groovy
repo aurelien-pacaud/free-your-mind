@@ -16,12 +16,14 @@ class PostController {
 	def incMark = {
 		
 		postService.incMark(Question.get(params.get("id")))
-		redirect action: 'display', controller: 'question', id: params.get("id")
+		//[question: Question.get(params.get("id"))]
+		render Question.get(params.get("id")).mark
 	}
 	
 	def downMark = {
 		
 		postService.downMark(Question.get(params.get("id")))
-		redirect action: 'display', controller: 'question', id: params.get("id")
+		//[question: Question.get(params.get("id"))]
+		render Question.get(params.get("id")).mark
 	}
 }

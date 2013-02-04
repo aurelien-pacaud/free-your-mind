@@ -23,7 +23,7 @@
 	</head>
 	<body>
 		<div id="topMenu">
-			<div style="float:left; margin-right : 25px;"><g:img file="fym-logo.png" style="width : 40px; height : 40px; vertical-align : middle;"/>Fym</div>
+			<div style="float:left;"><g:img file="fym-logo.png" style="width : 44px; height : 44px; vertical-align : middle;"/></div>
 			<ul>
 				<li><g:link controller="Index" action="index" class="${locality.equals('index') ? 'active' : '' }">Questions</g:link></li>
 				<li><g:link controller="Tag" action="list" class="${locality.equals('tag') ? 'active' : '' }">Tags</g:link></li>
@@ -32,7 +32,7 @@
 				<li id="lastMenu"><a>Login</a></li>
 			</ul>
 		</div>
-		<div id="content">
+		<div id="content" class="clean">
 			
 			<g:layoutBody/>
 		</div>
