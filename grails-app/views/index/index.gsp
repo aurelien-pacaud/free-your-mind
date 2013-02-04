@@ -16,7 +16,10 @@
 				<h2>Tags</h2>
 				<g:render template="/tag/tagTemplateWithNbofQuestion" var="tag" collection="${tags}" />
 			</div>
+			
+			<div style="clear : both;"></div>
 			<br />
+			
 			<div>
 				<h2>Awards</h2>				
 			</div>
