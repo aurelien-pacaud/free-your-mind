@@ -77,6 +77,7 @@ p {
 	background-color : #3D6AA2;
 	width            : 960px;
 	margin           : 0 auto;
+	margin-bottom    : 20px;
 }
 
 #topMenu ul {	
@@ -173,7 +174,13 @@ div#tags > input {
 }
 
 
+/* Question, Answer, comment and related */
+.userPost {
 
+	float       : right;
+	margin-left : 8px;
+	
+}
 
 /* ------- User creation ------- */
 

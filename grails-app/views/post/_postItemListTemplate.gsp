@@ -1,14 +1,12 @@
 <div class="itemPost">
 	
-	<div style="float : left; text-align : center; margin-right : 5px;">${post.mark}<br />Vote</div>
-	<div style="float : left; text-align : center; margin-right : 5px;">${post.nbView}<br />Views</div>
+	<div style="float : left; text-align : center; margin-right : 5px;">${post.mark}<br />Vote</div>	
+	<div style="float : left; text-align : center; margin-right : 5px;">${post.answers.size()}<br />Answered</div>
+	<div style="float : left; text-align : center; margin-right : 5px;">${post.nbView}<br />Views</div>	
 	
 	<div>		
 		<g:if test="${post.isClosed}">
 			<div class="label label-important">Closed</div>
-		</g:if>	
-		<g:if test="${!post.isClosed}">
-			<div class="label label-warning">New</div>
 		</g:if>
 		<g:link controller="Question" action="display" id="${post.id}"><b>${post.title}</b></g:link>
 	

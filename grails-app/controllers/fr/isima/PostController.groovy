@@ -15,15 +15,15 @@ class PostController {
 	
 	def incMark = {
 		
-		postService.incMark(Question.get(params.get("id")))
+		postService.incMark(Post.get(params.get("id")))
 		//[question: Question.get(params.get("id"))]
-		render Question.get(params.get("id")).mark
+		render Post.get(params.get("id")).mark
 	}
 	
 	def downMark = {
 		
-		postService.downMark(Question.get(params.get("id")))
+		postService.downMark(Post.get(params.get("id")))
 		//[question: Question.get(params.get("id"))]
-		render Question.get(params.get("id")).mark
+		render Post.get(params.get("id")).mark
 	}
 }
