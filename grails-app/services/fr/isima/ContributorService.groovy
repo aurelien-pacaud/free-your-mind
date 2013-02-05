@@ -18,4 +18,12 @@ class ContributorService {
 			return true;
 		}
     }
+	
+	/** 
+	 * Increment the profil view counter
+	 * @param c Contributor to which we increment the counter
+	 */
+	def incrViewCounter(Contributor c) {
+		c.nbProfileViews++
+	}
 }

@@ -13,7 +13,9 @@ class ContributorController {
 	 * Display the user which id is specified 
 	 */
 	def show = {
-		[user: Contributor.get(params.get("id"))]
+		Contributor c = Contributor.get(params.get("id"))
+		contributorService.incrViewCounter(c);
+		[user: c]
 	}
 	
 	/**
