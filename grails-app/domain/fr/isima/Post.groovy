@@ -14,4 +14,8 @@ abstract class Post {
     static constraints = {
 		content(nullable:false, blank:false)
     }
+	
+	static mapping = {
+		content type: 'text'
+	 }
 }
