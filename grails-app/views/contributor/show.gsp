@@ -8,7 +8,7 @@ show
 		<title>Free your mind -- User Profil</title>		
 	</head>
 	<body>	
-		<div class="content">
+		<div>
 			<div class="summary">
 				<h2>${user.firstName}</h2>
 				<div class="leftCol">
