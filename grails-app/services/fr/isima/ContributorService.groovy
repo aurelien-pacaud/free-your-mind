@@ -12,10 +12,10 @@ class ContributorService {
     def create(Contributor c) {
 		
 		if (!c.validate()) {
-			return true
+			return false
 		} else {
 			c.save();
-			return false;
+			return true;
 		}
     }
 }
