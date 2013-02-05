@@ -6,7 +6,7 @@
 	</head>
 	<body>	
 		<div>
-			<h2>Users</h2>
+			<h2><g:message code="user.list.title"/></h2>
 			<br/>
 			<g:link controller="contributor" action="create">Create a new user</g:link>
 			<br/><br/>
