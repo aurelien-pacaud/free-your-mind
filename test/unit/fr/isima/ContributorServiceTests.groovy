@@ -41,4 +41,21 @@ class ContributorServiceTests {
 		
 		assertFalse(service.create(c))
 	}
+	
+	/**
+	 *  Test of incViewCounter method.
+	 */
+	void testIncView() {
+
+		def Contributor c = new Contributor(firstName: "Test", lastName: "Test", login: "test123", password: "test123",
+			email: "", location: "", birthDate: new Date() ,isAdmin: false,
+			nbProfileViews: 0, registrationDate: new Date());
+		
+		service.create(c)
+				
+		service.incrViewCounter(c)
+		assertEquals 1, c.nbProfileViews
+		service.incrViewCounter(c)
+		assertEquals 2, c.nbProfileViews
+	}
 }

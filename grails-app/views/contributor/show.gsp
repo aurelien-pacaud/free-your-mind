@@ -17,39 +17,39 @@ show
 						<br/>
 						${user.reputation}
 						<br/>
-						reputation
+						<g:message code="user.profil.reputation"/>
 					</center>
 				</div>
 				<div class="rightCol">
 					<table>
 						<tr>
-							<td style="width:30%">bio</td>
-							<td style="width:30%">website</td>
+							<td style="width:30%"><g:message code="user.profil.summary.bio"/> </td>
+							<td style="width:30%"><g:message code="user.profil.summary.webSite"/></td>
 							<td style="width:30%"></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td>location</td>
+							<td><g:message code="user.profil.summary.location"/></td>
 							<td>${user.location}</td>
 						</tr>
 						<tr>
 							<td></td>
-							<td>age</td>
+							<td><g:message code="user.profil.summary.age"/></td>
 							<td>${new Date() - user.birthDate }</td>
 						</tr>
 						<tr>
-							<td>visits</td>
-							<td>member for</td>
+							<td><g:message code="user.profil.summary.visits"/></td>
+							<td><g:message code="user.profil.summary.memberFor"/></td>
 							<td>${user.registrationDate}</td>
 						</tr>
 						<tr>
 							<td></td>
-							<td>seen</td>
+							<td><g:message code="user.profil.summary.seen"/></td>
 							<td>${user.lastConnectionDate}</td>
 						</tr>
 						<tr>
-							<td>stats</td>
-							<td>profile views</td>
+							<td><g:message code="user.profil.summary.stats"/></td>
+							<td><g:message code="user.profil.summary.profil.views"/></td>
 							<td>${user.nbProfileViews}</td>
 						</tr>
 					</table>
