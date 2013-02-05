@@ -6,6 +6,9 @@ class ContributorController {
 
 	static scaffold = false   
 	
+	// Contributors' service
+   def contributorService
+	
 	/**
 	 * Display the user which id is specified 
 	 */
@@ -25,6 +28,7 @@ class ContributorController {
 	 */
 	def createUser = {
 		
+		// Get all attributes form the form
 		def String firstName = params.get("firstName")
 		def String lastName = params.get("lastName")
 		def String login = params.get("login")
@@ -37,13 +41,13 @@ class ContributorController {
 						email: email, location: location, birthDate: birthDate,isAdmin: false, 
 						nbProfileViews: 0, registrationDate: new Date());
 		
-		
-		if (!c.validate()) {
+		// Insert the contributor in the DB
+		if (contributorService.create(c)) {
 			render(view: "create", model:[user: c])
 		} else {
-			c.save();
-			redirect(action: "list");
+			redirect(controller: "contributor", action: "list");
 		}
+		
 	}
 	
 	/**

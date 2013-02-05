@@ -5,7 +5,7 @@
 		<title>Free your mind</title>		
 	</head>
 	<body>
-		<div class="content">
+		<div>
 			<h2>Create a new account</h2>
 			<br/>
 			<g:renderErrors bean="${user}" />

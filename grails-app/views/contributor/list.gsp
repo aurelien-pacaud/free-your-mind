@@ -5,7 +5,7 @@
 		<title>Free your mind -- Users</title>		
 	</head>
 	<body>	
-		<div class="content">
+		<div>
 			<h2>Users</h2>
 			<br/>
 			<g:link controller="contributor" action="create">Create a new user</g:link>
