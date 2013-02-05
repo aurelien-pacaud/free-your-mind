@@ -23,9 +23,9 @@ class QuestionController {
 	
 	def add = {
 		
-		def title = params.get("title")
-		def content = params.get("content")
-		def tagsId = params.get("tagsId")	
+		def title = params.title
+		def content = params.content
+		def tagsId = params.tagsId	
 		def tagIds = []
 		def tags = []
 		
@@ -40,7 +40,7 @@ class QuestionController {
 		def question = new Question(title: title, content: content, tags: tags, contributor:Contributor.get(1));
 				
 		try {
-			postService.create(question)			
+			questionService.create(question)			
 			redirect action: "display", id: question.id
 		}
 		catch (e) {
