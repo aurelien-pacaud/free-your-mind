@@ -1,3 +1,4 @@
+import fr.isima.connection.Role
 import fr.isima.Tag
 import grails.converters.JSON
 import java.util.HashMap;
@@ -29,6 +30,11 @@ class BootStrap {
 			
 			jsonMap as JSON
 		}
+		
+		// Role creation
+		def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
+		def moderatorRole = new Role(authority: 'ROLE_MODERATOR').save(flush: true)
+		def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
     }
     def destroy = {
     }

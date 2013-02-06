@@ -2,6 +2,7 @@ package fr.isima
 
 import com.google.protobuf.ServiceException
 
+
 @TestFor(PostService)
 @Mock([Contributor, Question, PostHistory])
 class PostServiceTests {

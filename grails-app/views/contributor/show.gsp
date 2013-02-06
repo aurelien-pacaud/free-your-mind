@@ -17,7 +17,7 @@ show
 						<br/>
 						${user.reputation}
 						<br/>
-						<g:message code="user.profil.reputation"/>
+						<g:message code="user.profil.summary.reputation"/>
 					</center>
 				</div>
 				<div class="rightCol">

@@ -1,10 +1,23 @@
 package fr.isima
 
-class Contributor {
+import java.util.Set;
 
-	String login
-	String password
+import fr.isima.connection.Role;
+import fr.isima.connection.UserRole;
+
+class Contributor{
+
+	transient springSecurityService
 	
+	// Information requiered for the connection
+	String username
+	String password
+	boolean enabled
+	boolean accountExpired
+	boolean accountLocked
+	boolean passwordExpired
+	
+	//  Contributor information
 	String firstName
 	String lastName	
 	Date birthDate
@@ -19,12 +32,34 @@ class Contributor {
 	
 	static hasMany = [posts:Post, comments:Comment]
 	
-    static constraints = {
-		login(nullable:false, blank:false, minSize:3, unique:true)
-		password(nullable:false, blank:false, minSize:6, maxSize:15)
+	static constraints = {
+		username blank: false, unique: true
+		password blank: false
 		birthDate(nullable:false, blank:false)
 		lastConnectionDate(nullable:true)
-    }
+	}
 	
+	static mapping = {
+		password column: '`password`'
+	}
+
+	Set<Role> getAuthorities() {
+		UserRole.findAllByUser(this).collect { it.role } as Set
+	}
+
+	def beforeInsert() {
+		encodePassword()
+	}
+
+	def beforeUpdate() {
+		if (isDirty('password')) {
+			encodePassword()
+		}
+	}
+
+	protected void encodePassword() {
+		password = springSecurityService.encodePassword(password)
+	}
+
 	
 }

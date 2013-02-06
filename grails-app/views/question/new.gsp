@@ -7,22 +7,27 @@
 	<body>
 		<h2>Ask question</h2>
 		
-		<g:hasErrors bean="${question}">
-			<ul>
-				<g:renderErrors bean="${question}" as="list" />
-			</ul>
-		</g:hasErrors>
-		
 		<g:form controller="question" action="add">
-			<label for="title">Title</label><g:textField name="title" id="title" required="true" />			
-			<label for="tags">Tags</label>
-			<div id="tags">
-    			<g:textField id="tag" type="text" name="tags"/>
+			<label for="title">Title</label>
+			<div class="${hasErrors(bean:question, field: 'title', 'alert-error')}">
+				<g:renderErrors bean="${question}" field="title" />
+				<g:textField class="${hasErrors(bean:question, field: 'title', 'error')}" name="title" id="title" value="${question?.title}"/>
+			</div>	
+			
+			<label for="tags">Tags (5 max)</label>
+			<div id="tags" class="${hasErrors(bean:question, field: 'tags', 'alert-error')}">
+   				<g:textField id="tag" type="text" name="tags"/>
 			</div>
+			
 			<g:hiddenField id="tagsId" type="hidden" name="tagsId" value=""/>
 
 			<label for="content">Content</label>
-			<g:textArea name="content" id="questionContent" required="true"/><br />
+			<div class="${hasErrors(bean:question, field: 'content', 'alert-error')}">
+				<g:renderErrors class="alert-error" bean="${question}" field="content" />
+				<g:textArea class="${hasErrors(bean:question, field: 'content', 'error')}" name="content" id="questionContent" value="${question?.content}"/>
+			</div>
+			<br />
+			
 			<g:submitButton name="sumbit" value="Submit"/>
 		</g:form>
 		
@@ -42,7 +47,7 @@
 			
 			$(document).ready(function() {
 				
-				var tag = "<span class='label label-info'>{0} <span class='tagClose' alt='Remove tag'>&#215;</span><input type='hidden' value='{1}'/></span>";
+				var tag = "<span class='label label-info'>{0} <span class='tagClose' alt='Remove tag'>&times;</span><input type='hidden' value='{1}'/></span>";
 				var source = ${tags}.tags;
 				var selectedTags = [];
 

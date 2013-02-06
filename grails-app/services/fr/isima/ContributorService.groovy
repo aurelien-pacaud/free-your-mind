@@ -1,5 +1,8 @@
 package fr.isima
 
+import fr.isima.connection.Role
+import fr.isima.connection.UserRole
+
 class ContributorService {
 
 	
@@ -14,8 +17,12 @@ class ContributorService {
 		if (!c.validate()) {
 			return false
 		} else {
-			c.save();
-			return true;
+			c.enabled = true;
+			c.save()
+			// Add the user Role to the Contributor
+			def role = Role.findByAuthority("ROLE_USER")
+			UserRole.create(c, role, true)
+			return true
 		}
     }
 	

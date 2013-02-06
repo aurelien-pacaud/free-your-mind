@@ -1,6 +1,8 @@
 package fr.isima
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.plugins.springsecurity.Secured
+
 
 class ContributorController {
 
@@ -12,7 +14,8 @@ class ContributorController {
 	/**
 	 * Display the user which id is specified 
 	 */
-	def show = {
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def show = {
 		Contributor c = Contributor.get(params.get("id"))
 		contributorService.incrViewCounter(c);
 		[user: c]
@@ -39,12 +42,12 @@ class ContributorController {
 		def String location = params.get("location")
 		def Date birthDate = params.get("birthDate")
 		
-		def Contributor c = new Contributor(firstName: firstName, lastName: lastName, login: login, password: password, 
+		def Contributor c = new Contributor(firstName: firstName, lastName: lastName, username: login, password: password, 
 						email: email, location: location, birthDate: birthDate,isAdmin: false, 
 						nbProfileViews: 0, registrationDate: new Date());
 		
 		// Insert the contributor in the DB
-		if (contributorService.create(c)) {
+		if (!contributorService.create(c)) {
 			render(view: "create", model:[user: c])
 		} else {
 			redirect(controller: "contributor", action: "list");
