@@ -4,6 +4,8 @@ import com.google.protobuf.ServiceException
 
 class PostService {
 
+	def postHistoryService
+	
     /**
 	 * Method use to save a post in the DB.
 	 * 
@@ -53,6 +55,7 @@ class PostService {
 	def incMark(Post post) {
 		
 		post.mark++;
+		postHistoryService.createVotedHistory(post, post.contributor)
 		
 		post.save();
 	}
@@ -65,6 +68,7 @@ class PostService {
 	def downMark(Post post) {
 		
 		post.mark--;
+		postHistoryService.createVotedHistory(post, post.contributor)
 		
 		post.save();
 	}

@@ -11,16 +11,17 @@
 		
 		<g:if test="${!question.answers.isEmpty()}">
 			<h2>${question.answers.size()} Answers</h2>
-			<g:render template="/post/postTemplate" var="post" collection="${question.answers}"/>
+			<div id="answers">
+				<g:render template="/post/postTemplate" var="post" collection="${question.answers}"/>
+			</div>
 		</g:if>
-		<div id="newAnswer"></div>	
 		<br />
 		<h2>Your Answer</h2>
-		<g:formRemote name="answerForm" update="newAnswer" 
+		<g:formRemote name="answerForm" update="answers" 
 					  url="[controller: 'answer', action: 'add', params: [idC: question.contributor.id, idQ: question.id]]">			
 			<g:textArea name="answerdContent" id="answerdContent"></g:textArea>	
 			<br />
-			<g:submitButton name="submitAnswer" value="Answerd" id="submitA"/>
+			<g:submitButton name="submitAnswer" value="Answered" id="submitA"/>
 		</g:formRemote>
 	</body>
 </html>

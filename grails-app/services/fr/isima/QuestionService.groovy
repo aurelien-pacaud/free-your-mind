@@ -4,6 +4,8 @@ import com.google.protobuf.ServiceException
 
 class QuestionService {
 	
+	def postHistoryService 
+	
 	def create(Question question) {
 		
 		/* If the question can't be saved. */
@@ -12,11 +14,7 @@ class QuestionService {
 		else {
 			
 			question.save();
-			/* Add new entry in History. */
-			def postHistory = new PostHistory(contributor: question.contributor, post: question,
-											  date: new Date(), type: PostType.ASKED)
-			
-			postHistory.save()
+			postHistoryService.createAskedHistory(question, question.contributor)
 		}
 	}
 	

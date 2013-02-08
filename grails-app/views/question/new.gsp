@@ -16,6 +16,7 @@
 			
 			<label for="tags">Tags (5 max)</label>
 			<div id="tags" class="${hasErrors(bean:question, field: 'tags', 'alert-error')}">
+				<g:renderErrors bean="${question}" field="tags" />
    				<g:textField id="tag" type="text" name="tags"/>
 			</div>
 			

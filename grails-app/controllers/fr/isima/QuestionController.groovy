@@ -1,12 +1,13 @@
 package fr.isima
 
 import org.springframework.dao.DataIntegrityViolationException
-
+import grails.plugins.springsecurity.Secured
 
 class QuestionController {
 	
 	def postService
 	def questionService
+	def springSecurityService
 	
 	def display = {
 		
@@ -16,6 +17,7 @@ class QuestionController {
 		[question: question]
 	}
 	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def create = {
 						
 		render view: 'new', model: [tags: Tag.json(), locality: "ask"]
@@ -35,9 +37,8 @@ class QuestionController {
 			tagIds.add(id);
 		}
 		
-		log.info tags
-		
-		def question = new Question(title: title, content: content, tags: tags, contributor:Contributor.get(1));
+		log.info tags	
+		def question = new Question(title: title, content: content, tags: tags, contributor: getAuthenticatedUser());
 				
 		try {
 			questionService.create(question)			

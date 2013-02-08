@@ -15,7 +15,7 @@
 		</div>		
 		<br />
 		<div style="float:right">					
-			<prettytime:display date="${post.creationDate}" /> by <g:link controller="Contributor" action="show" id="${post.contributor.id}">${post.contributor.login}</g:link>		
+			<prettytime:display date="${post.creationDate}" /> by <g:link controller="Contributor" action="show" id="${post.contributor.id}">${post.contributor.username}</g:link>		
 		</div>		
 	</div>
 	
