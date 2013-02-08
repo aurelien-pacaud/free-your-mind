@@ -1,6 +1,7 @@
 package fr.isima
 
-import com.google.protobuf.ServiceException
+import fr.isima.exception.PostException
+
 
 class QuestionService {
 	
@@ -9,8 +10,10 @@ class QuestionService {
 	def create(Question question) {
 		
 		/* If the question can't be saved. */
-		if (!question.validate())
-			throw new ServiceException("Post can't be saved");
+		if (!question.validate()) {
+			
+			throw new PostException("Post can't be saved");
+		}
 		else {
 			
 			question.save();

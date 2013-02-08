@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
@@ -29,11 +30,17 @@
 				<li><g:link controller="Tag" action="list" class="${locality.equals('tag') ? 'active' : '' }">Tags</g:link></li>
 				<li><g:link controller="Contributor" action="list" class="${locality.equals('user') ? 'active' : '' }">Users</g:link></li>
 				<li><g:link controller="Question" action="create" class="${locality.equals('ask') ? 'active' : '' }">Ask Question</g:link></li>
-				<li id="lastMenu"><a>Login</a></li>
+				<li id="lastMenu">
+                                  <a>Login 
+                                    <sec:ifAllGranted roles="ROLE_USER">
+                                      (<sec:loggedInUserInfo field="username" />)
+                                    </sec:ifAllGranted>
+                                  </a>
+                                </li>
 			</ul>
 		</div>
 		<div id="content" class="clean">
-			
+                      <g:set var="user" bean="getAuthenticatedUser()"/>	
 			<g:layoutBody/>
 		</div>
 	</body>

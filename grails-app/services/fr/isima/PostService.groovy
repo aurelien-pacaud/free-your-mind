@@ -1,6 +1,6 @@
 package fr.isima
 
-import com.google.protobuf.ServiceException
+import fr.isima.exception.PostException
 
 class PostService {
 
@@ -15,7 +15,7 @@ class PostService {
 		
 		/* If the question can't be saved. */
 		if (!post.validate())
-			throw new ServiceException("Post can't be saved");
+			throw new PostException("Post can't be saved");
 		else {
 			
 			post.save();
@@ -36,7 +36,7 @@ class PostService {
 		
 		/* If the question can't be saved. */
 		if (!post.save())
-			throw new ServiceException("Post can't be updated");
+			throw new PostException("Post can't be updated");
 		else {
 			
 			/* Add new entry in History. */

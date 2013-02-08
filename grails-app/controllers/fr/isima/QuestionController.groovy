@@ -11,10 +11,10 @@ class QuestionController {
 	
 	def display = {
 		
-		def question = Question.get(params.get("id"))
+		def question = Question.get(params.id)
 		
 		questionService.incViewCpt(question)		
-		[question: question]
+		[question: question, user: getAuthenticatedUser()]
 	}
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
@@ -30,22 +30,30 @@ class QuestionController {
 		def tagsId = params.tagsId	
 		def tagIds = []
 		def tags = []
+
+		println tags
 		
-		tagsId.split(";").each { id ->
-			
-			tags.add(Tag.get(id))
-			tagIds.add(id);
+		if (tagsId != "") {
+			tagsId.split(";").each { id ->
+				
+				tags.add(Tag.get(id))
+				tagIds.add(id);
+			}
 		}
 		
+		println tags
+		
 		log.info tags	
-		def question = new Question(title: title, content: content, tags: tags, contributor: getAuthenticatedUser());
+		def question = new Question(title: title, content: content, tags: tags, 
+                                            contributor: getAuthenticatedUser());
 				
 		try {
 			questionService.create(question)			
 			redirect action: "display", id: question.id
 		}
 		catch (e) {
-			render view: 'new', model: [question: question, tags: Tag.json(), tagIds: tagIds]
+			render view: 'new', model: [question: question, tags: Tag.json(), 
+                                                    tagIds: tagIds]
 		}
 	}
 }
