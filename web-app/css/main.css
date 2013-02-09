@@ -46,6 +46,7 @@ a:hover {
 
 img {
 	border: 0;
+        vertical-align : middle;
 }
 
 hr {
@@ -133,7 +134,7 @@ p {
 	background-color : #3a87ad;
 }
 
-.label-success, .badge-success, .postAccepted {	
+.label-success, .badge-success {	
 	background-color : #468847;
 }
 
@@ -143,6 +144,10 @@ p {
 
 .label-warning, .badge-warning {	
 	background-color : #f89406;
+}
+
+.postAccepted a {
+  color : green;
 }
 
 /* Form input style. */

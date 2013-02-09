@@ -72,4 +72,10 @@ class PostService {
 		
 		post.save();
 	}
+
+        def accepted(Post post) {
+        
+          post.isAccepted = true;
+          post.save()
+        }
 }

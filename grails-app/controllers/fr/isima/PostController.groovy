@@ -26,4 +26,11 @@ class PostController {
 		//[question: Question.get(params.get("id"))]
 		render Post.get(params.get("id")).mark
 	}
+        
+        def accepted = {
+          
+          postService.accepted(Post.get(params.id))
+          render view: display, id: params.id, controller: "question"
+        }
+
 }

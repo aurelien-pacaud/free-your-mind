@@ -10,9 +10,9 @@
 		<br />
 		
 		<g:if test="${!question.answers.isEmpty()}">
-			<h1>${question.answers.size()} Answers</h1>
+			<h2>${question.answers.size()} Answers</h2>
 			<div id="answers">
-				<g:render template="/post/postTemplate" var="post" collection="${question.answers}"/>
+                          <g:render template="/post/postTemplate" var="post" collection="${question.answers}"/>
 			</div>
 		</g:if>
 		<br />

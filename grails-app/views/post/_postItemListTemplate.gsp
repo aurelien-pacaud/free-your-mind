@@ -8,7 +8,12 @@
 		<g:if test="${post.isClosed}">
 			<div class="label label-important">Closed</div>
 		</g:if>
-		<g:link controller="Question" action="display" id="${post.id}"><b>${post.title}</b></g:link>
+		<g:link controller="Question" action="display" id="${post.id}">
+                  <g:if test="${post.isAccepted}">
+                    <span class="label-success label" >Accepted</span>
+                  </g:if>
+                  <b>${post.title}</b>
+                </g:link>
 	
 		<div style="float:right">						
 			<g:render template="/tag/tagTemplate" var="tag" collection="${post.tags}" />		
