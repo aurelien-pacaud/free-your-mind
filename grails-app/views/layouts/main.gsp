@@ -15,7 +15,9 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-		
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'rainbow.css')}" type="text/css">
+		<script src="${resource(dir: 'js', file: 'highlight.pack.js')}"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
 		
 		<g:javascript library="jquery" plugin="jquery"/>		
 		<g:javascript library="jquery-ui"/>
@@ -31,7 +33,7 @@
 				<li><g:link controller="Contributor" action="list" class="${locality.equals('user') ? 'active' : '' }">Users</g:link></li>
 				<li><g:link controller="Question" action="create" class="${locality.equals('ask') ? 'active' : '' }">Ask Question</g:link></li>
 				<li id="lastMenu">
-                                  <a>Login 
+                                  <a id="login">Login 
                                     <sec:ifAllGranted roles="ROLE_USER">
                                       (<sec:loggedInUserInfo field="username" />)
                                     </sec:ifAllGranted>
@@ -39,9 +41,16 @@
                                 </li>
 			</ul>
 		</div>
-		<div id="content" class="clean">
+
+		<div id="content" class="clear">
                       <g:set var="user" bean="getAuthenticatedUser()"/>	
 			<g:layoutBody/>
 		</div>
+                <div id="myDiv" style="background-color: red"><br /><br/></div>
+                <script>
+                  $('#login').click(function (e) {
+                      $("#myDiv").hide();
+                  });
+                </script>
 	</body>
 </html>

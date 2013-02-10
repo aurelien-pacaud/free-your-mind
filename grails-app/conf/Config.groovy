@@ -98,3 +98,5 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'fr.isima.Contributor'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.testapp.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.testapp.Role'
+
+grails.plugins.markdown.fencedCodeBlocks = true
