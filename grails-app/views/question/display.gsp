@@ -25,8 +25,23 @@
       <g:form name="answerForm" update="answers" controller="answer" action="add" params="[idC: question.contributor.id, idQ: question.id]">	
         <g:textArea name="answerdContent" id="answerdContent"></g:textArea>
         <br />
-        <g:submitButton name="submitAnswer" value="Answered" id="submitA"/>
+        <g:submitButton name="submitAnswer" value="Answered" id="submitA" style="float : right;"/>
       </g:form>
     </sec:ifAllGranted>
+
+    <script>
+      $(".comment").click(function(e) {
+    
+        var element = "#comment-" + $(this).attr("id");
+    
+        if ($(element).is(":visible")) {
+          $(element).hide();
+        }
+        else {
+          $(element + " textarea").val('');
+          $(element).show(); 
+        }
+      });
+    </script>
   </body>
 </html>

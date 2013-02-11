@@ -17,5 +17,6 @@ abstract class Post {
 
   static mapping = {
     content type: 'text'
+    comments sort: 'creationDate'
   }
 }

@@ -163,6 +163,15 @@ p {
   min-height  : 87px;
 }
 
+.commentTextArea {
+  margin-left : 56px;
+  display     : none;
+}
+
+.comment {
+  cursor : pointer;
+}
+
 .postToolbar {
   float       : left;
   margin-left : 56px;
@@ -246,6 +255,11 @@ textarea {
   line-height: 20px;
 }
 
+textarea {
+  padding : 0;
+  margin  : 0;
+}
+
 input,
 button,
 select,
@@ -271,10 +285,10 @@ textarea.error :focus {
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
 }
 
-/*textarea {
+textarea {
   height : 208px;
   width  : 100%;
-}*/
+}
 
 /* ------- User --------- */
 

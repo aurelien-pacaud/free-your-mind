@@ -8,8 +8,6 @@ class AnswerController {
 
   def add = {
 
-    println "Add"
-
     def contributor = Contributor.get(params.get("idC"))
     def question = Question.get(params.get("idQ"))
 
