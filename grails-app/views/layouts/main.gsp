@@ -46,11 +46,5 @@
                       <g:set var="user" bean="getAuthenticatedUser()"/>	
 			<g:layoutBody/>
 		</div>
-                <div id="myDiv" style="background-color: red"><br /><br/></div>
-                <script>
-                  $('#login').click(function (e) {
-                      $("#myDiv").hide();
-                  });
-                </script>
 	</body>
 </html>

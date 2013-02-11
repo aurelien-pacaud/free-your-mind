@@ -99,4 +99,7 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'fr.isima.Contrib
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.testapp.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.testapp.Role'
 
-grails.plugins.markdown.fencedCodeBlocks = true
+//markdown.fencedCodeBlocks = true
+markdown.all = true
+//grails.plugins.markdown.all = true
+//grails.plugins.markdown.abbreviations = true

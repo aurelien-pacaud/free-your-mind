@@ -1,11 +1,13 @@
 package fr.isima
 
+import com.naleid.grails.MarkdownService;
+
 import fr.isima.exception.PostException
 
 
 class QuestionService {
 
-  def postHistoryService 
+  def postHistoryService
 
   def create(Question question) {
 
