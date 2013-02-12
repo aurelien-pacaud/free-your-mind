@@ -93,8 +93,8 @@
                 </li>
 			</ul>
 		</div>
-		<div id="content" class="clean">
-            <g:set var="user" bean="getAuthenticatedUser()"/>	
+		<div id="content" class="clear">
+		    <g:set var="user" bean="getAuthenticatedUser()"/>	
 			<g:layoutBody/>
 		</div>
 	</body>

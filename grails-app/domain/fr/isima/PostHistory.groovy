@@ -2,17 +2,17 @@ package fr.isima
 
 class PostHistory {
 
-	Date date
-	PostType type
-	
-	static belongsTo = [contributor: Contributor, post: Post] 
-	
-    static constraints = {
-		date(nullable:false)
-		type(nullable:false)
-    }
+  Date date
+  PostType type
+
+  static belongsTo = [contributor: Contributor, post: Post] 
+
+  static constraints = {
+    date(nullable:false)
+    type(nullable:false)
+  }
 }
 
 enum PostType {
-	ASKED, ANSWERED, REVISION, ACCEPTED, COMMENTED, VOTED
+  ASKED, ANSWERED, REVISION, ACCEPTED, COMMENTED, VOTED
 }

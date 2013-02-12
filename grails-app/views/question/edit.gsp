@@ -5,18 +5,18 @@
     <title>Free your mind -- Ask Question</title>		
   </head>
   <body>
-    <h2>Ask question</h2>
+    <h2>Edit question</h2>
 
-    <g:form controller="question" action="add">
+    <g:form controller="question" action="update" id="${question.id}">
       <g:render template="formQuestion" var="question" bean="${question}" />
-      <g:submitButton name="sumbit" value="Submit"/>
+      <g:submitButton name="sumbit" value="Edit"/>
     </g:form>
-    
     <script type="text/javascript" src="${resource(dir: 'js', file: 'tags.js')}"></script>
     <script>
       $(function() {
         $('#tags').tagAutocomplete({"source" : ${tags}.tags, "selectedTags" : ${tagIds == null ? [] : tagIds}});
       });
     </script>
+
   </body>
 </html>
