@@ -4,7 +4,7 @@
 			<g:img dir="images" file="avatar.png" width="64" height="64"/>
 		</div>
 		<div class="userItemList">
-			<g:link controller="Contributor" action="show" id="${user.id}">${user.firstName} ${user.lastName}</g:link>
+			<g:link controller="Contributor" action="show" id="${user.id}">${user.username}</g:link>
 			<br/>
 			${user.location}
 			<br/>

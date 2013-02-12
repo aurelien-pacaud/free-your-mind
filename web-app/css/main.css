@@ -81,13 +81,17 @@ p {
 	margin-bottom    : 20px;
 }
 
-#topMenu ul {	
+#topMenuBackground {
+	background-color : #3D6AA2;
+}
+
+#topMenu #listMenu {	
 	padding         : 0;
 	margin          : 0;
 	list-style-type : none;
 }
 
-#topMenu ul li a {
+#topMenu #listMenu #menuItem a {
 	display         : block;
 	float           : left; 
 	line-height     : 40px;
@@ -98,7 +102,7 @@ p {
 	text-shadow     : 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
-#topMenu ul li a:hover, #topMenu ul li a.active {
+#topMenu #listMenu #menuItem a:hover, #topMenu #listMenu #menuItem a.active {
 	color       : #000;
 	text-shadow : none;
 }
@@ -112,6 +116,16 @@ p {
 /* Last menu item style.*/
 #lastMenu {
 	float : right;
+	margin-top : 10px;
+	margin-right: 15px;
+}
+
+#lastMenu #dLabel {
+	
+	text-shadow     : 0 -1px 0 rgba(0, 0, 0, 0.25);
+	color           : #fff;
+	text-decoration : none;
+	font-weight     : bold;
 }
 
 /* Tags and badges style. */

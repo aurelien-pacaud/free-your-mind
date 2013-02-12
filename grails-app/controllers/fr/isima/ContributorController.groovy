@@ -34,21 +34,22 @@ class ContributorController {
 	def createUser = {
 		
 		// Get all attributes form the form
-		def String firstName = params.get("firstName")
-		def String lastName = params.get("lastName")
 		def String login = params.get("login")
 		def String password = params.get("password")
-		def String email = params.get("email")
-		def String location = params.get("location")
-		def Date birthDate = params.get("birthDate")
+		def String confirmPassword = params.get("confirmPassword")
+		def String email = params.get("email")		
 		
-		def Contributor c = new Contributor(firstName: firstName, lastName: lastName, username: login, password: password, 
-						email: email, location: location, birthDate: birthDate,isAdmin: false, 
+		def Contributor c = new Contributor(firstName: "", lastName: "", username: login, password: password, 
+						email: email, location: "", birthDate: "",isAdmin: false, 
 						nbProfileViews: 0, registrationDate: new Date());
 		
+		if (!confirmPassword.equals(password)) {
+			c.errors.rejectValue('password','user.password.doesnotmatch')
+		} 
+							
 		// Insert the contributor in the DB
 		if (!contributorService.create(c)) {
-			render(view: "create", model:[user: c])
+			render(view: "create", model:[user: c, confirmPassword: confirmPassword])
 		} else {
 			redirect(controller: "contributor", action: "list");
 		}
