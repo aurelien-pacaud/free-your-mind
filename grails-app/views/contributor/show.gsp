@@ -10,7 +10,7 @@ show
 	<body>	
 		<div>
 			<div class="summary">
-				<h2>${user.firstName}</h2>
+				<h2>${user.username}</h2>
 				<div class="leftCol">
 					<center>
 						<g:img dir="images" file="avatar.png"/>
@@ -35,7 +35,7 @@ show
 						<tr>
 							<td></td>
 							<td><g:message code="user.profil.summary.age"/></td>
-							<td>${new Date() - user.birthDate }</td>
+							<td> ${user.birthDate}</td>
 						</tr>
 						<tr>
 							<td><g:message code="user.profil.summary.visits"/></td>
@@ -55,9 +55,25 @@ show
 					</table>
 				</div>
 			</div>
+			
+			<g:javascript plugin="twitter-bootstrap" src="bootstrap-tab.js"/>
 			<div class="activity">
-				ACTIVITY
+				<ul class="nav nav-tabs" id="myTab">
+				  <li><a href="#home" data-toggle="tab">Home</a></li>
+				  <li><a href="#profile" data-toggle="tab">Profile</a></li>
+				  <li><a href="#messages" data-toggle="tab">Messages</a></li>
+				  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+				</ul>
+				<div class="tab-content">
+				  <div class="tab-pane active" id="home">Home</div>
+				  <div class="tab-pane" id="profile">Profile</div>
+				  <div class="tab-pane" id="messages">Message</div>
+				  <div class="tab-pane" id="settings">Settings</div>
+				</div>
 			</div>
+			<script type="text/javascript">
+				$('#myTab a[href="#home"]').tab('show')
+			</script>
 		</div>
 	</body>
 </html>

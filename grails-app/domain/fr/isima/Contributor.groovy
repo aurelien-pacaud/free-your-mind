@@ -35,7 +35,7 @@ class Contributor{
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
-		birthDate(nullable:false, blank:false)
+		birthDate(nullable:true, blank:false)
 		lastConnectionDate(nullable:true)
 	}
 	
