@@ -15,12 +15,43 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-		
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'rainbow.css')}" type="text/css">
+		<script src="${resource(dir: 'js', file: 'highlight.pack.js')}"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
 		
 		<g:javascript library="jquery" plugin="jquery"/>		
 		<g:javascript library="jquery-ui"/>
 		<g:layoutHead/>
+		<r:require modules="bootstrap"/>
 		<r:layoutResources />
+
+		<g:javascript src="main.js" />
+		<jq:jquery>
+			 $("#log").click(function ( ) {
+			    hideOrShow("#divLog");
+			 });
+			 
+			 $(function() {
+				    var button = $('#loginButton');
+				    var box = $('#loginBox');
+				    var form = $('#loginForm');
+				    button.removeAttr('href');
+				    button.mouseup(function(login) {
+				        box.toggle();
+				        button.toggleClass('active');
+				    });
+				    form.mouseup(function() { 
+				        return false;
+				    });
+				    $(this).mouseup(function(login) {
+				        if(!($(login.target).parent('#loginButton').length > 0)) {
+				            button.removeClass('active');
+				            box.hide();
+				        }
+				    });
+				});
+		</jq:jquery>
+		
 	</head>
 	<body>
 		<div id="topMenu">
@@ -31,16 +62,39 @@
 				<li><g:link controller="Contributor" action="list" class="${locality.equals('user') ? 'active' : '' }">Users</g:link></li>
 				<li><g:link controller="Question" action="create" class="${locality.equals('ask') ? 'active' : '' }">Ask Question</g:link></li>
 				<li id="lastMenu">
-                                  <a>Login 
-                                    <sec:ifAllGranted roles="ROLE_USER">
-                                      (<sec:loggedInUserInfo field="username" />)
-                                    </sec:ifAllGranted>
-                                  </a>
-                                </li>
+                    <sec:ifAllGranted roles="ROLE_USER">
+			           <g:link controller="logout" action="index">
+			           		<sec:loggedInUserInfo field="username" />
+			           </g:link>
+                       <!--  Ajouter menu drop down -->
+                    </sec:ifAllGranted>
+                    <sec:ifNotGranted roles="ROLE_USER">
+	                    <div id="loginContainer">
+			                <a id="loginButton"><span>Login</span><em></em></a>
+			                <div style="clear:both"></div>
+			                <div id="loginBox">                
+			                    <form action='/free-your-mind/j_spring_security_check' method='POST' id='loginForm' autocomplete='off'>
+			                        <fieldset id="body">
+			                            <fieldset>
+			                                <label for="username">User name</label>
+			                                <input type="text" name="j_username" id="username" />
+			                            </fieldset>
+			                            <fieldset>
+			                                <label for="password">Password</label>
+			                                <input type="password" name="j_password" id="password" />
+			                            </fieldset>
+			                            <input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
+			                            <label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
+			                        </fieldset>
+			                    </form>
+			                </div>
+	            		</div>
+	            	</sec:ifNotGranted>
+                </li>
 			</ul>
 		</div>
 		<div id="content" class="clean">
-                      <g:set var="user" bean="getAuthenticatedUser()"/>	
+            <g:set var="user" bean="getAuthenticatedUser()"/>	
 			<g:layoutBody/>
 		</div>
 	</body>
