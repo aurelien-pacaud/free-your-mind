@@ -128,6 +128,14 @@ p {
 	font-weight     : bold;
 }
 
+#lastMenu #loginButton {
+	
+	text-shadow     : 0 -1px 0 rgba(0, 0, 0, 0.25);
+	color           : #fff;
+	text-decoration : none;
+	font-weight     : bold;
+}
+
 /* Tags and badges style. */
 .label, .badge {	
 	display          : inline-block;
