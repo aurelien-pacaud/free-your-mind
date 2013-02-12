@@ -73,7 +73,12 @@
 							  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 							   	<li role=presentation">
 									<g:link controller="contributor" action="show" id="${sec.loggedInUserInfo(field: 'id')}">
-				           				Profile	
+				           				Consult profile	
+				           			</g:link>
+								</li>
+									<li role=presentation">
+									<g:link controller="contributor" action="show" id="${sec.loggedInUserInfo(field: 'id')}">
+				           				Edit profile	
 				           			</g:link>
 								</li>
 							   	<li class="divider"></li>
@@ -90,7 +95,7 @@
 				                <a id="loginButton"><span>Login</span></a>
 				                <div style="clear:both"></div>
 				                <div id="loginBox">                
-				                    <form action='/free-your-mind/j_spring_security_check' method='POST' id='loginForm' autocomplete='off'>
+				                    <form action='/free-your-mind/j_spring_security_check' method='POST' id='loginPopUpForm' autocomplete='off'>
 				                        <fieldset id="body">
 				                            <fieldset>
 				                                <label for="username">User name</label>
