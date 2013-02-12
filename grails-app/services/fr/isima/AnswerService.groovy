@@ -27,7 +27,7 @@ class AnswerService {
     
       a.save();
 
-      if (id != null)
+      if (id == null)
         /* Add new entry in postHistory table. */ 
         postHistoryService.createAnsweredHistory(a, a.contributor)
       else

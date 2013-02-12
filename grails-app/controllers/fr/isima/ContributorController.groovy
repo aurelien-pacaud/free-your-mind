@@ -1,6 +1,9 @@
 package fr.isima
 
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.ForEach;
+
 import grails.plugins.springsecurity.Secured
 
 
@@ -18,7 +21,15 @@ class ContributorController {
     def show = {
 		Contributor c = Contributor.get(params.get("id"))
 		contributorService.incrViewCounter(c);
-		[user: c]
+		def List<Answer> answers = new ArrayList<Answer>()
+		for(PostHistory p : c.postHistories) {
+			if (p.post instanceof Answer) {
+				print "Answer"
+				answers.add(p.post)
+			}
+			print "Question"
+		}
+		[user: c, answers:answers]
 	}
 	
 	/**
@@ -49,6 +60,7 @@ class ContributorController {
 							
 		// Insert the contributor in the DB
 		if (!contributorService.create(c)) {
+			
 			render(view: "create", model:[user: c, confirmPassword: confirmPassword])
 		} else {
 			redirect(controller: "contributor", action: "list");

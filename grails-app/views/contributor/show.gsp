@@ -11,6 +11,7 @@ show
 		<div>
 			<div class="summary">
 				<h2>${user.username}</h2>
+				<br/>
 				<div class="leftCol">
 					<center>
 						<g:img dir="images" file="avatar.png"/>
@@ -59,20 +60,28 @@ show
 			<g:javascript plugin="twitter-bootstrap" src="bootstrap-tab.js"/>
 			<div class="activity">
 				<ul class="nav nav-tabs" id="myTab">
-				  <li><a href="#home" data-toggle="tab">Home</a></li>
-				  <li><a href="#profile" data-toggle="tab">Profile</a></li>
-				  <li><a href="#messages" data-toggle="tab">Messages</a></li>
-				  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+				  <li><a href="#summary" data-toggle="tab">Summary</a></li>
+				  <li><a href="#answers" data-toggle="tab">Answers</a></li>
+				  <li><a href="#questions" data-toggle="tab">Questions</a></li>
+				  <li><a href="#tag" data-toggle="tab">Tags</a></li>
+				  <li><a href="#awards" data-toggle="tab">Awards</a></li>
+				  <li><a href="#activity" data-toggle="tab">Activity</a></li>
 				</ul>
 				<div class="tab-content">
-				  <div class="tab-pane active" id="home">Home</div>
-				  <div class="tab-pane" id="profile">Profile</div>
-				  <div class="tab-pane" id="messages">Message</div>
-				  <div class="tab-pane" id="settings">Settings</div>
+				  <div class="tab-pane active" id="summary">Summary</div>
+				  <div class="tab-pane" id="answers">
+				  	Answers
+			  		<g:render template="postItemListTemplate" var="post" collection="${answers}" />
+				  	
+				  </div>
+				  <div class="tab-pane" id="questions">Questions</div>
+				  <div class="tab-pane" id="tag">Tags</div>
+				  <div class="tab-pane" id="awards">Awards</div>
+				  <div class="tab-pane" id="activity">Activity</div>
 				</div>
 			</div>
 			<script type="text/javascript">
-				$('#myTab a[href="#home"]').tab('show')
+				$('#myTab a[href="#answers"]').tab('show')
 			</script>
 		</div>
 	</body>
