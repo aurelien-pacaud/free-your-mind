@@ -138,34 +138,9 @@ p {
 
 /* Tags and badges style. */
 .label, .badge {	
-	display          : inline-block;
-	padding          : 2px 4px;
-	font-size        : 11.844px;
-	font-weight      : bold;
-	line-height      : 14px;
-	color            : #ffffff;
-	text-shadow      : 0 -1px 0 rgba(0, 0, 0, 0.25);
-	white-space      : nowrap;
-	vertical-align   : middle;
-	background-color : #999999;
-	margin-left      : 2px;
-	margin-right     : 2px;
-}
-
-.label-info, .badge-info {	
-	background-color : #3a87ad;
-}
-
-.label-success, .badge-success {	
-	background-color : #468847;
-}
-
-.label-important, .badge-important {	
-	background-color : #b94a48;
-}
-
-.label-warning, .badge-warning {	
-	background-color : #f89406;
+  vertical-align   : middle !important;
+  margin-left      : 2px;
+  margin-right     : 2px;
 }
 
 /* Related to post. */

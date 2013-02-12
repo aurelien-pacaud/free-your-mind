@@ -87,7 +87,7 @@
 	                    </sec:ifAllGranted>
 	                    <sec:ifNotGranted roles="ROLE_USER">
 		                    <div id="loginContainer">
-				                <a id="loginButton"><span>Login</span><em></em></a>
+				                <a id="loginButton"><span>Login</span></a>
 				                <div style="clear:both"></div>
 				                <div id="loginBox">                
 				                    <form action='/free-your-mind/j_spring_security_check' method='POST' id='loginForm' autocomplete='off'>
