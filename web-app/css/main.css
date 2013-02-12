@@ -147,8 +147,8 @@ p {
 }
 
 /* Related to post. */
-.postAccepted a {
-  color : green;
+.postAccepted {
+  border-left : 3px solid green;
 }
 
 .post .postMark {

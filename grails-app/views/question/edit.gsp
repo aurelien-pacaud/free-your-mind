@@ -7,7 +7,7 @@
   <body>
     <h2>Edit question</h2>
 
-    <g:form controller="question" action="update" id="${question.id}">
+    <g:form controller="question" action="save" id="${question.id}">
       <g:render template="formQuestion" var="question" bean="${question}" />
       <g:submitButton name="sumbit" value="Edit"/>
     </g:form>

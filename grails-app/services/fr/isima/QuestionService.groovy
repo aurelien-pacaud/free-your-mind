@@ -4,12 +4,14 @@ import com.naleid.grails.MarkdownService;
 
 import fr.isima.exception.PostException
 
-
+/**
+ * Service associated with Question.
+ */
 class QuestionService {
 
   def postHistoryService
 
-  def create(Question question) {
+  def save(Question question) {
 
     /* If the question can't be saved. */
     if (!question.validate()) {
@@ -17,9 +19,15 @@ class QuestionService {
       throw new PostException("Post can't be saved");
     }
     else {
-
+      
+      def id = question.id
       question.save();
-      postHistoryService.createAskedHistory(question, question.contributor)
+
+      if (id == null)
+        postHistoryService.createAskedHistory(question, question.contributor)
+      else
+        postHistoryService.createRevisionHistory(question, question.contributor)
+
     }
   }
 
@@ -32,21 +40,4 @@ class QuestionService {
 
     question.nbView++;
   }
-
-  def update(Question question) {
-
-    question.lastEditionDate = new Date()
-
-    /* If the question can't be saved. */
-    if (!question.validate()) {
-
-      throw new PostException("Post can't be saved");
-    }
-    else {
-
-      question.save();
-      //postHistoryService.createRevisionHistory(question, question.contributor)
-    }
-  }
-
 }

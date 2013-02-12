@@ -7,7 +7,7 @@
   <body>
     <h2>Ask question</h2>
 
-    <g:form controller="question" action="add">
+    <g:form controller="question" action="save">
       <g:render template="formQuestion" var="question" bean="${question}" />
       <g:submitButton name="sumbit" value="Submit"/>
     </g:form>

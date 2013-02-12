@@ -14,7 +14,7 @@ class QuestionController {
     def question = Question.get(params.id)
 
     questionService.incViewCpt(question)		
-    [question: question, user: getAuthenticatedUser()]
+    [question: question]
   }
 
   @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -36,14 +36,16 @@ class QuestionController {
     render view: 'edit', model: [question: question, tags: Tag.json(), tagIds: tagIds]
   }
 
-  def add = {
+  def save = {
 
+    def question = null
     def title = params.title
     def content = params.content
     def tagsId = params.tagsId	
     def tagIds = []
     def tags = []
-
+    def view = null
+   
     if (tagsId != "") {
       tagsId.split(";").each { id ->
 
@@ -52,52 +54,36 @@ class QuestionController {
       }
     }
 
-    log.info tags	
-    def question = new Question(title: title, content: content, tags: tags, 
-    contributor: getAuthenticatedUser());
+    /* If the question is in DB. */
+    if (params.id != null) {
+      
+      question = Question.get(params.id)
+      
+      question.title   = title
+      question.content = content
+      question.tags    = tags
+      
+      question.lastEditionDate = new Date()
+
+      view = 'edit'
+    }
+    else {
+
+      question = new Question(title: title, content: content, tags: tags, contributor: getAuthenticatedUser());
+      
+      view = 'new'
+    }
 
     try {
-      questionService.create(question)			
+    
+      questionService.save(question)			
       redirect action: "display", id: question.id
     }
     catch (e) {
-      render view: 'new', model: [question: question, tags: Tag.json(), 
-      tagIds: tagIds]
-    }
-  }
 
-  def update = {
-
-    def title = params.title
-    def content = params.content
-    def tagsId = params.tagsId	
-    def tagIds = []
-    def tags = []
-
-    if (tagsId != "") {
-      tagsId.split(";").each { id ->
-
-        tags.add(Tag.get(id))
-        tagIds.add(id);
-      }
-    }
-
-    log.info tags
-    println params.id
-    def question = Question.get(params.id)
-
-    question.title   = title
-    question.content = content
-    question.tags    = tags
-
-    try {
-      questionService.update(question)			
-      redirect action: "display", id: question.id
-    }
-    catch (e) {
-      println e
-      render view: 'edit', model: [question: question, tags: Tag.json(), 
-      tagIds: tagIds]
+      render view: view, model: [question: question, tags: Tag.json(),
+                                 tagIds: tagIds
+                                ]
     }
   }
 }

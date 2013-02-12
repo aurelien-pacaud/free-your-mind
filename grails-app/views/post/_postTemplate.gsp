@@ -1,5 +1,5 @@
-<div class="post">
-  <div class="postMark ${!post.isAccepted ? '' : 'postAccepted'}">
+<div class="post ${!post.isAccepted ? '' : 'postAccepted'}">
+  <div class="postMark">
     <!-- Buttons to up or down vote -->
     <div>
       <g:remoteLink controller="post" action="incMark" id="${post.id}" update="markQuestion-${post.id}">
@@ -12,21 +12,16 @@
         &#9660;
       </g:remoteLink>
     </div>
-    
-    <!-- Post accepted ? -->
-    <g:if test="${post.isAccepted}">
-      <img src="${resource(dir: 'images', file: 'accepted.png')}" alt="Post accepted"/>
-    </g:if>
   </div>
-    
   <div class="postContent">
+    <div style="float: left; width : 3px; background-color : red"></div>
     <markdown:renderHtml>${post.content}</markdown:renderHtml>
   </div>
 </div>
 
 <!-- Toolbar -->
 <div class="postToolbar">
-  <g:if test="${user?.id == post.contributor.id}">
+  <g:if test="${sec.loggedInUserInfo(field: 'id') == post.contributor.id.toString()}">
      
     <!-- To edit the post -->
     <span>
@@ -71,4 +66,5 @@
   </g:formRemote>
 </div>
 
+<div><br /><br /><br /></div>
 

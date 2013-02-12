@@ -1,28 +1,51 @@
 package fr.isima
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.plugins.springsecurity.Secured
 
 class AnswerController {
 
-  def postHistoryService
+  def answerService
 
-  def add = {
+  /**
+   * Method used to add/update a new answer for a question.
+   */
+  def save = {
 
-    def contributor = Contributor.get(params.get("idC"))
-    def question = Question.get(params.get("idQ"))
+    def answer = Answer.get(params.id)
+    def action = null
 
-    def a = new Answer(content: params.get("answerdContent"), question: question, contributor: getAuthenticatedUser())
-
-    if (a.save()) {		
-
-      postHistoryService.createAnsweredHistory(a, getAuthenticatedUser())
-      redirect action: "display", controller: "question", id: question.id
+    if (answer != null) {
+   
+      answer.content = params.content
+      action = 'edit'
     }
     else {
-      a.errors.each {
-        println it
-      }
+
+      answer = new Answer(content: params.content, question: Question.get(params.idQ), contributor: getAuthenticatedUser())
+
+      action = 'new'
+    }
+
+    try {
+
+      answerService.save(answer)
+
+      if(action == 'new')
+        render template: '/post/postTemplate', collection: Question.get(params.idQ).answers, var: 'post' 
+      else
+        redirect action: 'display', controller: 'question', id: answer.question.id
+    }
+    catch (e) {
+      render view: 'edit', model: [answer: answer]
     }
   }
 
+  @Secured(['IS_AUTHENTICATED_FULLY'])
+  def edit = {
+
+    def answer = Answer.get(params.id)
+
+    render view: 'edit', model: [answer: answer]
+  }
 }
