@@ -5,7 +5,15 @@
     <title>Free your mind -- Ask Question</title>		
   </head>
   <body>	
-    <h2>${question.title} <g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" /></h2>	
+    <h2>
+      ${question.title} <g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" />
+      <span style="float: right;">
+        <a title="Lock question" id="${question.id}">
+          <img src="${fam.icon(name: 'lock')}" alt="Add a comment"/>
+        </a>
+      </span>
+  
+    </h2>	
     <g:render template="/post/postTemplate" var="post" collection="${question}" />
     <br />
 
@@ -25,7 +33,7 @@
       <g:formRemote name="answerForm" update="answers" url="[controller : 'answer', action: 'save', params: [idQ: question.id]]">	
         <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
         <br />
-        <g:submitButton name="submitAnswer" value="Answered" id="submitA" style="float : right;"/>
+        <g:submitButton name="submitAnswer" value="Answered" id="submitA"/>
       </g:formRemote>
     </sec:ifAllGranted>
 

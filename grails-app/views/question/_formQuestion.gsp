@@ -17,5 +17,5 @@
 <label for="content">Content</label>
 <div class="${hasErrors(bean:question, field: 'content', 'alert-error')}">
   <g:renderErrors class="alert-error" bean="${question}" field="content" />
-  <g:textArea class="${hasErrors(bean:question, field: 'content', 'error')}" name="content" id="questionContent" value="${question?.content}"/>
+  <g:textArea class="${hasErrors(bean:question, field: 'content', 'error')} postContent" name="content" id="questionContent" value="${question?.content}"/>
 </div>

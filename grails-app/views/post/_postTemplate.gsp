@@ -26,7 +26,7 @@
     <!-- To edit the post -->
     <span>
       <g:link controller="${post.domainClass.name}" action="edit" id="${post.id}" title="Edit the post">
-        <img src="${resource(dir: 'images', file: 'edit.png')}" alt="Edit your question"/>
+        <img src="${fam.icon(name: 'pencil')}" alt="Edit your question"/>
       </g:link>
     </span>
     
@@ -34,7 +34,7 @@
     <g:if test="${!post.isAccepted}">
       <span>
         <g:remoteLink controller="Post" action="accepted" id="${post.id}">
-          <img src="${resource(dir: 'images', file: 'accepted.png')}" alt="Accept this post"/>
+          <img src="${fam.icon(name: 'tick')}" alt="Accept this post"/>
         </g:remoteLink>
       </span>
     </g:if>
@@ -43,7 +43,12 @@
   <!-- To comment -->
   <span>
     <a class="comment" title="Add a comment" id="${post.id}">
-      <img src="${resource(dir: 'images', file: 'comment.png')}" alt="Add a comment"/>
+      <img src="${fam.icon(name: 'comment')}" alt="Add a comment"/>
+    </a>
+  </span>
+  <span>
+    <a title="Delete post" id="${post.id}">
+      <img src="${fam.icon(name: 'cross')}" alt="Add a comment"/>
     </a>
   </span>
 </div>
@@ -61,7 +66,7 @@
 <div id="comment-${post.id}" class="commentTextArea">
   <g:formRemote name="commentForm" update="comments-${post.id}" url="[controller: 'comment', action: 'add', params: [idPost: post.id]]"
                 onSuccess="\$('#comment-${post.id}').hide();">
-    <g:textArea name="commentContent" id="commentContent"></g:textArea>
+    <g:textArea name="commentContent" id="commentContent" class="commentContent"></g:textArea>
     <g:submitButton name="addComment" value="Add comment" style="float : right;"/>
   </g:formRemote>
 </div>
