@@ -92,4 +92,20 @@ class QuestionController {
     postService.delete(Question.get(params.id)) 
     redirect action: "index", controller: "index"
   }
+
+  def lock = {
+
+    def question = Question.get(params.id)
+    questionService.lock(question)
+    
+    redirect action: "display", id: question.id
+  }
+  
+  def unlock = {
+
+    def question = Question.get(params.id)
+    questionService.unlock(question)
+    
+    redirect action: "display", id: question.id
+  }
 }

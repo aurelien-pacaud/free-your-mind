@@ -40,4 +40,12 @@ class QuestionService {
 
     question.nbView++;
   }
+
+  def lock(Question question) {
+    question.isClosed = true;
+  }
+  
+  def unlock(Question question) {
+    question.isClosed = false;
+  }
 }
