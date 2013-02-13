@@ -20,16 +20,28 @@ class ContributorController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def show = {
 		Contributor c = Contributor.get(params.get("id"))
-		contributorService.incrViewCounter(c);
 		def List<Answer> answers = new ArrayList<Answer>()
+		def List<Question> questions = new ArrayList<Question>()
+		def List<Comment> comments = new ArrayList<Comment>()
+		def List<Tag> tags = new ArrayList<Tag>()
+		def List<Award> awards = new ArrayList<Award>()
+		
+		// Incrementtion of the view's counter
+		contributorService.incrViewCounter(c);
+		
+		// Get the list of answers in the user's postHistory
 		for(PostHistory p : c.postHistories) {
-			if (p.post instanceof Answer) {
-				print "Answer"
+			if (p.type != null && p.type.equals(PostType.ANSWERED)) {
 				answers.add(p.post)
+			} else if (p.type != null &&  p.type.equals(PostType.ASKED)) {
+				questions.add(p.post)
+				tags.addAll(p.post.tags)
+			} else if (p.type != null &&  p.type.equals(PostType.COMMENTED)) {
+				comments.add(p.post)
 			}
-			print "Question"
 		}
-		[user: c, answers:answers]
+		
+		[user: c, answers: answers, questions: questions, comments: comments, tags: tags, awards: awards]
 	}
 	
 	/**

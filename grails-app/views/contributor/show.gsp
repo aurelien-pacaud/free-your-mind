@@ -63,21 +63,41 @@ show
 				  <li><a href="#summary" data-toggle="tab">Summary</a></li>
 				  <li><a href="#answers" data-toggle="tab">Answers</a></li>
 				  <li><a href="#questions" data-toggle="tab">Questions</a></li>
+				  <li><a href="#comments" data-toggle="tab">Comments</a></li>
 				  <li><a href="#tag" data-toggle="tab">Tags</a></li>
 				  <li><a href="#awards" data-toggle="tab">Awards</a></li>
 				  <li><a href="#activity" data-toggle="tab">Activity</a></li>
 				</ul>
 				<div class="tab-content">
-				  <div class="tab-pane active" id="summary">Summary</div>
-				  <div class="tab-pane" id="answers">
-				  	Answers
-			  		<g:render template="postItemListTemplate" var="post" collection="${answers}" />
-				  	
+				  <div class="tab-pane active" id="summary">
+				  	<h3>Summary</h3>
 				  </div>
-				  <div class="tab-pane" id="questions">Questions</div>
-				  <div class="tab-pane" id="tag">Tags</div>
-				  <div class="tab-pane" id="awards">Awards</div>
-				  <div class="tab-pane" id="activity">Activity</div>
+				  <div class="tab-pane" id="answers">
+				  	<h3>${answers.size()} Answers</h3>
+				  	<br/>
+			  		<g:render template="answerItemListTemplate" var="post" collection="${answers}" />
+				  </div>
+				  <div class="tab-pane" id="questions">
+				  	<h3>${questions.size()} Questions</h3>
+				  	<br/>
+			  		<g:render template="/post/postItemListTemplate" var="post" collection="${questions}" />
+				  </div>
+				  <div class="tab-pane" id="comments">
+				  	<h3>${comments.size()} Comments</h3>
+				  	<br/>
+			  		<g:render template="commentItemListTemplate" var="comment" collection="${comments}" />
+				  </div>
+				  <div class="tab-pane" id="tag">
+				  	<h3>${tags.size()} Tags</h3>
+				  	<br/>
+				  	<g:render template="/tag/tagTemplateWithNbofQuestion" var="tag" collection="${tags}"/>
+				  </div>
+				  <div class="tab-pane" id="awards">
+				  	<h3>${awards.size()} Awards</h3>
+				  </div>
+				  <div class="tab-pane" id="activity">
+				  	<h3>Activity</h3>
+				  </div>
 				</div>
 			</div>
 			<script type="text/javascript">

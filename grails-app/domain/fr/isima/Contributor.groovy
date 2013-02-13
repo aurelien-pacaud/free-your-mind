@@ -30,7 +30,7 @@ class Contributor{
 	boolean isAdmin = false
 	long reputation = 0
 	
-	static hasMany = [posts: Post, comments: Comment, postHistories: PostHistory]
+	static hasMany = [posts: Post, comments: Comment, postHistories: PostHistory, awardHistories: AwardHistory]
 	
 	static constraints = {
 		username blank: false, unique: true

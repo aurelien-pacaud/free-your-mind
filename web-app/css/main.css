@@ -252,14 +252,6 @@ textarea.commentContent {
   width   : 100%;
 }
 
-/* ------- User --------- */
-
-div .content {
-	width : 70%; 
-	padding-left: 15%;
-	padding-top: 80px
-}
-
 
 /* ------- User list ------- */
 table .userItem{
@@ -297,9 +289,53 @@ div .activity {
 }
 
 code {
-  overflow : auto;
-} 
+  	overflow : auto;
+}
 
+div .contributorPostVote {
+	float : left; 
+	text-align : center; 
+	width: 22px; 
+	height: 20px; 
+	padding: 4px;
+	color: #555;
+	text-align: center;
+	background-color: #eeeeee;
+	font-weight: bold;
+}
+
+div .contributorPostVoteAccepted {
+	float : left; 
+	text-align : center; 
+	width: 22px; 
+	height: 20px; 
+	padding: 4px;
+	text-align: center;
+	font-weight: bold;
+	background: #75845C;
+	color: #E1E818;
+}
+
+div .contributorPostTitle {
+	float: left;
+	margin-top: 5px;
+	padding-left: 10px;
+	
+}
+
+.contributoPostTilte .link{
+	color: #555;
+}
+
+div .contributoItemPost {
+}
+
+hr  #contributorPostSeparator {
+	margin: 0 0;
+	border: 0;
+	border-top: 1px solid #eeeeee;
+	border-bottom: 1px solid #ffffff;
+}
 
 /**-------LOGIN popup -------*/
 
