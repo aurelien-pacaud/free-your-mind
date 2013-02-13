@@ -4,7 +4,19 @@
     <meta name="layout" content="main"/>
     <title>Free your mind -- Ask Question</title>		
   </head>
-  <body>	
+  <body>
+    <script>
+      var nbAnswers = ${question.answers.size()};
+
+      function updateAnswers() {
+
+        $('textarea#answerContent').val('');
+        $('h2#answerTitleNumber').html(++nbAnswers + " Answers");
+
+        hljs.initHighlightingOnLoad();
+      }
+    </script>
+
     <h2>${question.title} <g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" />
       <span style="float: right;">
         <a title="Lock question" id="${question.id}">
@@ -17,7 +29,7 @@
     <br />
 
     <g:if test="${!question.answers.isEmpty()}">
-      <h2>${question.answers.size()} Answers</h2>
+      <h2 id="answerTitleNumber">${question.answers.size()} Answers</h2>
     </g:if>
      
     <div id="answers">
@@ -31,14 +43,15 @@
       Please logging before answered! <g:link controller="contributor" action="login">Login</g:link>
     </sec:ifNotLoggedIn>
     <sec:ifAllGranted roles="ROLE_USER">
-      <g:formRemote name="answerForm" update="answers" url="[controller : 'answer', action: 'save', params: [idQ: question.id]]">	
+      <g:formRemote name="answerForm" update="answers" url="[controller : 'answer', action: 'save', params: [idQ: question.id]]"
+                    onSuccess="updateAnswers()">	
         <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
         <br />
-        <g:submitButton name="submitAnswer" value="Answered" id="submitA"/>
+        <g:submitButton name="submitAnswer" value="Answered" id="submitA" />
       </g:formRemote>
     </sec:ifAllGranted>
     <jq:jquery>
-      $(".comment").on('click', function(e) {
+      $("body").on('click', '.comment', function(e) {
   
         var element = "#comment-" + $(this).attr("id");
         console.log(element);
