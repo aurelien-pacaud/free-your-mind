@@ -90,7 +90,9 @@ show
 				  <div class="tab-pane" id="tag">
 				  	<h3>${tags.size()} Tags</h3>
 				  	<br/>
-				  	<g:render template="/tag/tagTemplateWithNbofQuestion" var="tag" collection="${tags}"/>
+				  	<g:render template="tagTemplateWithNbofQuestion" var="tag" collection="${tags}"/>
+				  	<div style="clear: both"></div>
+				  	<br/>
 				  </div>
 				  <div class="tab-pane" id="awards">
 				  	<h3>${awards.size()} Awards</h3>
