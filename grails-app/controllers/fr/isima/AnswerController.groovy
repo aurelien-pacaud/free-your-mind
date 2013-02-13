@@ -6,6 +6,7 @@ import grails.plugins.springsecurity.Secured
 class AnswerController {
 
   def answerService
+  def postService
 
   /**
    * Method used to add/update a new answer for a question.
@@ -47,5 +48,14 @@ class AnswerController {
     def answer = Answer.get(params.id)
 
     render view: 'edit', model: [answer: answer]
+  }
+
+  def delete = {
+
+    def answer   = Answer.get(params.id)
+    def question = answer.question
+
+    postService.delete(answer) 
+    redirect action: "display", controller: "question", id: question.id
   }
 }

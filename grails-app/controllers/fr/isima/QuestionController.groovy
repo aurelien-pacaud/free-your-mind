@@ -86,4 +86,10 @@ class QuestionController {
                                 ]
     }
   }
+
+  def delete = {
+
+    postService.delete(Question.get(params.id)) 
+    redirect action: "index", controller: "index"
+  }
 }

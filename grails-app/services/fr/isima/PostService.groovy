@@ -78,4 +78,9 @@ class PostService {
     post.isAccepted = true;
     post.save()
   }
+
+  def delete(Post post) {
+
+    post.delete()
+  }
 }

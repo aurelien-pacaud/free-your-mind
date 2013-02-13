@@ -26,6 +26,15 @@ class PostHistoryService {
     postHistory.save()
   }
   
+  def createCommentedHistory(Post post, Contributor user) {
+
+    def postHistory = new PostHistory(contributor: user, post: post,
+    date: new Date(), type: PostType.COMMENTED)
+
+    postHistory.save()
+  }
+
+  
   def createRevisionHistory(Post post, Contributor user) {
 
     def postHistory = new PostHistory(contributor: user, post: post,

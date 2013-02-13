@@ -12,11 +12,11 @@
       <g:submitButton name="sumbit" value="Submit"/>
     </g:form>
     
-    <script type="text/javascript" src="${resource(dir: 'js', file: 'tags.js')}"></script>
-    <script>
+    <g:javascript src="tags.js" />
+    <jq:jquery>
       $(function() {
         $('#tags').tagAutocomplete({"source" : ${tags}.tags, "selectedTags" : ${tagIds == null ? [] : tagIds}});
       });
-    </script>
+    </jq:jquery>
   </body>
 </html>

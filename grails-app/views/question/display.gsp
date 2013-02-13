@@ -5,24 +5,25 @@
     <title>Free your mind -- Ask Question</title>		
   </head>
   <body>	
-    <h2>
-      ${question.title} <g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" />
+    <h2>${question.title} <g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" />
       <span style="float: right;">
         <a title="Lock question" id="${question.id}">
           <img src="${fam.icon(name: 'lock')}" alt="Add a comment"/>
         </a>
       </span>
-  
-    </h2>	
+    </h2>
+    
     <g:render template="/post/postTemplate" var="post" collection="${question}" />
     <br />
 
     <g:if test="${!question.answers.isEmpty()}">
       <h2>${question.answers.size()} Answers</h2>
-        <div id="answers">
-          <g:render template="/post/postTemplate" var="post" collection="${question.answers}"/>
-        </div>
     </g:if>
+     
+    <div id="answers">
+      <g:render template="/post/postTemplate" var="post" collection="${question.answers}"/>
+    </div>
+
     <br />
     <h2>Your Answer</h2>
     <br />
@@ -36,12 +37,12 @@
         <g:submitButton name="submitAnswer" value="Answered" id="submitA"/>
       </g:formRemote>
     </sec:ifAllGranted>
-
-    <script>
-      $(".comment").click(function(e) {
-    
+    <jq:jquery>
+      $(".comment").on('click', function(e) {
+  
         var element = "#comment-" + $(this).attr("id");
-    
+        console.log(element);
+      
         if ($(element).is(":visible")) {
           $(element).hide();
         }
@@ -50,6 +51,6 @@
           $(element).show(); 
         }
       });
-    </script>
+    </jq:jquery>
   </body>
 </html>
