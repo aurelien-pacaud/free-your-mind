@@ -8,12 +8,20 @@
     <script>
       var nbAnswers = ${question.answers.size()};
 
+      function updateCodeColor() {
+        $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+      }
+
       function updateAnswers() {
 
         $('textarea#answerContent').val('');
-        $('h2#answerTitleNumber').html(++nbAnswers + " Answers");
 
-        hljs.initHighlightingOnLoad();
+        if (nbAnswers == 0)
+          $("<h2 id='answerTitleNumber'></h2>").insertBefore('#answers');
+  
+        $('h2#answerTitleNumber').html(++nbAnswers + " Answers");
+        
+        updateCodeColor();
       }
     </script>
 

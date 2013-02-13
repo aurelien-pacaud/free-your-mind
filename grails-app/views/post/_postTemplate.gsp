@@ -34,7 +34,7 @@
       <!-- To accepted the post -->
       <g:if test="${!post.isAccepted}">
         <span>
-          <g:remoteLink controller="post" action="accepted" id="${post.id}" update="post-${post.id}">
+          <g:remoteLink controller="post" action="accepted" id="${post.id}" update="post-${post.id}" onSuccess="updateCodeColor()" >
             <img src="${fam.icon(name: 'tick')}" alt="Accept this post"/>
           </g:remoteLink>
         </span>
