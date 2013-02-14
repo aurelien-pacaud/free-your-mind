@@ -16,7 +16,7 @@ class CommentController {
     try {
 
       commentService.save(c)
-
+      
       render template: 'commentTemplate', collection: Post.get(params.idPost).comments, var: 'comment'
     }
     catch (e) {

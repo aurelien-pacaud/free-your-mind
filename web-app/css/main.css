@@ -119,6 +119,10 @@ p {
 	margin-top : 10px;
 }
 
+#lastMenu a {
+  cursor : pointer;
+}
+
 #lastMenu #dLabel {
 	
 	text-shadow     : 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -214,6 +218,16 @@ div#tags.error {
 }
 
 /* Error */
+.alert-infos {
+	color                 : #b94a48;
+	background-color      : #f2dede;
+	padding               : 8px 35px 8px 14px;
+	text-shadow           : 0 1px 0 rgba(255, 255, 255, 0.5);
+	-webkit-border-radius : 4px;
+	-moz-border-radius    : 4px;
+	border-radius         : 4px;
+}
+
 .alert-error {
 	color                 : #b94a48;
 	background-color      : #f2dede;

@@ -71,6 +71,7 @@ class QuestionController {
       question.lastEditionDate = new Date()
 
       view = 'edit'
+      flash.message = "Question edit with success!"
     }
     else {
 

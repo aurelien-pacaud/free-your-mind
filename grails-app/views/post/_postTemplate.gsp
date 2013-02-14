@@ -1,4 +1,5 @@
 <%@page import="fr.isima.Answer" %>
+<%@page import="fr.isima.Question" %>
 <div id="post-${post.id}">
   <div class="post ${!post.isAccepted ? '' : 'postAccepted'}">
     <div class="postMark">
@@ -23,6 +24,16 @@
 
   <!-- Toolbar -->
   <div class="postToolbar">
+    
+    <!-- To accepted the post -->
+    <g:if test="${!post.isAccepted}" > 
+      <span>
+        <g:remoteLink controller="post" action="accepted" id="${post.id}" update="post-${post.id}" onSuccess="updateCodeColor()" >
+          <img src="${fam.icon(name: 'tick')}" alt="Accept this post"/>
+        </g:remoteLink>
+      </span>
+    </g:if>
+    
     <g:if test="${sec.loggedInUserInfo(field: 'id') == post.contributor.id.toString()}">
        
       <!-- To edit the post -->
@@ -31,17 +42,8 @@
           <img src="${fam.icon(name: 'pencil')}" alt="Edit your question"/>
         </g:link>
       </span>
-      
-      <!-- To accepted the post -->
-      <g:if test="${!post.isAccepted}" > 
-        <span>
-          <g:remoteLink controller="post" action="accepted" id="${post.id}" update="post-${post.id}" onSuccess="updateCodeColor()" >
-            <img src="${fam.icon(name: 'tick')}" alt="Accept this post"/>
-          </g:remoteLink>
-        </span>
-      </g:if>
     </g:if>
-    
+         
     <!-- To comment -->
     <span>
       <a class="comment" title="Add a comment" id="${post.id}">

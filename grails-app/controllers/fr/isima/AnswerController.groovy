@@ -20,6 +20,8 @@ class AnswerController {
    
       answer.content = params.content
       action = 'edit'
+
+      flash.message = "Answer edit with success!"
     }
     else {
 
@@ -55,7 +57,9 @@ class AnswerController {
     def answer   = Answer.get(params.id)
     def question = answer.question
 
-    postService.delete(answer) 
+    postService.delete(answer)
+
+    flash.message = "Post deleted with success!"
     redirect action: "display", controller: "question", id: question.id
   }
 }

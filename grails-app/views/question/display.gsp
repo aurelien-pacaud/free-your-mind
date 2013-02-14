@@ -24,6 +24,15 @@
         updateCodeColor();
       }
     </script>
+    <jq:jquery>
+      $('#message').delay(4000).fadeOut();
+    </jq:jquery>
+    
+    <g:if test="${flash.message}">
+      <div id="message" class="alert alert-success">
+        ${flash.message}
+      </div>
+    </g:if>
 
     <h2>${question.title} <g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" />
       <g:if test="${!question.isClosed}">
