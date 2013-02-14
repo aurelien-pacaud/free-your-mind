@@ -24,38 +24,7 @@
 
   <!-- Toolbar -->
   <div class="postToolbar">
-    
-    <!-- To accepted the post -->
-    <g:if test="${!post.isAccepted}" > 
-      <span>
-        <g:remoteLink controller="post" action="accepted" id="${post.id}" update="post-${post.id}" onSuccess="updateCodeColor()" >
-          <img src="${fam.icon(name: 'tick')}" alt="Accept this post"/>
-        </g:remoteLink>
-      </span>
-    </g:if>
-    
-    <g:if test="${sec.loggedInUserInfo(field: 'id') == post.contributor.id.toString()}">
-       
-      <!-- To edit the post -->
-      <span>
-        <g:link controller="${post.domainClass.name}" action="edit" id="${post.id}" title="Edit the post">
-          <img src="${fam.icon(name: 'pencil')}" alt="Edit your question"/>
-        </g:link>
-      </span>
-    </g:if>
-         
-    <!-- To comment -->
-    <span>
-      <a class="comment" title="Add a comment" id="${post.id}">
-        <img src="${fam.icon(name: 'comment')}" alt="Add a comment"/>
-      </a>
-    </span>
-    <span>
-      <g:link action="delete" controller="${post.domainClass.name}" title="Delete post" id="${post.id}" 
-              onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
-        <img src="${fam.icon(name: 'cross')}" alt="Add a comment"/>
-      </g:link>
-    </span>
+    <g:toolbar post="${post}" />  
   </div>
 
   <g:render template="/contributor/contributorPostTemplate" bean="post" />
