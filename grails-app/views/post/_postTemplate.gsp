@@ -1,3 +1,4 @@
+<%@page import="fr.isima.Answer" %>
 <div id="post-${post.id}">
   <div class="post ${!post.isAccepted ? '' : 'postAccepted'}">
     <div class="postMark">
@@ -32,7 +33,7 @@
       </span>
       
       <!-- To accepted the post -->
-      <g:if test="${!post.isAccepted}">
+      <g:if test="${!post.isAccepted}" > 
         <span>
           <g:remoteLink controller="post" action="accepted" id="${post.id}" update="post-${post.id}" onSuccess="updateCodeColor()" >
             <img src="${fam.icon(name: 'tick')}" alt="Accept this post"/>

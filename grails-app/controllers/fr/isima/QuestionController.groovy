@@ -9,6 +9,11 @@ class QuestionController {
   def questionService
   def springSecurityService
 
+  def list(Integer max) {
+    params.max = Math.min(max ?: 3, 10)
+    [questions: Question.list(params), questionsCount: Question.count()]
+  }
+  
   def display = {
 
     def question = Question.get(params.id)

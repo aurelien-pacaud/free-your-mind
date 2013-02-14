@@ -53,7 +53,7 @@
     </g:if>
      
     <div id="answers">
-      <g:render template="/post/postTemplate" var="post" collection="${question.answers}"/>
+      <g:render template="/post/postTemplate" var="post" collection="${question.answers}" />
     </div>
 
     <br />
