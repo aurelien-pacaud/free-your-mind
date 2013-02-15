@@ -15,9 +15,8 @@
       </div>
     </div>
     <div class="postContent">
-      <div style="float: left; width : 3px; background-color : red"></div>
-        <markdown:renderHtml>${post.content}</markdown:renderHtml>
-      </div>
+      <markdown:renderHtml>${post.content}</markdown:renderHtml>
+    </div>
   </div>
 
   <!-- Toolbar -->

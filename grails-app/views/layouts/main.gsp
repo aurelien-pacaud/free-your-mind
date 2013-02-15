@@ -57,7 +57,7 @@
           <body>
             <div id="topMenuBackground">
               <div id="topMenu"> 
-                <g:link controller="index" action="index"><div style="float:left;"><g:img file="fym-logo.png" style="width : 44px; height : 44px; vertical-align : middle;"/></div></g:link>
+                <g:link controller="index" action="index"><div class="logo" style="float:left;"><g:img file="fym-logo.png" style="width : 44px; height : 44px; vertical-align : middle;"/></div></g:link>
                 <ul id="listMenu">
                   <li id="menuItem"><g:link controller="question" action="list" class="${params.controller == 'question' && params.action != 'create' ? 'active' : '' }">Questions</g:link></li>
                   <li id="menuItem"><g:link controller="Tag" action="list" class="${params.controller == 'tag' ? 'active' : '' }">Tags</g:link></li>

@@ -23,15 +23,15 @@ jQuery(function($) {
   updateTagsId = function(params) {
 
     $(params.hideId).val('');
-    selectedTags = [];
+    params.selectedTags = [];
 
     $("#tags > span").each(function(index) {
 
       var id = $(this).children("input").val();
-      selectedTags.push(parseInt(id));						
+      params.selectedTags.push(parseInt(id));						
     });
 
-    $(params.hideId).val(selectedTags.join(";"));
+    $(params.hideId).val(params.selectedTags.join(";"));
   }
 
 
