@@ -72,7 +72,8 @@ p {
 
 #topMenuBackground {
 	background-color : #3D6AA2;
-        box-shadow: -1px 2px 3px 1px rgba(0, 0, 0, 0.7);
+        box-shadow       : -1px 2px 3px 1px rgba(0, 0, 0, 0.7);
+        margin-bottom    : 20px;
 }
 
 #topMenu #listMenu {	
