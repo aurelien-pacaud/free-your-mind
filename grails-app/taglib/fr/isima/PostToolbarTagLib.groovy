@@ -1,14 +1,6 @@
 package fr.isima
 
-/*<g:if test="${!post.isAccepted}" > 
-        
-    <g:if test="${sec.loggedInUserInfo(field: 'id') == post.contributor.id.toString()}">
-       
-      <!-- To edit the post -->
-         </g:if>
-         
-    <!-- To comment -->
-      */
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 class PostToolbarTagLib {
     
@@ -19,59 +11,51 @@ class PostToolbarTagLib {
     def user = springSecurityService.getCurrentUser()
     def post = attrs.post
 
-    def comment = """\
-    <span>
-      <a class="comment" title="Add a comment" id="${post.id}">
-        <img src="${fam.icon(name: 'comment')}" alt="Add a comment"/>
-      </a>
-    </span>
-    """
-
-    def accept = """\
-    <span>
-      <g:remoteLink controller="post" action="accepted" id="${post.id}" update="post-${post.id}" onSuccess="updateCodeColor()" >
-        <img src="${fam.icon(name: 'tick')}" alt="Accept this post"/>
-      </g:remoteLink>
-    </span>
-    """
+    def deleteParams = ['action': 'delete', 'controller': post.domainClass.name, 'id': post.id, 'title': 'Delete the post',
+                        'onclick': "return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"
+                       ]
     
-    def delete = """\
-    <span>
-      <g:link action="delete" controller="${post.domainClass.name}" title="Delete post" id="${post.id}" 
-              onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');">
-        <img src="${fam.icon(name: 'cross')}" alt="Add a comment"/>
-      </g:link>
-    </span>
-    """
+    def editParams = [action: 'edit', controller: post.domainClass.name, id: post.id, title: 'Edit the post']
 
-    def edit = """\
-    <span>
-      <g:link controller="${post.domainClass.name}" action="edit" id="${post.id}" title="Edit the post">
-        <img src="${fam.icon(name: 'pencil')}" alt="Edit your question"/>
-      </g:link>
-    </span>
-    """
+    def acceptParams = [action: 'accepted', controller: 'post', id: post.id, update: "post-${post.id}", title: 'Accept this post',
+                        onSuccess: 'updateCodeColor()'
+                       ]
+
+    def commentParams = [class: 'comment', id: post.id, action: "", controller: ""]
 
     out << body()
 
     if (springSecurityService.isLoggedIn()) {
       if (post.contributor.id == user.id)
-        out << edit
+        out << '<span>' << g.link(editParams) { g.img(dir: 'images/icons', file: 'pencil.png', plugin: 'famfamfam') } << '</span>' 
 
       if (springSecurityService.isLoggedIn())
-        out << comment
+        out << '<span class="comment" id="' << post.id << '">' << g.img(dir: 'images/icons', file: 'comment.png', plugin: 'famfamfam') << '</span>'
 
-      if (user.getAuthorities().contains('ROLE_USER') || user.getAuthorities().contains('ROLE_ADMIN'))
-        out << delete
+      println user.authorities
+
+      if (SpringSecurityUtils.ifAnyGranted('ROLE_MODERATOR, ROLE_ADMIN'))
+        out << '<span>' << g.link(deleteParams) { g.img(dir: 'images/icons', file: 'cross.png', plugin: 'famfamfam') } << '</span>' 
 
       if (Answer.class.is(post.class)) {
-      if (post.question.contributor.id == user.id)
-         out << accept
+      if (!post.isAccepted && post.question.contributor.id == user.id)
+        out << '<span>' << g.remoteLink(acceptParams) { g.img(dir: 'images/icons', file: 'tick.png', plugin: 'famfamfam') } << '</span>' 
       }
       else if (Question.class.is(post.class)) {
-        if (post.contributor.id == user.id)
-          out << accept
+        if (!post.isAccepted && post.contributor.id == user.id)
+          out << '<span>' << g.remoteLink(acceptParams) { g.img(dir: 'images/icons', file: 'tick.png', plugin: 'famfamfam') } << '</span>' 
       }
     }
+  }
+
+  def upVote = { attrs, body ->
+
+
+
+  }
+
+  def downVote = { attrs, body ->
+
+
   }
 }

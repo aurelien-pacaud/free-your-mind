@@ -142,8 +142,8 @@ p {
 /* Tags and badges style. */
 .label, .badge {	
   vertical-align   : middle !important;
-  margin-left      : 2px;
-  margin-right     : 2px;
+  margin-left      : 0px;
+  margin-right     : 0px;
 }
 
 /* Related to post. */
@@ -175,6 +175,11 @@ p {
 .postToolbar {
   float       : left;
   margin-left : 56px;
+}
+
+h2 span.tags span {
+
+  margin : -3px;
 }
 
 /* Form input style. */

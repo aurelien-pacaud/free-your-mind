@@ -34,22 +34,26 @@
       </div>
     </g:if>
 
-    <h2>${question.title} <g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" />
+    <h2>${question.title} <span class="tags"><g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" /></span>
       <g:if test="${!question.isClosed}">
-        <span style="float: right;">
-          <g:link action="lock" controller="question" title="Lock the question" id="${question.id}">
-            <img src="${fam.icon(name: 'lock')}" alt="Lock the question"/>
-          </g:link>
-        </span>
+        <sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_MODERATOR">
+          <span style="float: right;">
+            <g:link action="lock" controller="question" title="Lock the question" id="${question.id}">
+              <img src="${fam.icon(name: 'lock')}" alt="Lock the question"/>
+            </g:link>
+          </span>
+        </sec:ifAnyGranted>
       </g:if>
       <g:else>
         <div style="float: right;">
           <span class="label label-important">Closed</span>
-          <span>
-            <g:link action="unlock" controller="question" title="Unlock the question" id="${question.id}">
-              <img src="${fam.icon(name: 'lock_open')}" alt="Unlock the question"/>
-            </g:link>
-          </span>
+          <sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_MODERATOR">
+            <span>
+              <g:link action="unlock" controller="question" title="Unlock the question" id="${question.id}">
+                <img src="${fam.icon(name: 'lock_open')}" alt="Unlock the question"/>
+              </g:link>
+            </span>
+          </sec:ifAnyGranted>
         </div>
       </g:else>
     </h2>

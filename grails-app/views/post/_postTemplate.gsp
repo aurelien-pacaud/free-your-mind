@@ -1,6 +1,4 @@
-<%@page import="fr.isima.Answer" %>
-<%@page import="fr.isima.Question" %>
-<div id="post-${post.id}">
+<div id="post-${post.id}" class="post">
   <div class="post ${!post.isAccepted ? '' : 'postAccepted'}">
     <div class="postMark">
       <!-- Buttons to up or down vote -->
@@ -18,8 +16,8 @@
     </div>
     <div class="postContent">
       <div style="float: left; width : 3px; background-color : red"></div>
-      <markdown:renderHtml>${post.content}</markdown:renderHtml>
-    </div>
+        <markdown:renderHtml>${post.content}</markdown:renderHtml>
+      </div>
   </div>
 
   <!-- Toolbar -->
@@ -44,8 +42,18 @@
       <g:submitButton name="addComment" value="Add comment" style="float : right;"/>
     </g:formRemote>
   </div>
-
-  <div><br /><br /><br /></div>
 </div>
+<div><br /><br /><br /></div>
 
+<jq:jquery>
 
+  var postId = '#post-' + ${post.id};
+
+  $(postId + ' .postToolbar').hide();
+      
+  $(postId).mouseover(function() {
+    $(postId + ' .postToolbar').show();
+  }).mouseout(function() {
+    $(postId + ' .postToolbar').hide();
+  });
+</jq:jquery>
