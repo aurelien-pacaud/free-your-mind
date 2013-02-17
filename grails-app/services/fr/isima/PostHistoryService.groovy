@@ -18,10 +18,18 @@ class PostHistoryService {
     postHistory.save()
   }
 
-  def createVotedHistory(Post post, Contributor user) {
+  def createVotedUpHistory(Post post, Contributor user) {
 
     def postHistory = new PostHistory(contributor: user, post: post,
-    date: new Date(), type: PostType.VOTED)
+    date: new Date(), type: PostType.VOTE_UP)
+
+    postHistory.save()
+  }
+  
+  def createVotedDownHistory(Post post, Contributor user) {
+
+    def postHistory = new PostHistory(contributor: user, post: post,
+    date: new Date(), type: PostType.VOTE_DOWN)
 
     postHistory.save()
   }

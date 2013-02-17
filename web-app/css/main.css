@@ -149,6 +149,14 @@ p {
   font-size    : 1.5em; 
 }
 
+.postVote  {
+  color : #f89406;
+}
+
+.postVoteDisable {
+  color : #999;
+}
+
 .post .postContent {  
   margin-left : 56px;
   min-height  : 87px;
@@ -163,9 +171,36 @@ p {
   cursor : pointer;
 }
 
+.commentDate {
+  color: #999;
+}
+
+.commentMark {
+  font-size: 110%;
+  color: #666666;
+  font-weight: bold;
+  width          : 20px;
+}
+
+.commentContent {
+  
+  margin-left : 20px;
+}
+
 .postToolbar {
   float       : left;
   margin-left : 56px;
+}
+
+.postToolbar span {
+  margin-right : 4px;
+}
+
+.commentPost {
+  margin-left    : 56px; 
+  border-bottom  : 1px #cccccc dashed; 
+  padding        : 4px; 
+  vertical-align : middle;
 }
 
 h2 span.tags span {

@@ -11,7 +11,7 @@ class CommentController {
     def post = Post.get(params.idPost)
     def content = params.commentContent
 
-    def c = new Comment(content: content, post: post, contributor: getAuthenticatedUser())
+    def c = new Comment(content: content, post: post, contributor: getAuthenticatedUser(), mark: "3")
 
     try {
 

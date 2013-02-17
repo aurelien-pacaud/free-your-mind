@@ -15,14 +15,14 @@ class PostController {
 
   def incMark = {
 
-    postService.incMark(Post.get(params.get("id")))
-    render Post.get(params.get("id")).mark
+    postService.incMark(Post.get(params.id))
+    render Post.get(params.id).mark
   }
 
   def downMark = {
 
-    postService.downMark(Post.get(params.get("id")))
-    render Post.get(params.get("id")).mark
+    postService.downMark(Post.get(params.id))
+    render Post.get(params.id).mark
   }
 
   def accepted = {

@@ -18,8 +18,13 @@ class QuestionController {
 
     def question = Question.get(params.id)
 
-    questionService.incViewCpt(question)		
-    [question: question]
+    if (question != null) {
+
+      questionService.incViewCpt(question)		
+      [question: question]
+    }
+    else 
+      render view: "error404"
   }
 
   @Secured(['IS_AUTHENTICATED_FULLY'])

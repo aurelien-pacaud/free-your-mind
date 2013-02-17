@@ -4,6 +4,7 @@ import fr.isima.exception.PostException
 
 class PostService {
 
+  def springSecurityService
   def postHistoryService
 
   /**
@@ -54,8 +55,10 @@ class PostService {
    */
   def incMark(Post post) {
 
+    def user = springSecurityService.getCurrentUser()
+
     post.mark++;
-    postHistoryService.createVotedHistory(post, post.contributor)
+    postHistoryService.createVotedUpHistory(post, user)
 
     post.save();
   }
@@ -67,8 +70,10 @@ class PostService {
    */
   def downMark(Post post) {
 
+    def user = springSecurityService.getCurrentUser()
+
     post.mark--;
-    postHistoryService.createVotedHistory(post, post.contributor)
+    postHistoryService.createVotedDownHistory(post, user)
 
     post.save();
   }

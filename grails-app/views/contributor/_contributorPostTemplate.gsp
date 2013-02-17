@@ -1,4 +1,5 @@
 <span class="userPost">
-	<prettytime:display date="${post.creationDate}" /> by
-	<g:link controller="Contributor" action="show" id="${post.contributor.id}">${post.contributor.username}</g:link>
+  <g:typePost post="${post}" /> by
+  <g:link controller="Contributor" action="show" id="${post.contributor.id}">${post.contributor.username}</g:link> &ndash;
+  <g:stackDate class="commentDate" date="${post.creationDate}" />
 </span>

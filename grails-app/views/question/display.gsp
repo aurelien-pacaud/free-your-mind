@@ -102,6 +102,7 @@
           $(element).show(); 
         }
       });
+
     </jq:jquery>
   </body>
 </html>
