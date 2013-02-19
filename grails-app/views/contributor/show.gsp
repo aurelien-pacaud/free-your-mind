@@ -65,7 +65,6 @@
 				</div>
 			</div>
 			
-			<g:javascript plugin="twitter-bootstrap" src="bootstrap-tab.js"/>
 			<div class="activity">
 				<ul class="nav nav-tabs" id="myTab">
 				  <li><a href="#summary" data-toggle="tab">Summary</a></li>

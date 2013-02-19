@@ -26,7 +26,8 @@
             <r:layoutResources />
 
             <g:javascript src="main.js" />
-            <g:javascript plugin="twitter-bootstrap" src="bootstrap-dropdown.js"/>
+            <g:javascript plugin="twitter-bootstrap" src="bootstrap-tab.js"/>
+          
             <jq:jquery>
               $(function() {
                 var button = $('#loginButton');
@@ -66,7 +67,7 @@
                   <li id="lastMenu" >
                   <sec:ifAllGranted roles="ROLE_USER">
                   <div class="dropdown">
-                    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" >
+                    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#" >
                       <sec:loggedInUserInfo field="username" />
                       <b class="caret"></b>
                     </a>
