@@ -8,20 +8,27 @@
 		<div>
 			<h2><g:message code="user.creation.title"/></h2>
 			<br/>
-			<g:renderErrors bean="${user}" />
 			<g:form class="user_form" action="createUser" controller="contributor">
 			  	<label><g:message code="user.creation.form.login"/></label>
-			  	<g:textField name="login" type="text" value="${user?.username}" class='${hasErrors(bean:user,field:'login','error')}'/>
-			  	<br/><br/>
+			  	<div class='${hasErrors(bean:user,field:'username','alert-error')}'>
+			  		<g:renderErrors bean="${user}" field="username"/>
+			  		<g:textField name="login" id="loginUser" type="text" value="${user?.username}" />
+			  	</div>
 			  	<label><g:message code="user.creation.form.password"/></label>
-			  	<g:passwordField name="password" value="${user?.password}" class='${hasErrors(bean:user,field:'password','error')}'/>
-			  	<br/><br/>
+			  	<div class="${hasErrors(bean:user,field:'password','alert-error')}">
+			  		<g:renderErrors bean="${user}" field="password"/>
+				    <g:passwordField name="password" value="${user?.password}"/>
+				 </div>
 			  	<label><g:message code="user.creation.form.confirm.password"/></label>
-			  	<g:passwordField name="confirmPassword" value="${confirmPassword}" class='${hasErrors(bean:user,field:'confirmPassword','error')}'/>
-			  	<br/><br/>
+			  	<div  class='${hasErrors(bean:user,field:'password','alert-error')}'">
+			  		<g:renderErrors bean="${user}" field="password" />
+			  		<g:passwordField name="confirmPassword" value="${confirmPassword}"/>
+			  	</div>
 			  	<label><g:message code="user.creation.form.email"/></label>
-			  	<g:textField name="email" type="email" value="${user?.email}" class='${hasErrors(bean:user,field:'email','error')}'/>
-			  	<br/><br/>
+					<div class='${hasErrors(bean:user,field:'email','alert-error')}'>
+					<g:renderErrors bean="${user}" field="email"/>
+			  	<g:textField name="email" type="email" value="${user?.email}" />
+			  	</div>
 			  	<g:submitButton name="submit" type="submit" value="Submit" />
 			</g:form>
 		</div>

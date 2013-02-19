@@ -643,3 +643,14 @@ text-decoration : none;
 	color: #444444;
 	text-decoration: underline;
 }
+
+.avatar{
+	width: 64px;
+	height:64px;
+}
+
+.avatar_large{
+	width: 96px;
+	height:96px;
+}
+

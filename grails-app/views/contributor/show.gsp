@@ -1,6 +1,3 @@
-show 
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,7 +11,18 @@ show
 				<br/>
 				<div class="leftCol">
 					<center>
-						<g:img dir="images" file="avatar.png"/>
+						<g:if test="${user.avatar}">
+						  	<img class="avatar_large" src="${createLink(controller:'contributor', action:'avatar_image', id:user.ident())}" />
+						</g:if>
+						<g:else>
+							<g:img dir="images" file="avatar.png" width="64" height="64"/>
+						</g:else>
+						<sec:ifLoggedIn>
+							<g:if test="${sec.loggedInUserInfo(field: 'id') == user.id.toString()}">
+								<br/>
+								<g:link action="edit_avatar" controller="contributor" id="${user?.id}"> Change Avatar</g:link>
+							</g:if>
+						</sec:ifLoggedIn>
 						<br/>
 						${user.reputation}
 						<br/>
@@ -36,7 +44,7 @@ show
 						<tr>
 							<td></td>
 							<td><g:message code="user.profil.summary.age"/></td>
-							<td> ${user.birthDate}</td>
+							<td> ${user.age} years old</td>
 						</tr>
 						<tr>
 							<td><g:message code="user.profil.summary.visits"/></td>

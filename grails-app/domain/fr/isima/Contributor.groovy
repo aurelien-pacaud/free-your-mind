@@ -30,6 +30,9 @@ class Contributor{
 	boolean isAdmin = false
 	long reputation = 0
 	
+	byte[] avatar
+	String avatarType
+	
 	static hasMany = [posts: Post, comments: Comment, postHistories: PostHistory, awardHistories: AwardHistory]
 	
 	static constraints = {
@@ -37,12 +40,24 @@ class Contributor{
 		password blank: false
 		birthDate(nullable:true, blank:false)
 		lastConnectionDate(nullable:true)
+		avatar maxSize: 1024 * 1024 * 2, nullable: true
+		avatarType nullable: true
 	}
 	
 	static mapping = {
 		password column: '`password`'
 	}
 
+	
+	int getAge() {
+		if (birthDate == null) {
+			0
+		}
+		else {
+			(int)(new Date().minus(birthDate) / 365)
+		}
+	}
+	
 	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this).collect { it.role } as Set
 	}

@@ -72,20 +72,14 @@
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                       <li role=presentation">
-                      <g:link controller="contributor" action="show" id="${sec.loggedInUserInfo(field: 'id')}">
-                      Consult profile	
-                      </g:link>
+                      <g:link controller="contributor" action="show" id="${sec.loggedInUserInfo(field: 'id')}">Consult profile</g:link>
                       </li>
                       <li role=presentation">
-                      <g:link controller="contributor" action="show" id="${sec.loggedInUserInfo(field: 'id')}">
-                      Edit profile	
-                      </g:link>
+                      <g:link controller="contributor" action="edit" id="${sec.loggedInUserInfo(field: 'id')}">Edit profile</g:link>
                       </li>
                       <li class="divider"></li>
                       <li  role=presentation">
-                      <g:link controller="logout" action="index">
-                      Logout	
-                      </g:link>
+                      <g:link controller="logout" action="index">Logout</g:link>
                       </li>
                     </ul>
                   </div>
@@ -106,6 +100,9 @@
                             <input type="password" name="j_password" id="password" />
                           </fieldset>
                           <input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
+                          <br/><br/>
+                          or <g:link controller="contributor" action="create">Sign in</g:link>
+                          <br/>
                           <label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
                         </fieldset>
                       </form>
