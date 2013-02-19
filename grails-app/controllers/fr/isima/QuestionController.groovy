@@ -119,4 +119,24 @@ class QuestionController {
     
     redirect action: "display", id: question.id
   }
+
+  def votedAnswers() {
+    
+    def question = Question.get(params.id)
+    def answers  = Answer.findAllByQuestion(question, [sort: 'mark', order:'desc'])
+
+    println answers
+
+    render template: '/post/postTemplate', var: 'post', collection: answers
+  }
+  
+  def latestAnswers() {
+    
+    def question = Question.get(params.id)
+  
+    println question.answers
+
+    render template: '/post/postTemplate', var: 'post', collection: question.answers
+  }
+
 }

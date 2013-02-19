@@ -8,21 +8,28 @@ class PostController {
 
   def postService
 
-  def display = {
-
-    [post: Question.getAll()]
-  }
-
   def incMark = {
 
-    postService.incMark(Post.get(params.id))
-    render Post.get(params.id).mark
+    def post = Post.get(params.id)
+
+    postService.incMark(post)
+
+    if (post.class.is(Comment))
+      render template: '/comment/voteTemplate', var: 'post', bean: post
+    else
+      render template: '/post/voteTemplate', var: 'post', bean: post
   }
 
   def downMark = {
+    
+    def post = Post.get(params.id)
 
-    postService.downMark(Post.get(params.id))
-    render Post.get(params.id).mark
+    postService.downMark(post)
+
+    if (post.class.is(Comment))
+      render template: '/comment/voteTemplate', var: 'post', bean: post
+    else
+      render template: '/post/voteTemplate', var: 'post', bean: post
   }
 
   def accepted = {

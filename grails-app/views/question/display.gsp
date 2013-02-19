@@ -63,17 +63,25 @@
 
     <g:if test="${!question.answers.isEmpty()}">
       <h2 id="answerTitleNumber">${question.answers.size()} Answers</h2>
+      <ul class="nav nav-tabs" id="answersSelect">
+        <li><g:remoteLink action="latestAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Latest</g:remoteLink></li>
+        <li><g:remoteLink action="votedAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Vote</g:remoteLink></li>
+      </ul>
     </g:if>
      
-    <div id="answers">
+    <div id="answers" class="tab-content">
       <g:render template="/post/postTemplate" var="post" collection="${question.answers}" />
     </div>
+ 
+    <script>
+      $('#answersSelect a[href="#latest"]').tab('show')
+    </script>
 
     <br />
     <h2>Your Answer</h2>
     <br />
     <sec:ifNotLoggedIn>
-      Please logging before answered! <g:link controller="contributor" action="login">Login</g:link>
+      Please logging before answered! <g:link controller="login" action="auth">Login</g:link>
     </sec:ifNotLoggedIn>
     <sec:ifAllGranted roles="ROLE_USER">
       <g:if test="${!question.isClosed}">

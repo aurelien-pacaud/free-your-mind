@@ -176,10 +176,10 @@ p {
 }
 
 .commentMark {
-  font-size: 110%;
-  color: #666666;
-  font-weight: bold;
-  width          : 20px;
+  font-size    : 110%;
+  color        : #666666;
+  font-weight  : bold;
+  margin-right : 6px;
 }
 
 .commentContent {
@@ -187,13 +187,28 @@ p {
   margin-left : 20px;
 }
 
+.commentContent {
+  margin-bottom : 0px;
+}
+
 .postToolbar {
-  float       : left;
   margin-left : 56px;
 }
 
 .postToolbar span {
   margin-right : 4px;
+}
+
+.commentToolbar span {
+  margin-right : 4px;
+}
+
+.postBottomBar {
+  min-height : 20px;
+}
+
+.postBlankSpace {
+  height : 80px;
 }
 
 .commentPost {

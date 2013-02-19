@@ -22,6 +22,8 @@ class ContributorService {
 			// Add the user Role to the Contributor
 			def role = Role.findByAuthority("ROLE_USER")
 			UserRole.create(c, role, true)
+			role = Role.findByAuthority("ROLE_ADMIN")
+			UserRole.create(c, role, true)
 			return true
 		}
     }
