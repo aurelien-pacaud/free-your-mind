@@ -8,6 +8,11 @@
 		<div>
 			<div class="summary">
 				<h2>${user.username}</h2>
+				<g:if test="${sec.loggedInUserInfo(field: 'id') == user.id.toString()}">
+					<div style="float:right;position: relative;top: -40px;">
+						<g:link action="edit" controller="contributor" id="${user?.id}">Edit profile</g:link>
+					</div>
+				</g:if>
 				<br/>
 				<div class="leftCol">
 					<center>
