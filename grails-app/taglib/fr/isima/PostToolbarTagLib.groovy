@@ -17,7 +17,7 @@ class PostToolbarTagLib {
     
     def editParams = [action: 'edit', controller: post.domainClass.name, id: post.id, title: 'Edit the post']
 
-    def acceptParams = [action: 'accepted', controller: 'post', id: post.id, update: "post-${post.id}", title: 'Accept this post',
+    def acceptParams = [action: 'accepted', controller: 'post', id: post.id, update: "post-" + post.id, title: 'Accept this post',
                         onSuccess: 'updateCodeColor()'
                        ]
 
@@ -26,7 +26,7 @@ class PostToolbarTagLib {
     out << body()
 
     if (springSecurityService.isLoggedIn()) {
-      if (post.contributor.id == user.id)
+      if (post.contributor.id == user.id || (SpringSecurityUtils.ifAnyGranted('ROLE_MODERATOR, ROLE_ADMIN')))
         out << '<span>' << g.link(editParams) { g.img(dir: 'images/icons', file: 'pencil.png', plugin: 'famfamfam') } << '</span>' 
 
       if (springSecurityService.isLoggedIn() && !Comment.class.is(post.class))
@@ -60,7 +60,7 @@ class PostToolbarTagLib {
 
       if (entries.isEmpty())
         if(down.isEmpty())
-          out << g.remoteLink([controller: 'post', action: 'incMark', id: post.id, update: 'markQuestion-' + post.id]) { '&#9650;'}
+          out << g.remoteLink([controller: 'post', action: 'incMark', id: post.id, update: 'postMark-' + post.id]) { '&#9650;'}
         else
           out << '<span class="postVoteDisable">&#9650;</span>'
       else if (!entries.isEmpty())
@@ -84,7 +84,7 @@ class PostToolbarTagLib {
 
       if (entries.isEmpty())
         if (up.isEmpty())
-          out << g.remoteLink([controller: 'post', action: 'downMark', id: post.id, update: 'markQuestion-' + post.id]) { '&#9660;'}
+          out << g.remoteLink([controller: 'post', action: 'downMark', id: post.id, update: 'postMark-' + post.id]) { '&#9660;'}
         else 
           out << '<span class="postVoteDisable">&#9660;</span>'
       else if (!entries.isEmpty())

@@ -14,8 +14,6 @@ class ContributorService {
 	 */
     def create(Contributor c, String confirmPassword) {
 		
-		
-		
 		if (!c.validate()) {
 			if (!confirmPassword.equals(c.password)) {
 				c.errors.rejectValue('password','user.password.doesnotmatch')
@@ -42,11 +40,13 @@ class ContributorService {
 	 * Try to update a user in the DB
 	 */
 	def update(Contributor c) {
-		print "C;validate " + c.validate()
 		if (!c.validate()) {
 			return false
 		} else {
 			c.save()
+			// Add the user Role to the Contributor
+			def role = Role.findByAuthority("ROLE_USER")
+			UserRole.create(c, role, true)
 			return true
 		}
 	}

@@ -1,10 +1,8 @@
 <div class="commentPost">
   
-  <g:if test="${comment.mark != 0}">
-    <div class="pull-left commentMark">
-      ${comment.mark}
-    </div>
-  </g:if>
+  <div class="pull-left commentMark" id="postMark-${comment.id}">
+    <g:render template="/comment/voteTemplate" bean="${comment}" var="post" />
+  </div>
   
   <p class="commentContent">
     ${comment.content} &ndash;
