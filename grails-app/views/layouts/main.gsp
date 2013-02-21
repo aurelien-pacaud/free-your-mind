@@ -16,7 +16,7 @@
             <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
             <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
             <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-            <link rel="stylesheet" href="${resource(dir: 'css', file: 'rainbow.css')}" type="text/css">
+            <link rel="stylesheet" href="${resource(dir: 'css', file: 'github.css')}" type="text/css">
             <script src="${resource(dir: 'js', file: 'highlight.pack.js')}"></script>
             <script>hljs.initHighlightingOnLoad();</script>
 

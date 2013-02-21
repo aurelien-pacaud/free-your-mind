@@ -4,7 +4,7 @@
     <g:render template="/comment/voteTemplate" bean="${comment}" var="post" />
   </div>
   
-  <p class="commentContent">
+  <p class="commentContent" id="post-${comment.id}">
     ${comment.content} &ndash;
     <g:link action="show" controller="contributor" id="${comment.id}">${comment.contributor.username}</g:link>
     <g:stackDate class="commentDate" date="${comment.creationDate}" />

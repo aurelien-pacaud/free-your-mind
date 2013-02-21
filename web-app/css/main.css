@@ -53,6 +53,8 @@ hr {
 	background-color: #cccccc;
 	height: 1px;
 	border: 0;
+        margin : 0px !important;
+        margin-top : 3px !important;
 }
 
 p {
@@ -130,6 +132,10 @@ p {
 	font-weight     : bold;
 }
 
+.hide {
+  display : none;
+}
+
 /* Tags and badges style. */
 .label, .badge {	
   vertical-align   : middle !important;
@@ -180,11 +186,6 @@ p {
   color        : #666666;
   font-weight  : bold;
   margin-right : 6px;
-}
-
-.commentContent {
-  
-  margin-left : 20px;
 }
 
 .commentContent {

@@ -17,7 +17,7 @@
         $('textarea#answerContent').val('');
 
         if (nbAnswers == 0)
-          $("<h2 id='answerTitleNumber'></h2>").insertBefore('#answers');
+          $("#answersTitle").removeClass('hide');
   
         $('h2#answerTitleNumber').html(++nbAnswers + " Answers");
         
@@ -61,20 +61,20 @@
     <g:render template="/post/postTemplate" var="post" collection="${question}" />
     <br />
 
-    <g:if test="${!question.answers.isEmpty()}">
+    <div id="answersTitle" class="${!question.answers.isEmpty() ? '' : 'hide'}" >
       <h2 id="answerTitleNumber">${question.answers.size()} Answers</h2>
       <ul class="nav nav-tabs" id="answersSelect">
-        <li><g:remoteLink action="latestAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Latest</g:remoteLink></li>
+        <li class="active"><g:remoteLink action="latestAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Oldest</g:remoteLink></li>
         <li><g:remoteLink action="votedAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Vote</g:remoteLink></li>
       </ul>
-    </g:if>
+    </div>
      
     <div id="answers" class="tab-content">
       <g:render template="/post/postTemplate" var="post" collection="${question.answers}" />
     </div>
  
     <script>
-      $('#answersSelect a[href="#latest"]').tab('show')
+      $('#answersSelect a[href="#latest"]').tab('show');
     </script>
 
     <br />
@@ -88,8 +88,7 @@
         <g:formRemote name="answerForm" update="answers" url="[controller : 'answer', action: 'save', params: [idQ: question.id]]"
                       onSuccess="updateAnswers()">	
           <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
-          <br />
-          <g:submitButton name="submitAnswer" value="Answered" id="submitA" />
+          <g:submitButton name="submitAnswer" value="Answered" id="submitA" class="btn btn-primary pull-right" />
         </g:formRemote>
       </g:if>
       <g:else>
@@ -109,6 +108,11 @@
           $(element + " textarea").val('');
           $(element).show(); 
         }
+      });
+
+      $('#answersSelect a').click(function() {
+        $(this).parent().addClass("active"); 
+        $(this).parent().siblings("li").removeClass("active"); 
       });
 
     </jq:jquery>
