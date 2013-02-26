@@ -88,7 +88,7 @@
         <g:formRemote name="answerForm" update="answers" url="[controller : 'answer', action: 'save', params: [idQ: question.id]]"
                       onSuccess="updateAnswers()">	
           <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
-          <g:submitButton name="submitAnswer" value="Answered" id="submitA" class="btn btn-primary pull-right" />
+          <g:submitButton name="submitAnswer" value="Answered" id="submitA" class="btn btn-primary" />
         </g:formRemote>
       </g:if>
       <g:else>
@@ -99,7 +99,6 @@
       $("body").on('click', '.comment', function(e) {
   
         var element = "#comment-" + $(this).attr("id");
-        console.log(element);
       
         if ($(element).is(":visible")) {
           $(element).hide();

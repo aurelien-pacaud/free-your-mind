@@ -40,7 +40,9 @@ class AnswerController {
         redirect action: 'display', controller: 'question', id: answer.question.id
     }
     catch (e) {
-      render view: 'edit', model: [answer: answer]
+      if (!request.xhr) {
+        render view: 'edit', model: [answer: answer]
+      }
     }
   }
 

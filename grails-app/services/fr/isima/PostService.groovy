@@ -35,10 +35,12 @@ class PostService {
    */
   def update(Post post) {
 
-    /* If the question can't be saved. */
-    if (!post.save())
+    /* If the post can't be saved. */
+    if (!post.validate())
       throw new PostException("Post can't be updated");
     else {
+
+      post.save();
 
       /* Add new entry in History. */
       def postHistory = new PostHistory(contributor: post.contributor, post: post,
