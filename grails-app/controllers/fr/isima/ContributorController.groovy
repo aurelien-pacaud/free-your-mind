@@ -17,7 +17,6 @@ class ContributorController {
 	/**
 	 * Display the user which id is specified 
 	 */
-    @Secured(['IS_AUTHENTICATED_FULLY'])
     def show = {
 		Contributor c = Contributor.get(params.get("id"))
 		def answers = [] 
@@ -49,7 +48,7 @@ class ContributorController {
 			}
 		}
 		
-		[user: c, answers: answers, questions: questions, comments: comments, tags: tags, tagsCounter: tagsCounter, awards: awards]
+		[user: c, answers: answers, questions: questions, comments: comments, tags: tags, tagsCounter: tagsCounter, awards: awards, actions:c.postHistories]
 	}
 	
 	/**
@@ -94,6 +93,7 @@ class ContributorController {
 	/**
 	 * Edit the  user profile
 	 */ 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	 def edit = {
 		 def id = params.get("id")
 		 def user = Contributor.get(id)
@@ -101,8 +101,9 @@ class ContributorController {
 	 }
 	 
 	 /**
-	  * Create a new user from the form
+	  * Update a new user from the form
 	  */
+	 @Secured(['IS_AUTHENTICATED_FULLY'])
 	 def updateUser = {
 		 
 		 // Get all attributes form the form
@@ -140,6 +141,7 @@ class ContributorController {
 	 /**
 	  * Display the avatar selector view
 	  */
+	 @Secured(['IS_AUTHENTICATED_FULLY'])
 	 def edit_avatar = {
 		 def id = params.get("id")
 		 
@@ -152,6 +154,7 @@ class ContributorController {
 	 /**
 	  * Save the image in the user table
 	  */
+	 @Secured(['IS_AUTHENTICATED_FULLY'])
 	 def upload_avatar = {
 		 def id = params.get("id")
 		 
@@ -200,6 +203,8 @@ class ContributorController {
 		 out.write(avatarUser.avatar);
 		 out.close();
 	  }
+	 
+	
 	 
 	
 }

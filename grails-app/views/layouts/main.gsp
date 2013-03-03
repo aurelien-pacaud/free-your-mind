@@ -65,7 +65,7 @@
                   <li id="menuItem"><g:link controller="Contributor" action="list" class="${params.controller == 'contributor' ? 'active' : '' }">Users</g:link></li>
                   <li id="menuItem"><g:link controller="Question" action="create" class="${params.action == 'create' && params.controller == 'question' ? 'active' : '' }">Ask Question</g:link></li>
                   <li id="lastMenu" >
-                  <sec:ifAllGranted roles="ROLE_USER">
+                  <sec:ifLoggedIn>
                   <div class="dropdown">
                     <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#" >
                       <sec:loggedInUserInfo field="username" />
@@ -87,8 +87,8 @@
                       </li>
                     </ul>
                   </div>
-                  </sec:ifAllGranted>
-                  <sec:ifNotGranted roles="ROLE_USER">
+                  </sec:ifLoggedIn>
+                  <sec:ifNotLoggedIn >
                   <div id="loginContainer">
                     <a id="loginButton"><span>Login</span></a>
                     <div style="clear:both"></div>
@@ -112,7 +112,7 @@
                       </form>
                     </div>
                   </div>
-                  </sec:ifNotGranted>
+                  </sec:ifNotLoggedIn>
                   </li>
                 </ul>
               </div>

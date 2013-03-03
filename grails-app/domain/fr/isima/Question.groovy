@@ -7,7 +7,8 @@ class Question extends Post {
   boolean isClosed = false
 
   static hasMany = [tags: Tag, answers: Answer]
-
+  static belongsTo = [contributor: Contributor]
+  
   static constraints = {
     title(blank: false, nullable: false)
     tags(nullable: false, minSize: 1, maxSize: 5)

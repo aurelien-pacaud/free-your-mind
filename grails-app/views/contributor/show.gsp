@@ -13,6 +13,13 @@
 						<g:link action="edit" controller="contributor" id="${user?.id}">Edit profile</g:link>
 					</div>
 				</g:if>
+				<g:else>
+					<sec:ifAllGranted roles="ROLE_ADMIN">
+						<div style="float:right;position: relative;top: -40px;">
+							<g:link action="edit" controller="contributor" id="${user?.id}">Edit profile</g:link>
+						</div>
+					</sec:ifAllGranted>
+				</g:else>
 				<br/>
 				<div class="leftCol">
 					<center>
@@ -82,12 +89,10 @@
 				</ul>
 				<div class="tab-content">
 				  <div class="tab-pane active" id="summary">
-				  	<h3>Summary</h3>
+				  	<g:render template="summaryTemplate"/>
 				  </div>
 				  <div class="tab-pane" id="answers">
-				  	<h3>${answers.size()} Answers</h3>
-				  	<br/>
-			  		<g:render template="answerItemListTemplate" var="post" collection="${answers}" />
+			  		<g:render template="answerListTemplate" />
 				  </div>
 				  <div class="tab-pane" id="questions">
 				  	<h3>${questions.size()} Questions</h3>
@@ -95,14 +100,10 @@
 			  		<g:render template="/post/postItemListTemplate" var="post" collection="${questions}" />
 				  </div>
 				  <div class="tab-pane" id="comments">
-				  	<h3>${comments.size()} Comments</h3>
-				  	<br/>
-			  		<g:render template="commentItemListTemplate" var="comment" collection="${comments}" />
+			  		<g:render template="commentListTemplate"/>
 				  </div>
 				  <div class="tab-pane" id="tag">
-				  	<h3>${tags.size()} Tags</h3>
-				  	<br/>
-				  	<g:render template="tagTemplateWithNbofQuestion" var="tag" collection="${tags}"/>
+				  	<g:render template="tagListTemplate"/>
 				  	<div style="clear: both"></div>
 				  	<br/>
 				  </div>
@@ -110,12 +111,12 @@
 				  	<h3>${awards.size()} Awards</h3>
 				  </div>
 				  <div class="tab-pane" id="activity">
-				  	<h3>Activity</h3>
+					<g:render template="activityListTemplate"/>
 				  </div>
 				</div>
 			</div>
 			<script type="text/javascript">
-				$('#myTab a[href="#answers"]').tab('show')
+				$('#myTab a[href="#summary"]').tab('show')
 			</script>
 		</div>
 	</body>
