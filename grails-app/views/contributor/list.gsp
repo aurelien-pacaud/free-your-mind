@@ -8,8 +8,6 @@
 		<div>
 			<h2><g:message code="user.list.title"/></h2>
 			<br/>
-			<g:link controller="contributor" action="create">Create a new user</g:link>
-			<br/><br/>
 			<table>
 				<tr class="usersLine">
 					<g:set var="cpt" value="${0}"/>

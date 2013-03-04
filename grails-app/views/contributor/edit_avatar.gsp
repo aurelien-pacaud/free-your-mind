@@ -10,9 +10,9 @@
 			<br/>
 			<g:renderErrors bean="${user}" />
 			<fieldset>
-				  <legend>Avatar Upload</legend>
+				  <legend><g:message code="user.profil.avatar.upload"/></legend>
 				  <g:form action="upload_avatar" method="post" enctype="multipart/form-data">
-				    <label for="avatar">Avatar (16K)</label>
+				    <label for="avatar"><g:message code="user.profil.avatar"/></label>
 				    <input type="file" name="avatar" id="avatar" />
 				    <g:hiddenField name="id" value="${user?.id}" />
 				    <input type="submit" class="buttons" value="Upload" />

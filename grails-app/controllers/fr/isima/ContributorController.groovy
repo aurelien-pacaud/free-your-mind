@@ -19,7 +19,7 @@ class ContributorController {
 	 */
     def show = {
 		Contributor c = Contributor.get(params.get("id"))
-		def answers = [] 
+		def answers = []
 		def questions = []
 		def comments = []
 		def tagsCounter = [:]
@@ -29,8 +29,9 @@ class ContributorController {
 		// Incrementtion of the view's counter
 		contributorService.incrViewCounter(c);
 		
+		def histories = PostHistory.findAllByContributor(c,[sort:'date', order:'desc'])
 		// Get the list of answers in the user's postHistory
-		for (PostHistory p : c.postHistories) {
+		for (PostHistory p : histories) {
 			if (p.type != null && p.type.equals(PostType.ANSWERED)) {
 				answers.add(p.post)
 			} else if (p.type != null &&  p.type.equals(PostType.ASKED)) {
@@ -48,7 +49,24 @@ class ContributorController {
 			}
 		}
 		
-		[user: c, answers: answers, questions: questions, comments: comments, tags: tags, tagsCounter: tagsCounter, awards: awards, actions:c.postHistories]
+		/* Lists for the summary tab */
+		def sumAnswers =[]
+		def sumQuestions = []
+		def sumComments = []
+		def sumTags = []
+		def sumAwards =[]
+
+		for (int i=0; i < 5 ; ++i) {
+			if (answers.size() > i) sumAnswers.add(answers.get(i));
+			if (questions.size() > i) sumQuestions.add(questions.get(i));
+			if (comments.size() > i) sumComments.add(comments.get(i));
+			if (tags.size() > i) sumTags.add(tags.get(i));
+			if (awards.size() > i) sumAwards.add(awards.get(i));
+		}
+		
+		[user: c, answers: answers, sumAnswers: sumAnswers, questions: questions, sumQuestions: sumQuestions,
+		 comments: comments, sumComments:sumComments, tags: tags, sumTags:sumTags, tagsCounter: tagsCounter, 
+		 awards: awards, sumAwards: sumAwards, actions:histories]
 	}
 	
 	/**
@@ -71,7 +89,7 @@ class ContributorController {
 		
 		def Contributor c = new Contributor(firstName: "", lastName: "", username: login, password: password, 
 						email: email, location: "", birthDate: "",isAdmin: false, 
-						nbProfileViews: 0, registrationDate: new Date());
+						nbProfileViews: 0, registrationDate: new Date(), lastConnectionDate:new Date());
 		
 		// Insert the contributor in the DB
 		if (!contributorService.create(c,confirmPassword)) {
@@ -79,7 +97,6 @@ class ContributorController {
 		} else {
 			redirect(controller: "contributor", action: "list")
 		}
-		
 	}
 	
 	/**

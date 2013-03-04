@@ -11,6 +11,10 @@ class PostHistory {
     date(nullable:false)
     type(nullable:false)
   }
+  
+  static mapping = {
+	  sort: 'date'
+  }
 }
 
 enum PostType {
