@@ -4,9 +4,8 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class PostController {
 
-  //static scaffold = true
-
   def postService
+  def postHistoryService
 
   def incMark = {
 
@@ -34,7 +33,10 @@ class PostController {
 
   def accepted = {
 
-    postService.accepted(Post.get(params.id))
-    render template: '/post/postTemplate', var: 'post', bean: Post.get(params.id)
+    def post = Post.get(params.id)
+
+    postService.accepted(post)
+    postHistoryService.createAcceptedHistory(post, post.contributor)
+    render template: '/post/postTemplate', var: 'post', bean: post
   }
 }

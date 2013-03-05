@@ -6,8 +6,12 @@
   
   <p class="commentContent" id="post-${comment.id}">
     ${comment.content} &ndash;
-    <g:link action="show" controller="contributor" id="${comment.id}">${comment.contributor.username}</g:link>
+    <g:link action="show" controller="contributor" id="${comment.contributor.id}">${comment.contributor.username}</g:link>
     <g:stackDate class="commentDate" date="${comment.creationDate}" />
+
+    <g:if test="${comment.lastEditionDate != comment.creationDate}">
+      (edited)
+    </g:if>
 
     <span class="commentToolbar">
       <g:toolbar post="${comment}" />  

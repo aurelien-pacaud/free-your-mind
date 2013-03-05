@@ -19,13 +19,16 @@ class AnswerController {
     if (answer != null) {
    
       answer.content = params.content
+      answer.editionContributor = getAuthenticatedUser()
+      answer.lastEditionDate = new Date()
+
       action = 'edit'
 
       flash.message = "Answer edit with success!"
     }
     else {
 
-      answer = new Answer(content: params.content, question: Question.get(params.idQ), contributor: getAuthenticatedUser())
+      answer = new Answer(content: params.content, question: Question.get(params.idQ), contributor: getAuthenticatedUser(), editionContributor: getAuthenticatedUser())
 
       action = 'new'
     }

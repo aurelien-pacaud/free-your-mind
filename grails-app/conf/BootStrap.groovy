@@ -35,41 +35,31 @@ class BootStrap {
       jsonMap as JSON
     }
 
-    new Contributor(firstName: "AAAA", lastName: "BBBB", username:"Toto", password: "fffffff").save(flush: true)
-
     // Role creation
     def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
     def moderatorRole = new Role(authority: 'ROLE_MODERATOR').save(flush: true)
     def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 	
-	// Users creation
-	/*
-	def user1 = new Contributor(username:"Toto",password:"ffffff", email: "", location: "", birthDate: "", isAdmin: true,
-								nbProfileViews: 0, registrationDate: new Date());
-	user1.enabled = true
-	user1.save(flush : true);
-	print "User " + user1
-	UserRole.create(user1, adminRole, true)
-	
-	def user2 = new Contributor(username:"Jupal",password:"ffffff", email: "", location: "", birthDate: "", isAdmin: true,
-								nbProfileViews: 0, registrationDate: new Date());
-	user2.enabled = true
-	user2.save(flush : true);
-	UserRole.create(user2, adminRole, true)
-	
-	def user3 = new Contributor(username:"Moderator",password:"ffffff", email: "", location: "", birthDate: "", isAdmin: true,
-								nbProfileViews: 0, registrationDate: new Date());
-	user3.enabled = true
-	user3.save(flush : true);
-	UserRole.create(user3, moderatorRole, true)
-	
-	def user4 = new Contributor(username:"User",password:"ffffff", email: "", location: "", birthDate: "", isAdmin: true,
-								nbProfileViews: 0, registrationDate: new Date());
-	user4.enabled = true
-	user4.save(flush : true);
-	UserRole.create(user4, userRole, true)
-	*/
-	
+    // Users creation   
+    def user1 = null
+    
+    try {
+
+      user1 = new Contributor(username: "Toto", password: "fffffff", email: "", location: "", birthDate: new Date(), isAdmin: true, enabled: true)
+      user1.save(flush : true);
+      UserRole.create(user1, adminRole, true)
+
+      user1 = new Contributor(username: "Dudu", password: "fffffff", email: "", location: "", birthDate: new Date(), isAdmin: true, enabled: true)
+      user1.save(flush : true);
+      UserRole.create(user1, userRole, true)
+
+    }
+    catch (e) {
+      user1.errors.allErrors.each {
+        println it
+      }
+    }
+  
   }
   def destroy = {
   }

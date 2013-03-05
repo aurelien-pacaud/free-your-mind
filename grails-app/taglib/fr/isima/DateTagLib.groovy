@@ -12,4 +12,14 @@ class DateTagLib {
     out << '</span>'
     return out
   }
+
+  def postDate = { attrs, body ->
+
+    Date date = attrs.date
+    if (date == null)
+      return out
+
+    out <<     date.format("MMM") << "<br/>" << date.format("dd") << "<br />" << date.format("yy")
+    return out
+  }
 }

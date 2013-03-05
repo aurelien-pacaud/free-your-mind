@@ -74,13 +74,17 @@ class QuestionController {
       question.tags    = tags
       
       question.lastEditionDate = new Date()
+      question.editionContributor = getAuthenticatedUser()
+
+      println getAuthenticatedUser()
 
       view = 'edit'
       flash.message = "Question edit with success!"
     }
     else {
 
-      question = new Question(title: title, content: content, tags: tags, contributor: getAuthenticatedUser());
+      question = new Question(title: title, content: content, tags: tags, contributor: getAuthenticatedUser(), editionContributor: getAuthenticatedUser());
+      println "New" + getAuthenticatedUser() + question.editionContributor
       
       view = 'new'
     }
@@ -95,6 +99,11 @@ class QuestionController {
       render view: view, model: [question: question, tags: Tag.json(),
                                  tagIds: tagIds
                                 ]
+
+      question.errors.allErrors.each {
+        println it
+      }
+
     }
   }
 

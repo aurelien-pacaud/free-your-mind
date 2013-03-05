@@ -12,7 +12,7 @@ class CommentController {
     def post = Post.get(params.idPost)
     def content = params.commentContent
 
-    def c = new Comment(content: content, post: post, contributor: getAuthenticatedUser())
+    def c = new Comment(content: content, post: post, contributor: getAuthenticatedUser(), editionContributor: getAuthenticatedUser())
 
     try {
 
@@ -51,6 +51,8 @@ class CommentController {
     }
     else {
       comment.content = params.content
+      comment.editionContributor = getAuthenticatedUser()
+      comment.lastEditionDate = new Date()
      
       try {
         postService.update(comment)

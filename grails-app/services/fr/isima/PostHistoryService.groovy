@@ -50,4 +50,13 @@ class PostHistoryService {
 
     postHistory.save()
   }
+
+  def createAcceptedHistory(Post post, Contributor user) {
+
+    def postHistory = new PostHistory(contributor: user, post: post,
+    date: new Date(), type: PostType.ACCEPTED)
+
+    postHistory.save()
+  }
+
 }

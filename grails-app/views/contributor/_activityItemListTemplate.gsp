@@ -32,13 +32,13 @@
 		<div style="float:left;margin-left:10px;width:100px;text-align: center" ><g:message code="user.profile.activity.revised"/></div>
 		<div style="float:left;margin-left:10px;">		
 			<g:if test="${Answer.class.is(action.post.class)}">
-		        <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.id}">
-			        <b>${action.post.content}</b>
+		        <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.post.id}">
+			        <b>${action.post.question.title}</b>
 		        </g:link>
 		    </g:if>
 		    <g:else>
-		   		<g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.id}">
-			        <b>${action.post.content}</b>
+		   		<g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.post.id}">
+			        <b>${action.post.title}</b>
 		        </g:link>
 		    </g:else>
 		</div>
@@ -51,13 +51,13 @@
 		<div style="float:left;margin-left:10px;width:100px;text-align: center" class="label label-success"><g:message code="user.profile.activity.accepted"/></div>
 		<div style="float:left;margin-left:10px;">		
 			<g:if test="${Answer.class.is(action.post.class)}">
-		        <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.id}">
-			        <b>${action.post.content}</b>
+		        <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.post.id}">
+			        <b>${action.post.question.title}</b>
 		        </g:link>
 		    </g:if>
 		    <g:else>
-		   		<g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.id}">
-			        <b>${action.post.content}</b>
+		   		<g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.post.id}">
+			        <b>${action.post.title}</b>
 		        </g:link>
 		    </g:else>
 		</div>

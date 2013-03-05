@@ -18,15 +18,15 @@ class Contributor{
 	boolean passwordExpired
 	
 	//  Contributor information
-	String firstName
-	String lastName	
+	String firstName = ""
+	String lastName	= ""
 	Date birthDate
 	String location
-	String email;
+	String email
 	
-	Date registrationDate
+	Date registrationDate = new Date()
 	long nbProfileViews = 0
-	Date lastConnectionDate
+	Date lastConnectionDate = new Date()
 	boolean isAdmin = false
 	long reputation = 0
 	

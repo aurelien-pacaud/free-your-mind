@@ -8,11 +8,11 @@ abstract class Post {
   long mark = 0	
   boolean isAccepted = false
 
-  static belongsTo = [contributor: Contributor]
+  static belongsTo = [contributor: Contributor, editionContributor: Contributor]
   static hasMany = [comments: Comment, postHistories: PostHistory]
 
   static constraints = {
-    content(nullable:false, blank:false)
+    content(nullable: false, blank: false)
   }
 
   static mapping = {
