@@ -30,6 +30,7 @@
 			<g:link controller="Question" action="create">Create question</g:link>
 			<g:link controller="Contributor" action="create">Create user</g:link>
 			<g:link controller="Tag" action="create">Create tag</g:link>
+			<g:link controller="Award" action="create">Create award</g:link>
 		</div>
 	</body>
 </html>

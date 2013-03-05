@@ -10,6 +10,7 @@ import fr.isima.exception.PostException
 class QuestionService {
 
   def postHistoryService
+  def awardService
 
   def save(Question question) {
 
@@ -28,6 +29,8 @@ class QuestionService {
       else
         postHistoryService.createRevisionHistory(question, question.contributor)
 
+		print "SaveQuestion"
+	  awardService.checkAward(question.contributor)
     }
   }
 

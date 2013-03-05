@@ -5,6 +5,7 @@ import fr.isima.exception.PostException
 class CommentService {
   
   def postHistoryService
+  def awardService
   
   /**
    * Service method to save a comment.
@@ -33,6 +34,8 @@ class CommentService {
       else
         /* Add new entry in postHistory table. */ 
         postHistoryService.createRevisionHistory(comment, comment.contributor)
+		
+	  awardService.checkAward(question.contributor)
     }
   }
 }

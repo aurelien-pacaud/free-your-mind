@@ -9,13 +9,6 @@ class AwardController {
 	static scaffold = true
 	def awardService
 	
-	def display = {
-		
-		[awards: Award.getAll()]
-	}
 	
-	def createNewAward = {
-						  
-	    render "New award add"
-	}
+	
 }

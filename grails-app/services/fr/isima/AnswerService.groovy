@@ -5,6 +5,7 @@ import fr.isima.exception.PostException
 class AnswerService {
 
   def postHistoryService
+  def awardService
   
   /**
    * Service method to save a answer.
@@ -33,6 +34,8 @@ class AnswerService {
       else
         /* Add new entry in postHistory table. */ 
         postHistoryService.createRevisionHistory(a, a.contributor)
+	  
+	  awardService.checkAward(question.contributor)
     }
   }
 }
