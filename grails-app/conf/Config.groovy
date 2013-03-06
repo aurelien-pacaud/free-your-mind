@@ -72,9 +72,6 @@ environments {
 // log4j configuration
 log4j = {
 	
-	appenders {
-        console name: "stdout", threshold: org.apache.log4j.Level.INFO
-    }
     // Example of changing the log pattern for the default console appender:
     //
     //appenders {
@@ -92,6 +89,7 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+    info   'grails.app'
 }
 
 // Added by the Spring Security Core plugin:

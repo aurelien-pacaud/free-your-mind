@@ -9,28 +9,35 @@ import fr.isima.exception.PostException
  */
 class QuestionService {
 
-  def postHistoryService
+  def postService
   def awardService
 
   def save(Question question) {
 
-    /* If the question can't be saved. */
-    if (!question.validate()) {
+    try {
 
-      throw new PostException("Post can't be saved");
-    }
-    else {
+      postService.save(question, PostType.ASKED)
+
+      /* When the user post a question he gives 5 points. */
+      question.contributor.reputation += 5
       
-      def id = question.id
-      question.save();
+      /* Check award. */
+      awardService.checkAward(question.contributor)
+    }
+    catch (e) {
+      
+      throw new PostException("Question can't be saved!")
+    }
+  }
 
-      if (id == null)
-        postHistoryService.createAskedHistory(question, question.contributor)
-      else
-        postHistoryService.createRevisionHistory(question, question.contributor)
+  def update(Question question) {
+    
+    try {
 
-		print "SaveQuestion"
-	  awardService.checkAward(question.contributor)
+      postService.update(question)
+    }
+    catch (e) {
+      throw new PostException("Question can't be updated!")
     }
   }
 

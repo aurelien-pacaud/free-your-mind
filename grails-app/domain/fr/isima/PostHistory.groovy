@@ -2,7 +2,7 @@ package fr.isima
 
 class PostHistory {
 
-  Date date
+  Date date = new Date()
   PostType type
 
   static belongsTo = [contributor: Contributor, post: Post] 
@@ -13,7 +13,7 @@ class PostHistory {
   }
   
   static mapping = {
-	  sort: 'date'
+    sort: 'date'
   }
 }
 

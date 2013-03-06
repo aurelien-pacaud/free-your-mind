@@ -1,4 +1,4 @@
-<div style="width : 24%; float : left; margin-right : 8px; height : 132px; 
+<div style="width : 24%; float : left; margin-right : 8px; height : 125px; 
 	text-overflow : ellipsis; 
 	overflow    : hidden;
 	margin-bottom : 15px;">

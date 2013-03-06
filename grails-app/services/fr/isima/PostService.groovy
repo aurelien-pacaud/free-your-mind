@@ -12,7 +12,9 @@ class PostService {
    * 
    * @param post Post to save.
    */
-  def create(Post post) {
+  def save(Post post, PostType type) {
+
+    log.info "Save post " + post.class
 
     /* If the question can't be saved. */
     if (!post.validate())
@@ -20,9 +22,9 @@ class PostService {
     else {
 
       post.save();
+
       /* Add new entry in History. */
-      def postHistory = new PostHistory(contributor: post.contributor, post: post, 
-      date: new Date(), type: PostType.ASKED)
+      def postHistory = new PostHistory(contributor: post.contributor, post: post, type: type)
 
       postHistory.save()
     }			 
@@ -42,9 +44,8 @@ class PostService {
 
       post.save();
 
-      /* Add new entry in History. */
-      def postHistory = new PostHistory(contributor: post.contributor, post: post,
-      date: new Date(), type: PostType.REVISION)
+      /* Add new entry revision in History. */
+      def postHistory = new PostHistory(contributor: post.contributor, post: post, type: PostType.REVISION)
 
       postHistory.save()
     }

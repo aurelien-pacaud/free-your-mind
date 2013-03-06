@@ -9,6 +9,6 @@ class Tag {
   static hasMany = [questions: Question]
 
   static constraints = {
-    name(unique:true, blank:false, nullable:false)
+    name(unique: true, blank: false, nullable: false)
   }
 }

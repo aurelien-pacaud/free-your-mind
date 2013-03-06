@@ -9,6 +9,8 @@ class QuestionController {
   def questionService
   def springSecurityService
 
+  def tagSep = ";"
+
   def list(Integer max) {
     params.max = Math.min(max ?: 3, 10)
     [questions: Question.list(params), questionsCount: Question.count()]
@@ -29,8 +31,7 @@ class QuestionController {
 
   @Secured(['IS_AUTHENTICATED_FULLY'])
   def create = {
-
-    render view: 'new', model: [tags: Tag.json(), locality: "ask"]
+    render view: 'new', model: [tags: Tag.json()]
   }
 
   @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -46,49 +47,48 @@ class QuestionController {
     render view: 'edit', model: [question: question, tags: Tag.json(), tagIds: tagIds]
   }
 
+  def update = {
+
+    def question = Question.get(params.id)
+      
+    question.title   = params.title
+    question.content = params.content
+    question.tags    = Tag.getAll(params.tagsId.tokenize(tagSep))
+
+    question.lastEditionDate = new Date()
+    question.editionContributor = getAuthenticatedUser()
+
+    flash.message = message(code: "fr.isima.Post.edition.success", args: [message(code: "fr.isima.Question.name")])
+
+    try {
+    
+      questionService.update(question)			
+      redirect action: "display", id: question.id
+    }
+    catch (e) {
+
+      log.error e
+
+      render view: "edit", model: [question: question, tags: Tag.json(), tagIds: params.tagsId.tokenize(tagSep)]
+    }
+
+  }
+
   def save = {
 
     def question = null
     def title = params.title
     def content = params.content
     def tagsId = params.tagsId	
-    def tagIds = []
     def tags = []
-    def view = null
-   
-    if (tagsId != "") {
-      tagsId.split(";").each { id ->
+    def user = getAuthenticatedUser()
 
-        tags.add(Tag.get(id))
-        tagIds.add(id);
-      }
-    }
+    tags = Tag.getAll(tagsId.tokenize(tagSep))
 
-    /* If the question is in DB. */
-    if (params.id != null) {
-      
-      question = Question.get(params.id)
-      
-      question.title   = title
-      question.content = content
-      question.tags    = tags
-      
-      question.lastEditionDate = new Date()
-      question.editionContributor = getAuthenticatedUser()
-
-      println getAuthenticatedUser()
-
-      view = 'edit'
-      flash.message = "Question edit with success!"
-    }
-    else {
-
-      question = new Question(title: title, content: content, tags: tags, contributor: getAuthenticatedUser(), editionContributor: getAuthenticatedUser());
-      println "New" + getAuthenticatedUser() + question.editionContributor
-      
-      view = 'new'
-    }
-
+    question = new Question(title: title, content: content, tags: tags, contributor: user, editionContributor: user);
+    
+    flash.message = message(code: "fr.isima.Post.creation.success", args: [message(code: "fr.isima.Question.name")])
+    
     try {
     
       questionService.save(question)			
@@ -96,14 +96,9 @@ class QuestionController {
     }
     catch (e) {
 
-      render view: view, model: [question: question, tags: Tag.json(),
-                                 tagIds: tagIds
-                                ]
+      log.error e
 
-      question.errors.allErrors.each {
-        println it
-      }
-
+      render view: "new", model: [question: question, tags: Tag.json(), tagIds: tagsId.tokenize(tagSep)]
     }
   }
 
@@ -134,8 +129,6 @@ class QuestionController {
     def question = Question.get(params.id)
     def answers  = Answer.findAllByQuestion(question, [sort: 'mark', order:'desc'])
 
-    println answers
-
     render template: '/post/postTemplate', var: 'post', collection: answers
   }
   
@@ -143,8 +136,6 @@ class QuestionController {
     
     def question = Question.get(params.id)
   
-    println question.answers
-
     render template: '/post/postTemplate', var: 'post', collection: question.answers
   }
 

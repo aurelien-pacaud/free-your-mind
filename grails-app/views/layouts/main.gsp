@@ -117,8 +117,18 @@
                 </ul>
               </div>
             </div>
+
             <div id="content" class="clear">
-              <g:set var="user" bean="getAuthenticatedUser()"/>	
+              <jq:jquery>
+                $('#message').delay(4000).fadeOut();
+              </jq:jquery>
+    
+              <g:if test="${flash.message}">
+                <div id="message" class="alert alert-success">
+                  ${flash.message}
+                </div>
+              </g:if>
+
               <g:layoutBody/>
             </div>
           </body>
