@@ -6,7 +6,7 @@
 	</head>
 	<body>	
 		<h2>Awards</h2>	
-		<g:render template="awardShortTemplate" var="award" collection="${awards}" />
+		<g:render template="awardListItemTemplate" var="award" collection="${awards}" />
 	</body>
 </html>
 <html>

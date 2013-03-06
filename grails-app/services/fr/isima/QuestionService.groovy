@@ -16,7 +16,6 @@ class QuestionService {
 
     /* If the question can't be saved. */
     if (!question.validate()) {
-
       throw new PostException("Post can't be saved");
     }
     else {
@@ -29,7 +28,6 @@ class QuestionService {
       else
         postHistoryService.createRevisionHistory(question, question.contributor)
 
-		print "SaveQuestion"
 	  awardService.checkAward(question.contributor)
     }
   }

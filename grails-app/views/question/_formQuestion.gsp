@@ -7,9 +7,9 @@
 <label for="tags">Tags (min 1 - 5 max)</label>
 <div class="${hasErrors(bean:question, field: 'tags', 'alert-error')}">		
   <g:renderErrors bean="${question}" field="tags" />		
-  <div id="tags" class="${hasErrors(bean:question, field: 'tags', 'error')} uneditable-input">
-    <g:textField id="tag" type="text" name="tags"/>
-  </div>
+    <div id="tags" class="${hasErrors(bean:question, field: 'tags', 'error')} uneditable-input">
+    	<g:textField id="tag" type="text" name="tags"/>
+ 	</div>
 </div>
 
 <g:hiddenField id="tagsId" type="hidden" name="tagsId" value=""/>
