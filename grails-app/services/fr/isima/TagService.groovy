@@ -44,12 +44,10 @@ class TagService {
   /**
    *  Method used to delete a tag in DB
    *
-   *  @param id Id of tag to delete
+   *  @param tag Tag to delete
    */
-  def delete(Long id) {
+  def delete(Tag tag) {
     
-    def tag = Tag.get(id)
-
     if(tag == null) {
 
       log.error "Tag deletion error"

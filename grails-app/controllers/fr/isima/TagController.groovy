@@ -72,10 +72,12 @@ class TagController {
 
   def delete = {
 
+    def tag = Tag.get(params.id)
+
     try {
       
       /* Try to delete the tag. */
-      tagService.delete(params.id)
+      tagService.delete(tag)
       
       flash.message = "Tag deleted with success!"
       redirect action: "list"

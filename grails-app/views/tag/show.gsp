@@ -17,11 +17,13 @@
                 </g:link>
               </span>
 
-              <span>
-                <g:link action="delete" controller="tag" id="${tag.id}" title="Delete this tag">
-                  <img src="${fam.icon(name: 'cross')}" alt="Delete this tag"/>
-                </g:link>
-              </span>
+              <g:if test="${tag.questions.isEmpty()}">
+                <span>  
+                  <g:link action="delete" controller="tag" id="${tag.id}" title="Delete this tag">
+                    <img src="${fam.icon(name: 'cross')}" alt="Delete this tag"/>
+                  </g:link>
+                </span>
+              </g:if>
             </span>
 
           </sec:ifAnyGranted>
