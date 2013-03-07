@@ -5,47 +5,43 @@ import grails.plugins.springsecurity.Secured
 
 class AnswerController {
 
-  def answerService
   def postService
 
   /**
    * Method used to add/update a new answer for a question.
    */
-  def save = {
+  def update = {
 
     def answer = Answer.get(params.id)
-    def action = null
 
-    if (answer != null) {
-   
-      answer.content = params.content
-      answer.editionContributor = getAuthenticatedUser()
-      answer.lastEditionDate = new Date()
-
-      action = 'edit'
-
-      flash.message = "Answer edit with success!"
-    }
-    else {
-
-      answer = new Answer(content: params.content, question: Question.get(params.idQ), contributor: getAuthenticatedUser(), editionContributor: getAuthenticatedUser())
-
-      action = 'new'
-    }
+    answer.properties = params
 
     try {
 
-      answerService.save(answer)
-
-      if(action == 'new')
-        render template: '/post/postTemplate', collection: Question.get(params.idQ).answers, var: 'post' 
-      else
-        redirect action: 'display', controller: 'question', id: answer.question.id
+      postService.update(answer)
+      
+      flash.message = "Answer edit with success!"
+      redirect action: "display", controller: "question", id: answer.question.id
     }
     catch (e) {
-      if (!request.xhr) {
-        render view: 'edit', model: [answer: answer]
-      }
+
+      log.error e
+      render view: 'edit', model: [answer: answer]
+    }
+  }
+
+  def save = {
+    
+    def answer = new Answer(content: params.content, question: Question.get(params.idQ), contributor: getAuthenticatedUser())
+
+    try {
+    
+      postService.save(answer, PostType.ANSWERED)			
+      render template: '/post/postTemplate', collection: Question.get(params.idQ).answers, var: 'post' 
+    }
+    catch (e) {
+
+      log.error e
     }
   }
 
@@ -64,7 +60,7 @@ class AnswerController {
 
     postService.delete(answer)
 
-    flash.message = "Post deleted with success!"
+    flash.message = "Answer deleted with success!"
     redirect action: "display", controller: "question", id: question.id
   }
 }

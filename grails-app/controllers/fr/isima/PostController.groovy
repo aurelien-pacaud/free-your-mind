@@ -36,7 +36,6 @@ class PostController {
     def post = Post.get(params.id)
 
     postService.accepted(post)
-    postHistoryService.createAcceptedHistory(post, post.contributor)
     render template: '/post/postTemplate', var: 'post', bean: post
   }
 }

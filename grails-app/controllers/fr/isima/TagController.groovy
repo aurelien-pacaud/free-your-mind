@@ -2,6 +2,7 @@ package fr.isima
 
 import fr.isima.exception.TagException
 import org.springframework.dao.DataIntegrityViolationException
+import grails.plugins.springsecurity.Secured
 
 class TagController {
 
@@ -26,10 +27,11 @@ class TagController {
     render view: "list", model: [tags: Tag.getAll()]
   }
 
-  def create = {
-    [tag: new Tag(params)]
+  @Secured(['IS_AUTHENTICATED_FULLY'])
+  def edit = {
+    [tag: Tag.get(params.id)]
   }
-
+  
   def update = {
     
     def tag = Tag.get(params.id)
@@ -47,6 +49,11 @@ class TagController {
     catch (TagException e) {
       render view: "edit", model: [tag: tag]
     }
+  }  
+  
+  @Secured(['IS_AUTHENTICATED_FULLY'])
+  def create = {
+    [tag: new Tag(params)]
   }
 
   def save = {
@@ -65,11 +72,7 @@ class TagController {
       render view: "create", model: [tag: tag] 
     }
   }
-
-  def edit = {
-    [tag: Tag.get(params.id)]
-  }
-
+  
   def delete = {
 
     def tag = Tag.get(params.id)

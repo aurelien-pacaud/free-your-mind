@@ -13,20 +13,18 @@ class PostService {
    * @param post Post to save.
    */
   def save(Post post, PostType type) {
-
-    log.info "Save post " + post.class
+    
+    post.editionContributor = post.contributor
 
     /* If the question can't be saved. */
     if (!post.validate())
       throw new PostException("Post can't be saved");
     else {
 
-      post.save();
+      post.save()
 
       /* Add new entry in History. */
-      def postHistory = new PostHistory(contributor: post.contributor, post: post, type: type)
-
-      postHistory.save()
+      postHistoryService.createPostHistory(post, post.contributor, type)
     }			 
   }
 
@@ -37,19 +35,34 @@ class PostService {
    */
   def update(Post post) {
 
+    post.lastEditionDate = new Date()
+    post.editionContributor = springSecurityService.getCurrentUser() 
+    
     /* If the post can't be saved. */
     if (!post.validate())
       throw new PostException("Post can't be updated");
     else {
 
-      post.save();
+      post.save()
 
       /* Add new entry revision in History. */
-      def postHistory = new PostHistory(contributor: post.contributor, post: post, type: PostType.REVISION)
-
-      postHistory.save()
+      postHistoryService.createRevisionHistory(post, springSecurityService.getCurrentUser())
     }
   }
+  
+  /**
+   * Method use to delete a post in the DB.
+   *
+   * @param post Post to delete.
+   */
+  def delete(Post post) {
+    
+    if (post == null)
+      throw new PostException("Post can't be deleted")
+    else
+      post.delete()
+  }
+
 
   /**
    * Method use to inc the mark of the post.
@@ -61,9 +74,9 @@ class PostService {
     def user = springSecurityService.getCurrentUser()
 
     post.mark++;
-    postHistoryService.createVotedUpHistory(post, user)
-
     post.save();
+    
+    postHistoryService.createVotedUpHistory(post, user)
   }
 
   /**
@@ -76,19 +89,16 @@ class PostService {
     def user = springSecurityService.getCurrentUser()
 
     post.mark--;
-    postHistoryService.createVotedDownHistory(post, user)
-
     post.save();
+    
+    postHistoryService.createVotedDownHistory(post, user)
   }
 
   def accepted(Post post) {
 
     post.isAccepted = true;
     post.save()
-  }
-
-  def delete(Post post) {
-
-    post.delete()
+    
+    postHistoryService.createAcceptedHistory(post, post.contributor)
   }
 }

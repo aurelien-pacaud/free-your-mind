@@ -24,16 +24,7 @@
         updateCodeColor();
       }
     </script>
-    <jq:jquery>
-      $('#message').delay(4000).fadeOut();
-    </jq:jquery>
     
-    <g:if test="${flash.message}">
-      <div id="message" class="alert alert-success">
-        ${flash.message}
-      </div>
-    </g:if>
-
     <h2>${question.title} <span class="tags"><g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" /></span>
       <g:if test="${!question.isClosed}">
         <sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_MODERATOR">
@@ -86,8 +77,11 @@
     <sec:ifAllGranted roles="ROLE_USER">
       <g:if test="${!question.isClosed}">
         <g:formRemote name="answerForm" update="answers" url="[controller : 'answer', action: 'save', params: [idQ: question.id]]"
-                      onSuccess="updateAnswers()">	
-          <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
+                      onSuccess="updateAnswers(); \$('#answerForm').removeClass('alert-error'); \$('#answerForm span').html('')" onFailure="\$('#answerForm').addClass('alert-error'); \$('#answerForm span').html('Content cant be empty!');">	
+          <div id="answerForm">
+            <span></span>
+            <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
+          </div>
           <g:submitButton name="submitAnswer" value="Answered" id="submitA" class="btn btn-primary" />
         </g:formRemote>
       </g:if>

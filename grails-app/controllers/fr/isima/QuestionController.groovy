@@ -7,11 +7,11 @@ class QuestionController {
 
   def postService
   def questionService
-  def springSecurityService
 
   def tagSep = ";"
 
   def list(Integer max) {
+
     params.max = Math.min(max ?: 3, 10)
     [questions: Question.list(params), questionsCount: Question.count()]
   }
@@ -51,18 +51,14 @@ class QuestionController {
 
     def question = Question.get(params.id)
       
-    question.title   = params.title
-    question.content = params.content
-    question.tags    = Tag.getAll(params.tagsId.tokenize(tagSep))
-
-    question.lastEditionDate = new Date()
-    question.editionContributor = getAuthenticatedUser()
-
-    flash.message = message(code: "fr.isima.Post.edition.success", args: [message(code: "fr.isima.Question.name")])
+    question.properties = params
+    question.tags       = Tag.getAll(params.tagsId.tokenize(tagSep))
 
     try {
     
-      questionService.update(question)			
+      postService.update(question)			
+      
+      flash.message = message(code: "fr.isima.Post.edition.success", args: [message(code: "fr.isima.Question.name")])
       redirect action: "display", id: question.id
     }
     catch (e) {
@@ -80,18 +76,15 @@ class QuestionController {
     def title = params.title
     def content = params.content
     def tagsId = params.tagsId	
-    def tags = []
-    def user = getAuthenticatedUser()
+    def tags = Tag.getAll(tagsId.tokenize(tagSep))
 
-    tags = Tag.getAll(tagsId.tokenize(tagSep))
-
-    question = new Question(title: title, content: content, tags: tags, contributor: user, editionContributor: user);
-    
-    flash.message = message(code: "fr.isima.Post.creation.success", args: [message(code: "fr.isima.Question.name")])
+    question = new Question(title: title, content: content, tags: tags, contributor: getAuthenticatedUser());
     
     try {
     
-      questionService.save(question)			
+      postService.save(question, PostType.ASKED)			
+      
+      flash.message = message(code: "fr.isima.Post.creation.success", args: [message(code: "fr.isima.Question.name")])
       redirect action: "display", id: question.id
     }
     catch (e) {

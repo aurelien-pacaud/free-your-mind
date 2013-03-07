@@ -8,7 +8,7 @@ import fr.isima.exception.TagException
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(TagService)
-@Mock([Tag])
+@Mock([Tag, Question])
 class TagServiceTests {
 
   void testSaveOk() {
@@ -55,13 +55,12 @@ class TagServiceTests {
     }
   }
 
-
   void testDeleteOk() {
 
-    def tag = new Tag(name: "XML", description: "")
+    def tag = new Tag(name: "XML", description: "", questions: [])
     service.save(tag)
 
-    service.delete(1)
+    service.delete(Tag.get(1))
     assertNotNull Tag.get(1)
   }
 
@@ -69,7 +68,7 @@ class TagServiceTests {
 
     shouldFail(TagException) {
 
-      service.delete(1)
+      service.delete(Tag.get(1))
     }
   }
 }

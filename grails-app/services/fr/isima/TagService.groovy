@@ -48,14 +48,14 @@ class TagService {
    */
   def delete(Tag tag) {
     
-    if(tag == null) {
-
-      log.error "Tag deletion error"
-      throw new TagException("Tag can't be deleted")
-    }
-    else {
+    if(tag != null && tag.questions.isEmpty()) {
     
       tag.delete()
+    }
+    else {
+      
+      log.error "Tag deletion error"
+      throw new TagException("Tag can't be deleted")
     }
   }
 }
