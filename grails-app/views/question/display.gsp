@@ -5,30 +5,17 @@
     <title>Free your mind -- Ask Question</title>		
   </head>
   <body>
-    <script>
-      var nbAnswers = ${question.answers.size()};
-
-      function updateCodeColor() {
-        $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-      }
-
-      function updateAnswers() {
-
-        $('textarea#answerContent').val('');
-
-        if (nbAnswers == 0)
-          $("#answersTitle").removeClass('hide');
-  
-        $('h2#answerTitleNumber').html(++nbAnswers + " Answers");
         
-        updateCodeColor();
-      }
-    </script>
-    
-    <h2>${question.title} <span class="tags"><g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" /></span>
+    <h2>
+      
+      ${question.title} 
+      <span class="tags">
+        <g:render template="/tag/tagTemplate" var="tag" collection="${question.tags}" />
+      </span>
+
       <g:if test="${!question.isClosed}">
         <sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_MODERATOR">
-          <span style="float: right;">
+          <span class="pull-right">
             <g:link action="lock" controller="question" title="Lock the question" id="${question.id}">
               <img src="${fam.icon(name: 'lock')}" alt="Lock the question"/>
             </g:link>
@@ -36,7 +23,7 @@
         </sec:ifAnyGranted>
       </g:if>
       <g:else>
-        <div style="float: right;">
+        <div class="pull-right">
           <span class="label label-important">Closed</span>
           <sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_MODERATOR">
             <span>
@@ -49,46 +36,55 @@
       </g:else>
     </h2>
     
-    <g:render template="/post/postTemplate" var="post" collection="${question}" />
-    <br />
+    <!-- Display the question with the postTemplate. -->
+    <g:render template="/post/postTemplate" var="post" bean="${question}" />
 
+    <!-- Tab to sort answer. -->
     <div id="answersTitle" class="${!question.answers.isEmpty() ? '' : 'hide'}" >
       <h2 id="answerTitleNumber">${question.answers.size()} Answers</h2>
       <ul class="nav nav-tabs" id="answersSelect">
-        <li class="active"><g:remoteLink action="latestAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Oldest</g:remoteLink></li>
-        <li><g:remoteLink action="votedAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Vote</g:remoteLink></li>
+        <li class="active">
+          <g:remoteLink action="latestAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Oldest</g:remoteLink>
+        </li>
+        <li>
+          <g:remoteLink action="votedAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Vote</g:remoteLink>
+        </li>
       </ul>
     </div>
-     
+    
+    <!-- Contain all answer -->
     <div id="answers" class="tab-content">
       <g:render template="/post/postTemplate" var="post" collection="${question.answers}" />
     </div>
  
-    <script>
-      $('#answersSelect a[href="#latest"]').tab('show');
-    </script>
-
-    <br />
     <h2>Your Answer</h2>
-    <br />
+   
+    <!-- If the visitor is not log -->
     <sec:ifNotLoggedIn>
       Please logging before answered! <g:link controller="login" action="auth">Login</g:link>
     </sec:ifNotLoggedIn>
-    <sec:ifAllGranted roles="ROLE_USER">
+    
+    <!-- Add form to reply to this question. -->
+    <sec:ifLoggedIn>
       <g:if test="${!question.isClosed}">
         <g:formRemote name="answerForm" update="answers" url="[controller : 'answer', action: 'save', params: [idQ: question.id]]"
-                      onSuccess="updateAnswers(); \$('#answerForm').removeClass('alert-error'); \$('#answerForm span').html('')" onFailure="\$('#answerForm').addClass('alert-error'); \$('#answerForm span').html('Content cant be empty!');">	
+                      onSuccess="updateAnswers();           
+                                 \$('#answerForm').removeClass('alert-error'); 
+                                 \$('#answerForm span').html('')" 
+                      onFailure="\$('#answerForm').addClass('alert-error'); 
+                                 \$('#answerForm span').html('Content cant be empty!');">	
           <div id="answerForm">
             <span></span>
             <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
           </div>
-          <g:submitButton name="submitAnswer" value="Answered" id="submitA" class="btn btn-primary" />
+          <g:submitButton name="submitAnswer" value="Answer" id="submitA" class="btn btn-primary pull-right formButton" />
         </g:formRemote>
       </g:if>
       <g:else>
         This question is lock! Bad luck Brian!!!!
       </g:else>
-    </sec:ifAllGranted>
+    </sec:ifLoggedIn>    
+    
     <jq:jquery>
       $("body").on('click', '.comment', function(e) {
   
@@ -109,5 +105,28 @@
       });
 
     </jq:jquery>
+    <script>
+      var nbAnswers = ${question.answers.size()};
+
+      function updateCodeColor() {
+        $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+      }
+
+      /* Use to update nb of question. */
+      function updateAnswers() {
+
+        $('textarea#answerContent').val('');
+
+        if (nbAnswers == 0)
+          $("#answersTitle").removeClass('hide');
+  
+        $('h2#answerTitleNumber').html(++nbAnswers + " Answers");
+        
+        updateCodeColor();
+      }
+
+      $('#answersSelect a[href="#latest"]').tab('show');
+    </script>
+
   </body>
 </html>

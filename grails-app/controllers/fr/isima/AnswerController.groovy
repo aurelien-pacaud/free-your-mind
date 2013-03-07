@@ -32,7 +32,7 @@ class AnswerController {
 
   def save = {
     
-    def answer = new Answer(content: params.content, question: Question.get(params.idQ), contributor: getAuthenticatedUser())
+    def answer = new Answer(content: params.content, question: Question.get(params.idQ))
 
     try {
     

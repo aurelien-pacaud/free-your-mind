@@ -11,6 +11,16 @@ class PostToolbarTagLib {
     def user = springSecurityService.getCurrentUser()
     def post = attrs.post
 
+    def question = post
+
+    if (post.class.is(Answer))
+      question = post.question
+    if (post.class.is(Comment))
+      if (post.post.class.is(Answer))
+      question = post.post.question
+      else
+        question = post.question
+
     def deleteParams = ['action': 'delete', 'controller': post.domainClass.name, 'id': post.id, 'title': 'Delete the post',
                         'onclick': "return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"
                        ]
@@ -25,7 +35,7 @@ class PostToolbarTagLib {
 
     out << body()
 
-    if (springSecurityService.isLoggedIn()) {
+    if (springSecurityService.isLoggedIn() && !question.isClosed) {
       if (post.contributor.id == user.id || (SpringSecurityUtils.ifAnyGranted('ROLE_MODERATOR, ROLE_ADMIN')))
         out << '<span>' << g.link(editParams) { g.img(dir: 'images/icons', file: 'pencil.png', plugin: 'famfamfam') } << '</span>' 
 
