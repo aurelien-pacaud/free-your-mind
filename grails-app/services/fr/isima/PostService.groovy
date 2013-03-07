@@ -13,8 +13,11 @@ class PostService {
    * @param post Post to save.
    */
   def save(Post post, PostType type) {
-    
-    post.editionContributor = post.contributor
+   
+    def user = springSecurityService.getCurrentUser()
+
+    post.contributor        = user
+    post.editionContributor = user
 
     /* If the question can't be saved. */
     if (!post.validate())
@@ -24,7 +27,7 @@ class PostService {
       post.save()
 
       /* Add new entry in History. */
-      postHistoryService.createPostHistory(post, post.contributor, type)
+      postHistoryService.createPostHistory(post, user, type)
     }			 
   }
 
@@ -34,9 +37,11 @@ class PostService {
    * @param post Post to update.
    */
   def update(Post post) {
+    
+    def user = springSecurityService.getCurrentUser()
 
     post.lastEditionDate = new Date()
-    post.editionContributor = springSecurityService.getCurrentUser() 
+    post.editionContributor = user
     
     /* If the post can't be saved. */
     if (!post.validate())
@@ -46,7 +51,7 @@ class PostService {
       post.save()
 
       /* Add new entry revision in History. */
-      postHistoryService.createRevisionHistory(post, springSecurityService.getCurrentUser())
+      postHistoryService.createRevisionHistory(post, user)
     }
   }
   
@@ -60,9 +65,8 @@ class PostService {
     if (post == null)
       throw new PostException("Post can't be deleted")
     else
-      post.delete()
+      post.delete(flush: true)
   }
-
 
   /**
    * Method use to inc the mark of the post.

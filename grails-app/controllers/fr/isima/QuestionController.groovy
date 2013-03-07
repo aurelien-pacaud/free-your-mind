@@ -23,7 +23,7 @@ class QuestionController {
     if (question != null) {
 
       questionService.incViewCpt(question)		
-      [question: question]
+      render view: "display", model: [question: question]
     }
     else 
       render view: "error404"
@@ -78,7 +78,7 @@ class QuestionController {
     def tagsId = params.tagsId	
     def tags = Tag.getAll(tagsId.tokenize(tagSep))
 
-    question = new Question(title: title, content: content, tags: tags, contributor: getAuthenticatedUser());
+    question = new Question(title: title, content: content, tags: tags);
     
     try {
     

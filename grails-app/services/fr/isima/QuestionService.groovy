@@ -2,8 +2,6 @@ package fr.isima
 
 import com.naleid.grails.MarkdownService;
 
-import fr.isima.exception.PostException
-
 /**
  * Service associated with Question.
  */
@@ -16,14 +14,38 @@ class QuestionService {
    */
   def incViewCpt(Question question) {
 
-    question.nbView++;
+    if (question != null) {
+
+      question.nbView++;
+      question.save()
+    }
   }
 
+  /**
+   * Method use to lock a question.
+   *
+   * @param question Question to lock.
+   */
   def lock(Question question) {
-    question.isClosed = true;
+
+    if (question!= null) {
+
+      question.isClosed = true;
+      question.save()
+    }
   }
-  
+
+  /**
+   * Method use to unlock a question.
+   *
+   * @param question Question to unlock.
+   */  
   def unlock(Question question) {
-    question.isClosed = false;
+
+    if (question != null) {
+
+      question.isClosed = false;
+      question.save()
+    }
   }
 }

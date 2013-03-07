@@ -130,6 +130,7 @@
               </g:if>
 
               <g:layoutBody/>
+              <br />
             </div>
           </body>
         </html>
