@@ -1,40 +1,31 @@
 package fr.isima
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.plugins.springsecurity.Secured
 
 class CommentController {
 
-  def commentService
   def postService
 
-  def add = {
+  def save = {
 
     def post = Post.get(params.idPost)
-    def content = params.commentContent
 
-    def c = new Comment(content: content, post: post, contributor: getAuthenticatedUser(), editionContributor: getAuthenticatedUser())
+    def comment = new Comment(content: params.content, post: post, contributor: getAuthenticatedUser())
 
     try {
 
-      commentService.save(c)
+      postService.save(comment, PostType.COMMENTED)
       
       render template: 'commentTemplate', collection: Post.get(params.idPost).comments, var: 'comment'
     }
     catch (e) {
       
-      if (request.xhr) {
-        
-        response.status = 200
-        println e
-        c.errors.allErrors.each {
-          println it
-        }
-      }
-
-      println 'Save comment error'
+      log.error e
     }
   }
 
+  @Secured(['IS_AUTHENTICATED_FULLY'])
   def edit = {
 
     def comment = Comment.get(params.id)
@@ -50,9 +41,7 @@ class CommentController {
       render view: "error404"
     }
     else {
-      comment.content = params.content
-      comment.editionContributor = getAuthenticatedUser()
-      comment.lastEditionDate = new Date()
+      comment.properties = params
      
       try {
         postService.update(comment)
@@ -68,11 +57,10 @@ class CommentController {
       }
       catch (e) {
         
-        println e
-        comment.errors.allErrors.each {
-          println it
+        log.error e
+        comment.errors.each {
+          log.error it
         }
-
         render view: "edit", model: [comment: comment, post: comment.post] 
       }
     }

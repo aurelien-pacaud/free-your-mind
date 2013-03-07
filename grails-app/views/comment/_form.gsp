@@ -1,1 +1,1 @@
-<g:textArea name="commentContent" id="commentContent" class="commentContent"></g:textArea>
+<g:textArea name="content" id="commentContent" class="commentContent"></g:textArea>
