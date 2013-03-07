@@ -10,7 +10,7 @@ class AwardController {
 	def awardService
 	
 	def display = {
-		Award a = Contributor.get(params.get("id"))
+		Award a = Award.get(params.get("id"))
 		[award:a]
 	}
 	

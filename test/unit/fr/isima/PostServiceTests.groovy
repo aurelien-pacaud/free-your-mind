@@ -3,7 +3,7 @@ package fr.isima
 import fr.isima.exception.PostException
 
 @TestFor(PostService)
-@Mock([Contributor, Question, Answer, Comment, PostHistory, Tag])
+@Mock([Contributor, Question, Answer, Comment, PostHistory, Tag, Award])
 class PostServiceTests {
   
   def springSecurityService
@@ -22,6 +22,7 @@ class PostServiceTests {
     defineBeans {
 
       postHistoryService(PostHistoryService)
+      awardService(AwardService)
     }
     
     Contributor.metaClass.encodePassword = { -> }

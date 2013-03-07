@@ -13,10 +13,10 @@
 		 function hideDivs() {
 			      	if(document.getElementById("type")[document.getElementById("type").selectedIndex].value  == "REPUTATION") {
 					  		$('#description').hide()
-					  		$('#tag').hide()
+					  		$('#tagInput').hide()
 					  } else {
 					 		$('#description').show()
-					  		$('#tag').show()
+					  		$('#tagInput').show()
 					  }			      	
 			      }
 		</script>
@@ -43,23 +43,24 @@
 					    <g:textArea name="description" value="${award?.description}"/>
 					 </div>
 				</div>
-				<div id="tag" >
+				<div id="bound" >
 				  	<label><g:message code="award.creation.form.bound"/></label>
 				  	<div class='${hasErrors(bean:award,field:'bound','alert-error')}'>
 				  		<g:renderErrors bean="${award}" field="bound" />
 				  		<g:textField name="bound" value="${award?.bound}"/>
 				  	</div>
 				 </div>
-			  	<label><g:message code="award.creation.form.tag"/></label>
-			  	<div class="${hasErrors(bean:award, field: 'tags', 'alert-error')}">		
-				    <g:renderErrors bean="${question}" field="tags" />		
-				    <div id="tags" class="${hasErrors(bean:question, field: 'tags', 'error')} uneditable-input">
-				    	<g:textField id="tag" type="text" name="tags"/>
-				 	</div>
-				</div>
-				<g:hiddenField id="tagsId" type="hidden" name="tagsId" value=""/>
-			  	
-			  	<g:submitButton name="submit" type="submit" value="Submit" />
+                                <div id="tagInput">
+    			  	  <label for="tags">Tags (min 1 - 5 max)</label>
+                                  <div class="${hasErrors(bean:question, field: 'tags', 'alert-error')}">		
+                                    <g:renderErrors bean="${question}" field="tags" />		
+                                    <div id="tags" class="${hasErrors(bean:question, field: 'tags', 'error')} uneditable-input">
+                                      <g:textField id="tag" type="text" name="tags"/>
+                                    </div>
+                                  </div>
+                                 <g:hiddenField id="tagsId" type="hidden" name="tagsId" value=""/>			  	
+			  	</div>
+                                <g:submitButton name="submit" type="submit" value="Submit" />
 			  	
 			  	<g:javascript src="tags.js" />
 			    <jq:jquery>

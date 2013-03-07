@@ -32,7 +32,7 @@ class PostService {
     
       user.reputation += post.reputation
       /* Check award. */
-      awardService.checkAward(question.contributor)
+      awardService.checkAward(post.contributor)
     }			 
   }
 
@@ -113,6 +113,7 @@ class PostService {
     post.contributor.reputation += 4
     springSecurityService.getCurrentUser().reputation += 2
     /* Check award. */
-    awardService.checkAward(question.contributor)
+    awardService.checkAward(post.contributor)
+    awardService.checkAward(springSecurityService.getCurrentUser())
   }
 }
