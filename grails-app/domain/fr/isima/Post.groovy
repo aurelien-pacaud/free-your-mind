@@ -7,6 +7,7 @@ abstract class Post {
   Date creationDate = new Date()
   long mark = 0	
   boolean isAccepted = false
+  int reputation = 0
 
   static belongsTo = [contributor: Contributor, editionContributor: Contributor]
   static hasMany = [comments: Comment, postHistories: PostHistory]

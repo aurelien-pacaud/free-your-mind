@@ -6,6 +6,7 @@ class PostService {
 
   def springSecurityService
   def postHistoryService
+  def awardService
 
   /**
    * Method use to save a post in the DB.
@@ -28,6 +29,10 @@ class PostService {
 
       /* Add new entry in History. */
       postHistoryService.createPostHistory(post, user, type)
+    
+      user.reputation += post.reputation
+      /* Check award. */
+      awardService.checkAward(question.contributor)
     }			 
   }
 
@@ -104,5 +109,10 @@ class PostService {
     post.save()
     
     postHistoryService.createAcceptedHistory(post, post.contributor)
+    
+    post.contributor.reputation += 4
+    springSecurityService.getCurrentUser().reputation += 2
+    /* Check award. */
+    awardService.checkAward(question.contributor)
   }
 }
