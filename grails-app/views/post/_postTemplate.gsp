@@ -28,17 +28,13 @@
 
   <div id="comment-${post.id}" class="commentTextArea">
     <g:formRemote name="commentForm" update="comments-${post.id}" url="[controller: 'comment', action: 'save', params: [idPost: post.id]]"
-                  onSuccess="\$('#comment-${post.id}').hide();      
-                             \$('#commentArea-${post.id}').removeClass('alert-error'); 
-                             \$('#commentArea-${post.id} span').html('');" 
-
-                  onFailure="\$('#commentArea-${post.id}').addClass('alert-error'); 
-                             \$('#commentArea-${post.id} span').html('Content cant be empty!');">
+                  onSuccess="\$('#comment-${post.id}').hide(); removeFormError('#commentArea-${post.id}');" 
+                  onFailure="displayFormError('#commentArea-${post.id}');">
       <div id="commentArea-${post.id}">
         <span></span>
         <g:textArea name="content" id="commentContent" class="commentContent"></g:textArea>
       </div>
-      <g:submitButton name="addComment" value="Add comment" class="btn btn-primary pull-right formButton"/>
+      <g:submitButton name="submit" value="Add comment" class="btn btn-primary pull-right formButton"/>
     </g:formRemote>
   </div>
   <div class="postBlankSpace"></div>

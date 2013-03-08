@@ -68,16 +68,13 @@
     <sec:ifLoggedIn>
       <g:if test="${!question.isClosed}">
         <g:formRemote name="answerForm" update="answers" url="[controller : 'answer', action: 'save', params: [idQ: question.id]]"
-                      onSuccess="updateAnswers();           
-                                 \$('#answerForm').removeClass('alert-error'); 
-                                 \$('#answerForm span').html('')" 
-                      onFailure="\$('#answerForm').addClass('alert-error'); 
-                                 \$('#answerForm span').html('Content cant be empty!');">	
-          <div id="answerForm">
+                      onSuccess="updateAnswers(); removeFormError('#answerFormDiv');" 
+                      onFailure="displayFormError('#answerFormDiv');">	
+          <div id="answerFormDiv">
             <span></span>
             <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
           </div>
-          <g:submitButton name="submitAnswer" value="Answer" id="submitA" class="btn btn-primary pull-right formButton" />
+          <g:submitButton name="submit" value="Answer" class="btn btn-primary pull-right formButton" />
         </g:formRemote>
       </g:if>
       <g:else>

@@ -7,8 +7,7 @@
 	<body>
 		<div>
 			<h2><g:message code="user.update.title"/></h2>
-			<br/>
-			<g:form class="user_form" action="updateUser" controller="contributor">
+			<g:form action="updateUser" controller="contributor">
 			  	<label><g:message code="user.update.form.first.name"/></label>
 			  	<div class="${hasErrors(bean:user,field:'firstName','eralert-errorror')}">
 			  		<g:renderErrors bean="${user}" field="firstName"/>
@@ -40,9 +39,8 @@
 			  		<g:textField name="location" type="text" value="${user?.location}"/>
 			  	</div>
 			  	<g:hiddenField name="id" value="${user?.id}" />
-			  	<g:submitButton name="submit" type="submit" value="Submit" />
+			  	<g:submitButton name="submit" type="submit" value="Edit your profil" class="btn ${user?.hasErrors() ? 'btn-danger' : 'btn-primary'} formButton"/>
 			</g:form>
-		</div>
 		<br/>
 	</body>
 </html>

@@ -25,9 +25,10 @@
             <h2>Edit comment</h2>
             <g:form controller="comment" action="update" id="${comment.id}">
               <g:render template="/answer/formAnswer" var="answer" bean="${comment}" />
-              <g:submitButton name="sumbit" value="Edit"/>
+              <g:submitButton name="sumbit" value="Edit this comment" class="btn ${comment?.hasErrors() ? 'btn-danger' : 'btn-primary'} pull-right formButton"/>
+              <br />
             </g:form>
-          </diV>
+          </div>
         </g:else>
       </g:each>
     </div>

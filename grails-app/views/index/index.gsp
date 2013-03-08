@@ -5,7 +5,6 @@
 		<title>Free your mind</title>		
 	</head>
 	<body>
-		<br />
 		<div style="width : 70%; float : left;">
 			<h2>Questions (${questionNb})</h2>
 			<g:render template="/post/postItemListTemplate" var="post" collection="${questions}" />

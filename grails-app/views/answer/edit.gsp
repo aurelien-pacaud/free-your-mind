@@ -16,7 +16,7 @@
     <h2>Edit answer</h2>
     <g:form controller="answer" action="update" id="${answer.id}">
       <g:render template="formAnswer" var="answer" bean="${answer}" />
-      <g:submitButton name="sumbit" value="Edit"/>
+      <g:submitButton name="sumbit" value="Edit this answer" class="btn ${answer?.hasErrors() ? 'btn-danger' : 'btn-primary'} pull-right formButton"/>
     </g:form>
     <jq:jquery>
       $("body").on('click', '.comment', function(e) {

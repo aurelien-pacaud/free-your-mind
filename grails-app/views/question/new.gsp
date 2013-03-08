@@ -9,7 +9,7 @@
 
     <g:form controller="question" action="save">
       <g:render template="formQuestion" var="question" bean="${question}" />
-      <g:submitButton name="sumbit" value="Submit"/>
+      <g:submitButton name="sumbit" value="Ask your question" class="btn ${question?.hasErrors() ? 'btn-danger' : 'btn-primary'} pull-right formButton" />
     </g:form>
     
     <g:javascript src="tags.js" />

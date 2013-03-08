@@ -10,7 +10,7 @@
 
     <g:form controller="tag" action="update" id="${tag.id}">
       <g:render template="form" var="tag" bean="${tag}" />
-      <g:submitButton name="sumbit" value="Edit"/>
+      <g:submitButton name="sumbit" value="Edit the tag" class="btn ${tag?.hasErrors() ? 'btn-danger' : 'btn-primary'} pull-right formButton"/>
     </g:form>
   
   </body>

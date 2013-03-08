@@ -19,8 +19,8 @@ class ContributorController {
      */
     def show = {
 		Contributor c = Contributor.get(params.get("id"))
-        def answers = []
-        def questions = []
+        def answers = [] 
+        def questions = Question.findAllByContributor(c, [sort: 'creationDate', order: 'desc'])
         def comments = []
         def tagsCounter = [:]
         def tags = []
@@ -31,7 +31,7 @@ class ContributorController {
 
       def histories = PostHistory.findAllByContributor(c,[sort:'date', order:'desc'])
         // Get the list of answers in the user's postHistory
-        for (PostHistory p : histories) {
+        /*for (PostHistory p : histories) {
           if (p.type != null && p.type.equals(PostType.ANSWERED)) {
             answers.add(p.post)
           } else if (p.type != null &&  p.type.equals(PostType.ASKED)) {
@@ -47,7 +47,7 @@ class ContributorController {
           } else if (p.type != null &&  p.type.equals(PostType.COMMENTED)) {
             comments.add(p.post)
           }
-        }
+        }*/
 
       /* Lists for the summary tab */
       def sumAnswers =[]

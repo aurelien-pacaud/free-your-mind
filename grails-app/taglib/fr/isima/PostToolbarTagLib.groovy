@@ -17,9 +17,9 @@ class PostToolbarTagLib {
       question = post.question
     if (post.class.is(Comment))
       if (post.post.class.is(Answer))
-      question = post.post.question
+        question = post.post.question
       else
-        question = post.question
+        question = post.post
 
     def deleteParams = ['action': 'delete', 'controller': post.domainClass.name, 'id': post.id, 'title': 'Delete the post',
                         'onclick': "return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"

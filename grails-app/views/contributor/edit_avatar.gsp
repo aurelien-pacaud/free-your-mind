@@ -7,7 +7,6 @@
 	<body>
 		<div>
 			<h2><g:message code="user.update.title"/></h2>
-			<br/>
 			<g:renderErrors bean="${user}" />
 			<fieldset>
 				  <legend><g:message code="user.profil.avatar.upload"/></legend>

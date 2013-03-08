@@ -26,6 +26,7 @@
             <r:layoutResources />
 
             <g:javascript src="main.js" />
+            <g:javascript src="application.js" />
             <g:javascript plugin="twitter-bootstrap" src="bootstrap-tab.js"/>
           
             <jq:jquery>

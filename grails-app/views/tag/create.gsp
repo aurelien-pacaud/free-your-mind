@@ -15,7 +15,7 @@
         <g:textField class="${hasErrors(bean: tag, field: 'name', 'error')} postContent" name="name" id="tagName" value="${tag?.name}"/>
       </div>
       <g:render template="form" var="tag" bean="${tag}" />
-      <g:submitButton name="sumbit" value="Add"/>
+      <g:submitButton name="submit" value="Add the tag" class="btn ${tag?.hasErrors() ? 'btn-danger' : 'btn-primary'} pull-right formButton"/>
     </g:form>
   
   </body>

@@ -46,7 +46,7 @@ class TagController {
       flash.message = "Tag edited with success!"
       redirect action: "show", id: tag.id 
     }
-    catch (TagException e) {
+    catch (e) {
       render view: "edit", model: [tag: tag]
     }
   }  
@@ -68,7 +68,7 @@ class TagController {
       flash.message = "Tag added with success!"
       redirect action: "show", id: tag.id 
     }
-    catch (TagException e) {
+    catch (e) {
       render view: "create", model: [tag: tag] 
     }
   }
@@ -85,7 +85,7 @@ class TagController {
       flash.message = "Tag deleted with success!"
       redirect action: "list"
     }
-    catch (TagException e) {
+    catch (e) {
       render view: "create", model: [tag: tag] 
     }
   }

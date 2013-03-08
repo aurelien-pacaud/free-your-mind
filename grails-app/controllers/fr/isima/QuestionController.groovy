@@ -13,6 +13,7 @@ class QuestionController {
   def list(Integer max) {
 
     params.max = Math.min(max ?: 3, 10)
+
     [questions: Question.list(params), questionsCount: Question.count()]
   }
   
