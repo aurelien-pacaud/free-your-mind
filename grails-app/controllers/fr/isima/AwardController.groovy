@@ -15,7 +15,7 @@ class AwardController {
 	}
 	
 	def list = {
-		[awards:Award.findAll([sort:"title"])]
+		[awards:Award.findAll([sort: "title"])]
 	}
 	
 	def create = {

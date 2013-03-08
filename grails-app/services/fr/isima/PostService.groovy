@@ -29,10 +29,6 @@ class PostService {
 
       /* Add new entry in History. */
       postHistoryService.createPostHistory(post, user, type)
-    
-      user.reputation += post.reputation
-      /* Check award. */
-      awardService.checkAward(post.contributor)
     }			 
   }
 
@@ -86,6 +82,10 @@ class PostService {
     post.save();
     
     postHistoryService.createVotedUpHistory(post, user)
+    
+    post.contributor.reputation += post.reputationVoteUp
+    /* Check award. */
+    awardService.checkAward(post.contributor)
   }
 
   /**
@@ -101,19 +101,29 @@ class PostService {
     post.save();
     
     postHistoryService.createVotedDownHistory(post, user)
+    
+    post.contributor.reputation += post.reputationVoteDown
+    user.reputation             += post.reputationVoter
+    
+    /* Check award. */
+    awardService.checkAward(post.contributor)
+    awardService.checkAward(user)
   }
 
   def accepted(Post post) {
 
+    def user = springSecurityService.getCurrentUser()
+    
     post.isAccepted = true;
     post.save()
     
     postHistoryService.createAcceptedHistory(post, post.contributor)
     
-    post.contributor.reputation += 4
-    springSecurityService.getCurrentUser().reputation += 2
+    post.contributor.reputation += post.reputationAccepted
+    user.reputation             += post.reputationAcceptor
+    
     /* Check award. */
     awardService.checkAward(post.contributor)
-    awardService.checkAward(springSecurityService.getCurrentUser())
+    awardService.checkAward(user)
   }
 }

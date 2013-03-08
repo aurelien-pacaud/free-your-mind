@@ -12,11 +12,13 @@
     </div>
     <div class="pagination pull-right">
       <g:each in="${[4, 6, 8]}">
-        <g:if test="${params.max == it}">
+        <g:if test="${params.max == it && questionsCount >= it}">
           <span class="currentStep">${params.max}</span>
         </g:if>
         <g:else>
-          <g:link controller="question" action="list" params="[max: it, offset: 0]">${it}</g:link>
+          <g:if test="${questionsCount >= it}">
+            <g:link controller="question" action="list" params="[max: it, offset: 0]">${it}</g:link>
+          </g:if>
         </g:else>
       </g:each>
     </div>
