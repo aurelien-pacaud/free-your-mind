@@ -4,13 +4,15 @@ class AwardService {
 	
 	def awardHistoryService
     
-	def create(Award award) {
+	def save(Award award) {
 		/* If the award can't be saved. */
 		if (!award.validate()) {
-		  throw new Exception("Award can't be saved");
+			print "validation error"
+			throw new Exception("Award can't be saved");
 		}
 		else {
-		  award.save();
+			print "validation OK"
+			award.save();
 		}
     }
 	

@@ -10,8 +10,8 @@ class Award {
 	AwardType type
 	
     static constraints = {
-		title(nullable:false, maxSize:150, unique:true)
-		description(nullable:false)
+		title(nullable:false, maxSize:150, unique:true, blank:false)
+		description(nullable:false, blank:false)
 		tag(nullable:true)
     }
 	

@@ -19,38 +19,31 @@ class ContributorController {
      */
     def show = {
 		Contributor c = Contributor.get(params.get("id"))
-        def answers = [] 
+        def answers = Answer.findAllByContributor(c, [sort: 'creationDate', order: 'desc']) 
         def questions = Question.findAllByContributor(c, [sort: 'creationDate', order: 'desc'])
-        def comments = []
+        def comments = Comment.findAllByContributor(c, [sort: 'creationDate', order: 'desc'])
         def tagsCounter = [:]
         def tags = []
-        def awards = []
+        def awards = AwardHistory.findAllByContributor(c,[sort:"date",order:"desc"])
 
         // Incrementtion of the view's counter
         contributorService.incrViewCounter(c);
 
-      def histories = PostHistory.findAllByContributor(c,[sort:'date', order:'desc'])
+		def histories = PostHistory.findAllByContributor(c,[sort:'date', order:'desc'])
         // Get the list of answers in the user's postHistory
-        /*for (PostHistory p : histories) {
-          if (p.type != null && p.type.equals(PostType.ANSWERED)) {
-            answers.add(p.post)
-          } else if (p.type != null &&  p.type.equals(PostType.ASKED)) {
-            questions.add(p.post)
-              for (Tag t : ((Question)p.post).tags) {
-                if (tagsCounter.containsKey(t.name)) {
-                  tagsCounter.put(t.name, tagsCounter.get(t.name) + 1)
-                } else {
-                  tagsCounter.put(t.name, 1)
-                    tags.add(t)
-                } 
-              }
-          } else if (p.type != null &&  p.type.equals(PostType.COMMENTED)) {
-            comments.add(p.post)
-          }
-        }*/
+	    questions.each { 
+	        for (Tag t : ((Question)it).tags) {
+		        if (tagsCounter.containsKey(t.name)) {
+					tagsCounter.put(t.name, tagsCounter.get(t.name) + 1)
+		        } else {
+					tagsCounter.put(t.name, 1)
+					tags.add(t)
+		        } 
+		    }
+		}
 
-      /* Lists for the summary tab */
-      def sumAnswers =[]
+		/* Lists for the summary tab */
+		def sumAnswers =[]
         def sumQuestions = []
         def sumComments = []
         def sumTags = []
@@ -112,7 +105,7 @@ class ContributorController {
    */ 
   @Secured(['IS_AUTHENTICATED_FULLY'])
     def edit = {
-      def id = params.get("id")
+		def id = params.get("id")
         def user = Contributor.get(id)
         [user: user]
     }
@@ -123,8 +116,8 @@ class ContributorController {
   @Secured(['IS_AUTHENTICATED_FULLY'])
     def updateUser = {
 
-      // Get all attributes form the form
-      def id = params.get("id")
+		// Get all attributes form the form
+		def id = params.get("id")
         def password = params.get("password")
         def email = params.get("email")
         def firstName = params.get("firstName")

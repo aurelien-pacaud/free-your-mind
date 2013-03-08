@@ -96,21 +96,25 @@
 				<div class="tab-content">
 				  <div class="tab-pane active" id="summary">
 				  	<g:render template="summaryTemplate"/>
+					<div class="clear"></div>				  	
 				  </div>
 				  <div class="tab-pane" id="answers">
 			  		<h3 class="summaryHeader">${answers?.size()} <g:message code="user.profile.tab.answers"/></h3>
 					<br/>
 					<g:render template="answerItemListTemplate" var="post" collection="${answers}" />
+					<div class="clear"></div>
 				  </div>
 				  <div class="tab-pane" id="questions">
 				  	<h3>${questions.size()} <g:message code="user.profile.tab.questions"/></h3>
 				  	<br/>
 			  		<g:render template="/post/postItemListTemplate" var="post" collection="${questions}" />
+			  		<div class="clear"></div>
 				  </div>
 				  <div class="tab-pane" id="comments">
 			  		<h3 class="summaryHeader">${comments.size()} <g:message code="user.profile.tab.comments"/></h3>
 					<br/>
 					<g:render template="commentItemListTemplate" var="comment" collection="${comments}"></g:render>
+					<div class="clear"></div>
 				  </div>
 				  <div class="tab-pane" id="tag">
 				  	<h3 class="summaryHeader">${tags.size()} <g:message code="user.profile.tab.tags"/></h3>
@@ -121,11 +125,15 @@
 				  </div>
 				  <div class="tab-pane" id="awards">
 				  	<h3>${awards.size()} <g:message code="user.profile.tab.awards"/></h3>
+				  	<br/>
+					<g:render template="awardItemListTemplate" var="h" collection="${awards}" />
+					<div class="clear"></div>
 				  </div>
 				  <div class="tab-pane" id="activity">
 					<h3 class="summaryHeader">${actions?.size()} <g:message code="user.profile.tab.activity"/></h3>
 					<br/>
 					<g:render template="activityItemListTemplate" var="action" collection="${actions}" />
+					<div class="clear"></div>
 				  </div>
 				</div>
 			</div>

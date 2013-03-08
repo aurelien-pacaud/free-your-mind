@@ -12,13 +12,15 @@
 		<script type="text/javascript">
 		 function hideDivs() {
 			      	if(document.getElementById("type")[document.getElementById("type").selectedIndex].value  == "REPUTATION") {
+					  		$('#description').show()
 					  		$('#tagInput').hide()
 					  } else {
+					 		$('#description').hide()
 					  		$('#tagInput').show()
 					  }			      	
 			      }
 		</script>
-		<g:form action="createAward" controller="award">
+		<g:form action="updateAward" controller="award">
 				<label><g:message code="award.creation.form.type"/></label>
 				<div class='${hasErrors(bean:award,field:'type','alert-error')}'>
 					<g:renderErrors bean="${award}" field="type"/>
@@ -43,16 +45,7 @@
 				  		
 				  	</div>
 				</div>
-                <div id="tagInput">
-  			  		<label for="tags">Tags (min 1 - 5 max)</label>
-                    <div class="${hasErrors(bean:question, field: 'tags', 'alert-error')}">		
-                       <g:renderErrors bean="${question}" field="tags" />		
-                       <div id="tags" class="${hasErrors(bean:question, field: 'tags', 'error')} uneditable-input">
-                         <g:textField id="tag" type="text" name="tags"/>
-                       </div>
-                    </div>
-                    <g:hiddenField id="tagsId" type="hidden" name="tagsId" value=""/>	
-	  		    </div>
+	  		    <g:hiddenField id="awardId" type="hidden" name="awardId" value="${award?.id}"/>	
 	            <g:submitButton name="submit" type="submit" value="Submit" />
 			  	<g:javascript src="tags.js" />
 			    <jq:jquery>

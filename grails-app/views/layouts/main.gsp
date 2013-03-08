@@ -63,6 +63,7 @@
                 <ul id="listMenu">
                   <li id="menuItem"><g:link controller="question" action="list" class="${params.controller == 'question' && params.action != 'create' ? 'active' : '' }">Questions</g:link></li>
                   <li id="menuItem"><g:link controller="Tag" action="list" class="${params.controller == 'tag' ? 'active' : '' }">Tags</g:link></li>
+                   <li id="menuItem"><g:link controller="Award" action="list" class="${params.controller == 'baward' ? 'active' : '' }">Awards</g:link></li>
                   <li id="menuItem"><g:link controller="Contributor" action="list" class="${params.controller == 'contributor' ? 'active' : '' }">Users</g:link></li>
                   <li id="menuItem"><g:link controller="Question" action="create" class="${params.action == 'create' && params.controller == 'question' ? 'active' : '' }">Ask Question</g:link></li>
                   <li id="lastMenu" >
