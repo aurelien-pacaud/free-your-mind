@@ -40,21 +40,26 @@
     <g:render template="/post/postTemplate" var="post" bean="${question}" />
 
     <!-- Tab to sort answer. -->
-    <div id="answersTitle" class="${!question.answers.isEmpty() ? '' : 'hide'}" >
+    <div id="answersTitle" class="${!answers.isEmpty() ? '' : 'hide'}" >
       <h2 id="answerTitleNumber">${question.answers.size()} Answers</h2>
       <ul class="nav nav-tabs" id="answersSelect">
-        <li class="active">
-          <g:remoteLink action="latestAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Oldest</g:remoteLink>
+        <li class="${params.sort == 'latest' || params.sort == null ? 'active' : ''}">
+          <g:link controller="question" action="display" id="${question.id}" params="[sort: 'latest']">Oldest</g:link>
         </li>
-        <li>
-          <g:remoteLink action="votedAnswers" id="${question.id}" update="answers" onSuccess="updateCodeColor()">Vote</g:remoteLink>
+        <li class="${params.sort == 'vote' ? 'active' : ''}">
+          <g:link controller="question" action="display" id="${question.id}" params="[sort: 'vote']">Vote</g:link>
         </li>
       </ul>
     </div>
     
     <!-- Contain all answer -->
     <div id="answers" class="tab-content">
-      <g:render template="/post/postTemplate" var="post" collection="${question.answers}" />
+      <div class="pagination pull-right">
+        <g:paginate controller="question" action="display" total="${answersCount}" params="[sort: 'latest']" max="4" offset="0" omitPrev="true" omitNext="true" id="${question.id}"/>
+      </div>
+      <div class="clear"></div>
+
+      <g:render template="/post/postTemplate" var="post" collection="${answers}" />
     </div>
  
     <h2>Your Answer</h2>
@@ -67,15 +72,16 @@
     <!-- Add form to reply to this question. -->
     <sec:ifLoggedIn>
       <g:if test="${!question.isClosed}">
-        <g:formRemote name="answerForm" update="answers" url="[controller : 'answer', action: 'save', params: [idQ: question.id]]"
-                      onSuccess="updateAnswers(); removeFormError('#answerFormDiv');" 
-                      onFailure="displayFormError('#answerFormDiv');">	
-          <div id="answerFormDiv">
-            <span></span>
-            <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
-          </div>
-          <g:submitButton name="submit" value="Answer" class="btn btn-primary pull-right formButton" />
-        </g:formRemote>
+        <g:form name="answerForm" controller="question" action="saveAnswer">
+            <div id="answerFormDiv" class="${replyError != null && replyError == true ? 'alert-error' : ''}">
+              <g:if test="${replyError != null && replyError == true}">
+                <span>Content can't be empty</span>
+              </g:if>
+              <g:render template="/answer/formAnswer" var="answer" bean="${answer}" />
+              <g:hiddenField name="idQ" value="${question.id}" />
+            </div>
+          <g:submitButton name="submit" value="Answer" class="btn btn-primary pull-right formButton ${replyError != null && replyError == true ? 'btn-danger' : ''}" />
+        </g:form>
       </g:if>
       <g:else>
         This question is lock! Bad luck Brian!!!!
@@ -95,35 +101,6 @@
           $(element).show(); 
         }
       });
-
-      $('#answersSelect a').click(function() {
-        $(this).parent().addClass("active"); 
-        $(this).parent().siblings("li").removeClass("active"); 
-      });
-
     </jq:jquery>
-    <script>
-      var nbAnswers = ${question.answers.size()};
-
-      function updateCodeColor() {
-        $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-      }
-
-      /* Use to update nb of question. */
-      function updateAnswers() {
-
-        $('textarea#answerContent').val('');
-
-        if (nbAnswers == 0)
-          $("#answersTitle").removeClass('hide');
-  
-        $('h2#answerTitleNumber').html(++nbAnswers + " Answers");
-        
-        updateCodeColor();
-      }
-
-      $('#answersSelect a[href="#latest"]').tab('show');
-    </script>
-
   </body>
 </html>

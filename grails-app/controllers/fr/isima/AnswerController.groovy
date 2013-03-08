@@ -2,6 +2,7 @@ package fr.isima
 
 import org.springframework.dao.DataIntegrityViolationException
 import grails.plugins.springsecurity.Secured
+import fr.isima.exception.PostException
 
 class AnswerController {
 
@@ -33,15 +34,16 @@ class AnswerController {
   def save = {
     
     def answer = new Answer(content: params.content, question: Question.get(params.idQ))
-
+    log.info params
+  
     try {
     
       postService.save(answer, PostType.ANSWERED)			
-      render template: '/post/postTemplate', collection: Question.get(params.idQ).answers, var: 'post' 
+      //redirect controller: "question", action: "display", id: params.idQ
     }
     catch (e) {
 
-      log.error e
+      throw new PostException("Answer can ben saved")
     }
   }
 

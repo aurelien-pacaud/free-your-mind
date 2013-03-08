@@ -7,7 +7,7 @@ import org.junit.*
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
 @TestFor(QuestionController)
-@Mock([Tag, Question, Contributor])
+@Mock([Tag, Question, Answer, Contributor])
 class QuestionControllerTests {
 
   def user

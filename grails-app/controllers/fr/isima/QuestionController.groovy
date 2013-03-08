@@ -12,7 +12,7 @@ class QuestionController {
 
   def list(Integer max) {
 
-    params.max = Math.min(max ?: 3, 10)
+    params.max = Math.min(max ?: 4, 10)
 
     [questions: Question.list(params), questionsCount: Question.count()]
   }
@@ -20,11 +20,27 @@ class QuestionController {
   def display = {
 
     def question = Question.get(params.id)
+    def answers  =null
 
+    params.max = 4
+    log.info params.sort
+    
     if (question != null) {
 
-      questionService.incViewCpt(question)		
-      render view: "display", model: [question: question]
+      switch (params.sort) {
+        case 'latest' :
+            answers  = Answer.findAllByQuestion(question, [sort: 'creationDate', order:'desc', max: params.max, offset: params.offset])
+          break
+         case 'vote' :
+            answers  = Answer.findAllByQuestion(question, [sort: 'mark', order:'desc', max: params.max, offset: params.offset])
+          break
+        default :          
+          answers = Answer.findAllByQuestion(question, [sort: 'creationDate', order:'desc', max: 4, offset: 0])
+          questionService.incViewCpt(question)
+      }
+     
+      log.info params
+      render view: "display", model: [question: question, answers: answers, answersCount: Answer.findAllByQuestion(question).size()]
     }
     else 
       render view: "error404"
@@ -96,6 +112,31 @@ class QuestionController {
     }
   }
 
+  def saveAnswer = {
+   
+    def answerController = new AnswerController()
+    def question = Question.get(params.idQ)
+
+    log.info params
+
+    try {
+    
+      answerController.params.content = params.content
+      answerController.params.idQ     = params.idQ
+      
+      answerController.save()
+
+      redirect action: "display", id: question.id
+    }
+    catch (e) {
+     
+      log.error e
+
+      def answers = Answer.findAllByQuestion(question, [sort: 'creationDate', order:'desc', max: 4, offset: 0])
+      render view: "display", model: [question: question, answers: answers, answersCount: Answer.findAllByQuestion(question).size(), replyError: true]
+    }
+  }
+
   def delete = {
 
     postService.delete(Question.get(params.id)) 
@@ -121,7 +162,7 @@ class QuestionController {
   def votedAnswers() {
     
     def question = Question.get(params.id)
-    def answers  = Answer.findAllByQuestion(question, [sort: 'mark', order:'desc'])
+    def answers  = Answer.findAllByQuestion(question, [sort: 'mark', order:'desc', max: params.max, offset: params.offset])
 
     render template: '/post/postTemplate', var: 'post', collection: answers
   }
