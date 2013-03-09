@@ -96,21 +96,40 @@ class ContributorController {
 
     def awards = [:]    
     Contributor.findAll().each {
-      
-      def awardsCount = [:]
-      def user = it
-
-      AwardCategory.each {        
-        def type = it        
-        def query = AwardHistory.where {
-          award { category == type } && contributor == user
-        }        
-        awardsCount[type] = query.findAll().size()
-      }      
-      awards[user.id] = awardsCount
+		def awardsCount = [:]
+		def user = it
+	
+	    AwardCategory.each {        
+			def type = it        
+	        def query = AwardHistory.where {
+	          award { category == type } && contributor == user
+	        }        
+	        awardsCount[type] = query.findAll().size()
+	    }      
+	    awards[user.id] = awardsCount
     }
 
     [users: Contributor.findAll(), awards: awards]
+  }
+  
+  def list(Integer max) {
+	  
+	  params.max = Math.min(max ?: 64, 100)
+	  def awards = [:]
+	  Contributor.findAll().each {
+		  def awardsCount = [:]
+		  def user = it
+	  
+		  AwardCategory.each {
+			  def type = it
+			  def query = AwardHistory.where {
+				award { category == type } && contributor == user
+			  }
+			  awardsCount[type] = query.findAll().size()
+		  }
+		  awards[user.id] = awardsCount
+	  }
+	  [users: Contributor.list(params), contribCount: Contributor.count(), awards: awards]
   }
 
   /**

@@ -8,21 +8,10 @@
 		<div>
 			<h2><g:message code="user.list.title"/></h2>
 			<br/>
-			<table>
-				<tr class="usersLine">
-					<g:set var="cpt" value="${0}"/>
-					<g:each in="${users}" var="user">
-						<g:if test="${ cpt % 4 == 0 && cpt != 0}" >
-						  </tr>
-						  <tr class="usersLine">
-						</g:if>
-						<td class="userItem">
-							<tmpl:contributorItemListTemplate user="${user}"/>
-						</td>
-					  	<g:set var="cpt" value="${cpt + 1}" />
-					</g:each>
-				</tr>	
-			</table>
+			<g:render template="contributorItemListTemplate" var="user" collection="${users}" />
+	   		<div class="pagination">
+				<g:paginate controller="contributor" action="list" total="${contribCount}" max="64" offset="0" omitPrev="true" omitNext="true"/>
+			</div>
 		</div>
 		<br/>	
 	</body>
