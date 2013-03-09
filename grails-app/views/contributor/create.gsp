@@ -27,7 +27,7 @@
 					<g:renderErrors bean="${user}" field="email"/>
 			  	<g:textField name="email" type="email" value="${user?.email}" />
 			  	</div>
-			  	<g:submitButton name="submit" type="submit" value="user.form.location" class="btn ${user?.hasErrors() ? 'btn-danger' : 'btn-primary'} formButton"/>
+			  	<g:submitButton name="submit" type="submit" value="${message(code: 'award.form.submit')}" class="btn ${user?.hasErrors() ? 'btn-danger' : 'btn-primary'} formButton"/>
 			</g:form>
 		<br/>
 	</body>

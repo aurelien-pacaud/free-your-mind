@@ -7,7 +7,7 @@
 		<title>Free your mind -- User Profil</title>		
 	</head>
 	<body>	
-		<h2>Awards</h2>	
+		<h2><g:message code="award.modification.title"/></h2>	
 		
 		<script type="text/javascript">
 		 function hideDivs() {
@@ -21,23 +21,23 @@
 			      }
 		</script>
 		<g:form action="updateAward" controller="award">
-				<label><g:message code="award.creation.form.type"/></label>
+				<label><g:message code="award.form.type"/></label>
 				<div class='${hasErrors(bean:award,field:'type','alert-error')}'>
 					<g:renderErrors bean="${award}" field="type"/>
 			  		<g:select name="type" value="${award?.type}" from="${AwardType}" onChange="hideDivs()"/>
 			  	</div>
-			  	<label><g:message code="award.creation.form.category"/></label>
+			  	<label><g:message code="award.form.category"/></label>
 			  	<div class='${hasErrors(bean:award,field:'category','alert-error')}'>
 					<g:renderErrors bean="${award}" field="category"/>
 			  		<g:select name="category" value="${award?.category}" from="${AwardCategory}"/>
 			  	</div>
-			  	<label><g:message code="award.creation.form.title"/></label>
+			  	<label><g:message code="award.form.title"/></label>
 			  	<div class='${hasErrors(bean:award,field:'title','alert-error')}'>
 			  		<g:renderErrors bean="${award}" field="title"/>
 			  		<g:textField name="title" id="loginUser" type="text" value="${award?.title}" />
 			  	</div>
 				<div id="bound" >
-				  	<label><g:message code="award.creation.form.bound"/></label>
+				  	<label><g:message code="award.form.bound"/></label>
 				  	<div class='${hasErrors(bean:award,field:'bound','alert-error')}'>
 				  		<g:renderErrors bean="${award}" field="bound" />
 				  		<g:if test="${award != null}" ><g:field type="number" name="bound" value="${award?.bound}"/></g:if>
@@ -46,7 +46,7 @@
 				  	</div>
 				</div>
 	  		    <g:hiddenField id="awardId" type="hidden" name="awardId" value="${award?.id}"/>	
-	            <g:submitButton name="submit" type="submit" value="Submit" />
+	            <g:submitButton name="submit" type="submit" value="${message(code: 'award.form.submit')}" class="btn ${user?.hasErrors() ? 'btn-danger' : 'btn-primary'} formButton"/>
 			  	<g:javascript src="tags.js" />
 			    <jq:jquery>
 			     $(document).ready(function() {

@@ -39,7 +39,7 @@
 			  		<g:textField name="location" type="text" value="${user?.location}"/>
 			  	</div>
 			  	<g:hiddenField name="id" value="${user?.id}" />
-			  	<g:submitButton name="submit" type="submit" value="Edit your profil" class="btn ${user?.hasErrors() ? 'btn-danger' : 'btn-primary'} formButton"/>
+			  	<g:submitButton name="submit" type="submit" value="${message(code: 'award.form.submit')}" class="btn ${user?.hasErrors() ? 'btn-danger' : 'btn-primary'} formButton"/>
 			</g:form>
 		<br/>
 	</body>
