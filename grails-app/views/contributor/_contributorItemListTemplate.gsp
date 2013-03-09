@@ -12,8 +12,13 @@
 			<g:link controller="Contributor" action="show" id="${user.id}">${user.username}</g:link>
 			<br/>
 			${user.location}
-			<br/>
-			${user.reputation}
+                        <g:each in="${awards[user.id]}">
+                          <span class="label label-inverse"><span class="medal ${it.key.toString().toLowerCase()}">&#9679;</span>
+                          ${it.value}
+                          </span>
+                        </g:each>
+                        <br />
+			<b>Reputation</b> ${user.reputation}
 		</div>
 	</div>
 </div>
