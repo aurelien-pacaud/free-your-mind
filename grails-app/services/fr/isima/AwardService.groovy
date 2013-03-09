@@ -104,4 +104,54 @@ class AwardService {
 			user.save()
 		}
 	}
+	
+	def newAward(String title, String description, int bound, Tag tag, AwardCategory category, AwardType type) {
+		
+		// Description computed for awardType different from Reputation
+		if (type != AwardType.REPUTATION ) {
+			switch (type) {
+				case AwardType.NB_QUESTIONS.toString():
+					description = "Posted " + bound + " questions "
+					break;
+				case AwardType.NB_ANSWERS.toString():
+					description = "Posted " + bound + " answers "
+					break;
+				case AwardType.NB_COMMENTS.toString():
+					description = "Posted " + bound + " comments "
+					break;
+			}
+			if(tag != null) {
+				description +=	"for the " + tag.name + " tag"
+				title += " " + tag.name
+			}
+		} else {
+			description = "User has reach " + bound + " reputation points"
+		}
+		
+		new Award(title: title, description: description, bound: bound,	tag: tag, category: category, type: type);
+  
+	}
+	
+	def newAward(String title, String description, int bound, AwardCategory category, AwardType type) {
+		
+		// Description computed for awardType different from Reputation
+		if (type != AwardType.REPUTATION ) {
+			switch (type) {
+				case AwardType.NB_QUESTIONS.toString():
+					description = "Posted " + bound + " questions "
+					break;
+				case AwardType.NB_ANSWERS.toString():
+					description = "Posted " + bound + " answers "
+					break;
+				case AwardType.NB_COMMENTS.toString():
+					description = "Posted " + bound + " comments "
+					break;
+			}
+		} else {
+			description = "User has reach " + bound + " reputation points"
+		}
+		
+		new Award(title: title, description: description, bound: bound, category: category, type: type);
+  
+	}
 }

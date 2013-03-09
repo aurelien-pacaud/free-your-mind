@@ -43,16 +43,13 @@ class ContributorController {
 		}
 
 		/* Lists for the summary tab */
-		def sumAnswers =[]
-        def sumQuestions = []
-        def sumComments = []
+		def sumAnswers = Answer.findAllByContributor(c, [sort: 'creationDate', order: 'desc', max: 5]) 
+        def sumQuestions = Question.findAllByContributor(c, [sort: 'creationDate', order: 'desc', max: 5])
+        def sumComments = Comment.findAllByContributor(c, [sort: 'creationDate', order: 'desc', max: 5])
         def sumTags = []
         def sumAwards =[]
 
         for (int i=0; i < 5 ; ++i) {
-          if (answers.size() > i) sumAnswers.add(answers.get(i));
-          if (questions.size() > i) sumQuestions.add(questions.get(i));
-          if (comments.size() > i) sumComments.add(comments.get(i));
           if (tags.size() > i) sumTags.add(tags.get(i));
           if (awards.size() > i) sumAwards.add(awards.get(i));
         }
@@ -97,24 +94,19 @@ class ContributorController {
    */
   def list = {
 
-    def awards = [:]
-    
+    def awards = [:]    
     Contributor.findAll().each {
       
       def awardsCount = [:]
       def user = it
 
-      AwardCategory.each {
-        
+      AwardCategory.each {        
         def type = it        
-
         def query = AwardHistory.where {
           award { category == type } && contributor == user
-        }
-        
+        }        
         awardsCount[type] = query.findAll().size()
-      }
-      
+      }      
       awards[user.id] = awardsCount
     }
 

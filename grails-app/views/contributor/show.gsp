@@ -11,7 +11,7 @@
 				<g:if test="${sec.loggedInUserInfo(field: 'id') == user.id.toString()}">
 					<div style="float:right;position: relative;top: -40px;">
 						<g:link action="edit" controller="contributor" id="${user?.id}">
-							<g:message code="user.profile.edit" />
+							<img src="${fam.icon(name: 'pencil')}" alt="Edit profil"/>
 						</g:link>
 					</div>
 				</g:if>
@@ -19,7 +19,7 @@
 					<sec:ifAllGranted roles="ROLE_ADMIN">
 						<div style="float:right;position: relative;top: -40px;">
 							<g:link action="edit" controller="contributor" id="${user?.id}">
-							<g:message code="user.profile.edit" />
+								<img src="${fam.icon(name: 'pencil')}" alt="Edit profil"/>
 							</g:link>
 						</div>
 					</sec:ifAllGranted>

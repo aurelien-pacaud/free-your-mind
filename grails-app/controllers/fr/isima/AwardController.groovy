@@ -14,9 +14,13 @@ class AwardController {
 		[award:a]
 	}
 	
-	def list = {
-		[awards:Award.findAll([sort: "title"])]
-	}
+	def list(Integer max) {
+		
+		params.max = Math.min(max ?: 15, 30)
+		[awards: Award.list(params), awardsCount: Award.count()]
+    }
+	
+	
 	
 	def create = {
 		[tags: Tag.json()]
@@ -37,8 +41,8 @@ class AwardController {
 	def createAward = {
   
 		// Get all attributes form the form
-	    def title = params.title
-		def description = ""
+	    def String title = params.title
+		def String description = ""
 		def bound = params.bound
 		def category = params.category
 		def type = params.type
@@ -55,32 +59,21 @@ class AwardController {
 			}
 		}
   
+		def int boundVal
+		
+		try {
+			boundVal = Integer.parseInt(bound)
+		} catch(e) {
+			boundVal = 0
+		}
 		
 		def Award a
 		// if multiple tags we create 1 award by tag
 		if (tags.size() > 1) {
 			tags.each {  
-				// Description computed for awardType different from Reputation
-				if (type != AwardType.REPUTATION && it.size() != 0) {
-					switch (type) {
-						case AwardType.NB_QUESTIONS.toString():
-							description = "Posted " + bound + " questions "
-							break;
-						case AwardType.NB_ANSWERS.toString():
-							description = "Posted " + bound + " answers "
-							break;
-						case AwardType.NB_COMMENTS.toString():
-							description = "Posted " + bound + " comments "
-							break;
-					}
-					description +=	"for the " + it.name + " tag"
-					title += " " + it.name
-				} else {
-					description = "User has reach " + bound + " reputation points"
-				}
-				
-				a = new Award(title: title, description: description, bound: bound,
-										tag: it, category: category, type: type);
+								
+				a = awardService.newAward(title, description, boundVal, (Tag) it,
+					Enum.valueOf(AwardCategory.class, category) , Enum.valueOf(AwardType.class, type));
 		  
 				// Insert the contributor in the DB
 				try {
@@ -94,33 +87,14 @@ class AwardController {
 				}
 			}
 		} else {
-			def tag = null;
-			// Description computed for awardType different from Reputation
-			if (type != AwardType.REPUTATION.toString()) {
-				switch (type) {
-					case AwardType.NB_QUESTIONS.toString():
-						description = "Posted " + bound + " questions "
-						break;
-					case AwardType.NB_ANSWERS.toString():
-						description = "Posted " + bound + " answers "
-						break;
-					case AwardType.NB_COMMENTS.toString():
-						description = "Posted " + bound + " comments "
-						break;
-				}
-				if ( tags.size() == 1) {
-					description +=	"for the " + tags.get(0).name + " tag"
-					title += " " + tags.get(0).name
-					tag = tags.get(0)
-				}
-				
-			} else {
-				description = "User has reach " + bound + " reputation points"
-			}
-
-			a = new Award(title: title, description: description, bound: bound,
-						  tag: tag, category: category, type: type);
-	  
+			def Tag tag = null;
+			
+			if(tags.size() > 0 )
+				a = awardService.newAward(title, description, boundVal, tags.getAt(0),
+				    Enum.valueOf(AwardCategory.class, category) , Enum.valueOf(AwardType.class, type));
+			else
+				a = awardService.newAward(title, description, boundVal, 
+					Enum.valueOf(AwardCategory.class, category) , Enum.valueOf(AwardType.class, type));	
 			// Insert the contributor in the DB
 			try {
 				  if (!awardService.save(a)) {
@@ -133,6 +107,9 @@ class AwardController {
 			}
 		}
 	}
+	
+	
+	
 	
 	def updateAward = {
 		// Get all attributes form the form
