@@ -17,6 +17,6 @@
 	             </span>
 	           </g:each>
 	           <br />
-		<b>Reputation</b> ${user.reputation}
+		<b><g:message code="global.reputation"/></b> ${user.reputation}
 	</div>
 </div>

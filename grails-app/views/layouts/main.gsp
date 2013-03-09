@@ -67,22 +67,22 @@
                 <ul id="listMenu">
                   <li id="menuItem">
                     <g:link controller="question" action="list" class="${params.controller == 'question' && params.action != 'create' ? 'active' : '' }">
-                      <g:message code="global.questions"/>
+                      <g:message code="global.question" args="[0]"/>
                     </g:link>
                   </li>
                   <li id="menuItem">
                     <g:link controller="Tag" action="list" class="${params.controller == 'tag' ? 'active' : '' }">
-                      <g:message code="global.tags"/>
+                      <g:message code="global.tag" args="[0]"/>
                     </g:link>
                   </li>
                   <li id="menuItem">
                     <g:link controller="Award" action="list" class="${params.controller == 'baward' ? 'active' : '' }">
-                      <g:message code="global.awards"/>
+                      <g:message code="global.award" args="[0]"/>
                     </g:link>
                   </li>
                   <li id="menuItem">
                     <g:link controller="Contributor" action="list" class="${params.controller == 'contributor' ? 'active' : '' }">
-                      <g:message code="global.users"/>
+                      <g:message code="global.user" args="[0]"/>
                     </g:link>
                   </li>
                   <li id="menuItem">
@@ -99,41 +99,40 @@
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                       <li role=presentation">
-                      	<g:link controller="contributor" action="show" id="${sec.loggedInUserInfo(field: 'id')}">Consult profile</g:link>
+                      	<g:link controller="contributor" action="show" id="${sec.loggedInUserInfo(field: 'id')}"><g:message code="global.consult.profil"/> </g:link>
                       </li>
                       <li role=presentation">
-                      	<g:link controller="contributor" action="edit" id="${sec.loggedInUserInfo(field: 'id')}">Edit profile</g:link>
+                      	<g:link controller="contributor" action="edit" id="${sec.loggedInUserInfo(field: 'id')}"><g:message code="global.edit.profil"/></g:link>
                       </li>
                       <li role=presentation">
-                      	<g:link controller="contributor" action="edit_avatar" id="${sec.loggedInUserInfo(field: 'id')}">Change avatar</g:link>
+                      	<g:link controller="contributor" action="edit_avatar" id="${sec.loggedInUserInfo(field: 'id')}"><g:message code="global.change.avatar"/></g:link>
                       </li>
                       <li class="divider"></li>
                       <li  role=presentation">
-                      	<g:link controller="logout" action="index">Logout</g:link>
+                      	<g:link controller="logout" action="index"><g:message code="global.deconnect"/></g:link>
                       </li>
                     </ul>
                   </div>
                   </sec:ifLoggedIn>
                   <sec:ifNotLoggedIn >
                   <div id="loginContainer">
-                    <a id="loginButton"><span>Login</span></a>
+                    <a id="loginButton"><span><g:message code="global.login"/></span></a>
                     <div style="clear:both"></div>
                     <div id="loginBox">                
                       <form action='/free-your-mind/j_spring_security_check' method='POST' id='loginPopUpForm' autocomplete='off'>
                         <fieldset id="body">
                           <fieldset>
-                            <label for="username">User name</label>
+                            <label for="username"><g:message code="global.userName"/></label>
                             <input type="text" name="j_username" id="username" />
                           </fieldset>
                           <fieldset>
-                            <label for="password">Password</label>
+                            <label for="password"><g:message code="global.password"/></label>
                             <input type="password" name="j_password" id="password" />
                           </fieldset>
                           <input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
                           <br/><br/>
-                          or <g:link controller="contributor" action="create">Sign in</g:link>
+                          <g:message code="global.or"/> <g:link controller="contributor" action="create"><g:message code="global.signin"/></g:link>
                           <br/>
-                          <label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
                         </fieldset>
                       </form>
                     </div>

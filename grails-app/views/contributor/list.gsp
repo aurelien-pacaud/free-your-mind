@@ -6,7 +6,7 @@
 	</head>
 	<body>	
 		<div>
-			<h2><g:message code="user.list.title"/></h2>
+			<h2><g:message code="global.users" args="${[users.size()]}"/></h2>
 			<br/>
 			<g:render template="contributorItemListTemplate" var="user" collection="${users}" />
 	   		<div class="pagination">
