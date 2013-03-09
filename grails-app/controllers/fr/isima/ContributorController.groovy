@@ -55,8 +55,8 @@ class ContributorController {
         }
 
       [user: c, answers: answers, sumAnswers: sumAnswers, questions: questions, sumQuestions: sumQuestions,
-        comments: comments, sumComments:sumComments, tags: tags, sumTags:sumTags, tagsCounter: tagsCounter, 
-        awards: awards, sumAwards: sumAwards, actions:histories]
+       comments: comments, sumComments:sumComments, tags: tags, sumTags:sumTags, tagsCounter: tagsCounter, 
+       awards: awards, sumAwards: sumAwards, actions:histories]
     }
 
   /**
@@ -112,6 +112,11 @@ class ContributorController {
     [users: Contributor.findAll(), awards: awards]
   }
   
+  /** 
+   * Use to display the user list with pagination
+   * @param max
+   * @return
+   */
   def list(Integer max) {
 	  
 	  params.max = Math.min(max ?: 64, 100)
@@ -131,6 +136,7 @@ class ContributorController {
 	  }
 	  [users: Contributor.list(params), contribCount: Contributor.count(), awards: awards]
   }
+  
 
   /**
    * Edit the  user profile

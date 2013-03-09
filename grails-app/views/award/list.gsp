@@ -16,8 +16,7 @@
 	     </h2>	
 		<g:render template="awardListItemTemplate" var="award" collection="${awards}" />
 	    <div class="pagination">
-			<g:paginate controller="award" action="list" total="${awardsCount}" max="15" offset="0" omitPrev="true" omitNext="true"/>
+			<g:paginate controller="award" action="list" total="${awardsCount}" max="15" offset="0" omitPrev="true" omitNext="true" />
 		</div>
 	</body>
 </html>
-<html>

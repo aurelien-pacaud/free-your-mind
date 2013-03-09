@@ -333,12 +333,14 @@ textarea.commentContent {
 
 
 /* ------- User list ------- */
-table .userItem{
+div .userItem{
 	width : 1%;
 }
 
-table .usersLine {	
+div .usersLine {	
 	height : 100px;
+	width:25%;
+	float:left;
 }
 
 /* ------- User profile ------- */
