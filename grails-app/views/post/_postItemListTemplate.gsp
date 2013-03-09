@@ -1,8 +1,8 @@
 <div class="itemPost">
 	
-	<div style="float : left; text-align : center; margin-right : 5px;">${post.mark}<br />Vote</div>	
-	<div style="float : left; text-align : center; margin-right : 5px;">${post.answers.size()}<br />Answered</div>
-	<div style="float : left; text-align : center; margin-right : 5px;">${post.nbView}<br />Views</div>	
+	<div style="float : left; text-align : center; margin-right : 5px;">${post.mark}<br /><g:message code="global.votes"/></div>	
+	<div style="float : left; text-align : center; margin-right : 5px;">${post.answers.size()}<br /><g:message code="global.answers"/></div>
+	<div style="float : left; text-align : center; margin-right : 5px;">${post.nbView}<br /><g:message code="global.views"/></div>	
 	
 	<div>		
 		<g:if test="${post.isClosed}">

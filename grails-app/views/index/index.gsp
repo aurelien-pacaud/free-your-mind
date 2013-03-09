@@ -6,21 +6,31 @@
 	</head>
 	<body>
 		<div style="width : 70%; float : left;">
-			<h2>Questions (${questionNb})</h2>
+			<h2><g:message code="global.questions"/> (${questionNb})</h2>
 			<g:render template="/post/postItemListTemplate" var="post" collection="${questions}" />
 		</div>
 		
 		<div style="width : 28%; float : right;">
 			<div>
-				<h2>Tags</h2>
+				<h2><g:message code="global.tags"/></h2>
 				<g:render template="/tag/tagTemplateWithNbofQuestion" var="tag" collection="${tags}" />
+                                <div class="clear"> </div>
+                                <br />
+                                <g:link controller="tag" action="list"><g:message code="global.view.more"/></g:link>
 			</div>
 			
 			<div style="clear : both;"></div>
 			<br />
 			
 			<div>
-				<h2>Awards</h2>				
+				<h2><g:message code="global.awards"/></h2>	
+                                <g:each in="${awardsHistory}">                                  
+                                  <g:render template="/award/awardTemplate" bean="${it.award}" var="award" />
+                                  <g:link controller="contributor" action="show" id="${it.contributor.id}">${it.contributor.username}</g:link>
+                                  <br />
+                                </g:each>
+                                <br />
+                                <g:link controller="award" action="list"><g:message code="global.view.more"/></g:link>
 			</div>
 		</div>
 		

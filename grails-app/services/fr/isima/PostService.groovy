@@ -29,6 +29,9 @@ class PostService {
 
       /* Add new entry in History. */
       postHistoryService.createPostHistory(post, user, type)
+      
+      /* Check award. */
+      awardService.checkAward(post.contributor)
     }			 
   }
 
@@ -53,6 +56,9 @@ class PostService {
 
       /* Add new entry revision in History. */
       postHistoryService.createRevisionHistory(post, user)
+  
+      /* Check award. */
+      awardService.checkAward(post.contributor)
     }
   }
   

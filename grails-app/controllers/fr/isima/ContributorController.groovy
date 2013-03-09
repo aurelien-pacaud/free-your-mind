@@ -103,25 +103,21 @@ class ContributorController {
       
       def awardsCount = [:]
       def user = it
-      log.info user
 
       AwardCategory.each {
         
         def type = it        
-        log.info type
 
         def query = AwardHistory.where {
           award { category == type } && contributor == user
         }
         
-        println query.findAll()
         awardsCount[type] = query.findAll().size()
       }
       
       awards[user.id] = awardsCount
     }
 
-    log.info awards
     [users: Contributor.findAll(), awards: awards]
   }
 

@@ -59,13 +59,37 @@
           <body>
             <div id="topMenuBackground">
               <div id="topMenu"> 
-                <g:link controller="index" action="index"><div class="logo" style="float:left;"><g:img file="fym-logo.png" style="width : 44px; height : 44px; vertical-align : middle;"/></div></g:link>
+                <g:link controller="index" action="index">
+                  <div class="logo" style="float:left;">
+                    <g:img file="fym-logo.png" style="width : 44px; height : 44px; vertical-align : middle;"/>
+                  </div>
+                </g:link>
                 <ul id="listMenu">
-                  <li id="menuItem"><g:link controller="question" action="list" class="${params.controller == 'question' && params.action != 'create' ? 'active' : '' }">Questions</g:link></li>
-                  <li id="menuItem"><g:link controller="Tag" action="list" class="${params.controller == 'tag' ? 'active' : '' }">Tags</g:link></li>
-                   <li id="menuItem"><g:link controller="Award" action="list" class="${params.controller == 'baward' ? 'active' : '' }">Awards</g:link></li>
-                  <li id="menuItem"><g:link controller="Contributor" action="list" class="${params.controller == 'contributor' ? 'active' : '' }">Users</g:link></li>
-                  <li id="menuItem"><g:link controller="Question" action="create" class="${params.action == 'create' && params.controller == 'question' ? 'active' : '' }">Ask Question</g:link></li>
+                  <li id="menuItem">
+                    <g:link controller="question" action="list" class="${params.controller == 'question' && params.action != 'create' ? 'active' : '' }">
+                      <g:message code="global.questions"/>
+                    </g:link>
+                  </li>
+                  <li id="menuItem">
+                    <g:link controller="Tag" action="list" class="${params.controller == 'tag' ? 'active' : '' }">
+                      <g:message code="global.tags"/>
+                    </g:link>
+                  </li>
+                  <li id="menuItem">
+                    <g:link controller="Award" action="list" class="${params.controller == 'baward' ? 'active' : '' }">
+                      <g:message code="global.awards"/>
+                    </g:link>
+                  </li>
+                  <li id="menuItem">
+                    <g:link controller="Contributor" action="list" class="${params.controller == 'contributor' ? 'active' : '' }">
+                      <g:message code="global.users"/>
+                    </g:link>
+                  </li>
+                  <li id="menuItem">
+                    <g:link controller="Question" action="create" class="${params.action == 'create' && params.controller == 'question' ? 'active' : '' }">
+                      <g:message code="global.askQuestion"/>
+                    </g:link>
+                  </li>
                   <li id="lastMenu" >
                   <sec:ifLoggedIn>
                   <div class="dropdown">

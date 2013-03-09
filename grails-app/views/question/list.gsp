@@ -5,7 +5,8 @@
     <title>Free your mind -- Questions list</title>		
   </head>
   <body>
-    <h2>Questions (${questionsCount})</h2>
+    <h2><g:message code="global.questions"/> (${questionsCount})</h2>
+                      
     <g:render template="/post/postItemListTemplate" var="post" collection="${questions}" />
     <div class="pagination">
       <g:paginate controller="question" action="list" total="${questionsCount}" max="4" offset="0" omitPrev="true" omitNext="true"/>
