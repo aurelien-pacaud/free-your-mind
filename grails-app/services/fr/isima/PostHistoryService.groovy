@@ -36,4 +36,18 @@ class PostHistoryService {
 
     postHistory.save()
   }
+
+  def createReputationHistory(Contributor user, int reputation) {
+    
+    def postHistory = new PostHistory(contributor: user, post: null, type: PostType.REPUTATION, reputation: reputation)
+
+    postHistory.save()
+  }
+  
+  def createAwardHistory(Contributor user, Award award) {
+    
+    def postHistory = new PostHistory(contributor: user, post: null, award: award, type: PostType.AWARD)
+
+    postHistory.save()
+  }
 }

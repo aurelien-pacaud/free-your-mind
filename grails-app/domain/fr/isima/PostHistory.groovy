@@ -4,12 +4,15 @@ class PostHistory {
 
   Date date = new Date()
   PostType type
+  int reputation = 0
 
-  static belongsTo = [contributor: Contributor, post: Post] 
+  static belongsTo = [contributor: Contributor, post: Post, award: Award] 
 
   static constraints = {
-    date(nullable:false)
-    type(nullable:false)
+    date(nullable: false)
+    type(nullable: false)
+    post(nullable: true)
+    award(nullable: true)
   }
   
   static mapping = {
@@ -18,5 +21,5 @@ class PostHistory {
 }
 
 enum PostType {
-  ASKED, ANSWERED, REVISION, ACCEPTED, COMMENTED, VOTE_UP, VOTE_DOWN
+  ASKED, ANSWERED, REVISION, ACCEPTED, COMMENTED, VOTE_UP, VOTE_DOWN, REPUTATION, AWARD
 }

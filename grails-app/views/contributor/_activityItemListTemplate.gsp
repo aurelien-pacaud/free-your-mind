@@ -119,7 +119,28 @@
 		    </g:else>
 		</div>
 	</g:elseif>
-	
+        
+        <g:elseif test="${action.type == PostType.REPUTATION}">
+		<div style="float:left;width:100px;margin-right:10px;">
+			<prettytime:display date="${action.date}"></prettytime:display>
+		</div>
+		<div style="float:left;margin-left:10px;width:100px;text-align: center" ><g:message code="global.reputation"/></div>
+		<div style="float:left;margin-left:10px;">		
+                  <b>${action.reputation}</b>
+		</div>
+	</g:elseif>
+        <g:elseif test="${action.type == PostType.AWARD}">
+		<div style="float:left;width:100px;margin-right:10px;">
+			<prettytime:display date="${action.date}"></prettytime:display>
+		</div>
+		<div style="float:left;margin-left:10px;width:100px;text-align: center" >Badge</div>
+		<div style="float:left;margin-left:10px;">		
+                  <g:render template="/award/awardTemplate" bean="${action.award}" var="award" />
+		</div>
+	</g:elseif>
+
+
+
 	<div style="clear : both;"></div>
 	<hr id="contributorPostSeparator"/>
 </div>

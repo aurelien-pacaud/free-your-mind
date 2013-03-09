@@ -90,6 +90,8 @@ class PostService {
     postHistoryService.createVotedUpHistory(post, user)
     
     post.contributor.reputation += post.reputationVoteUp
+    postHistoryService.createReputationHistory(user, post.reputationVoteUp)
+    
     /* Check award. */
     awardService.checkAward(post.contributor)
   }
@@ -111,6 +113,9 @@ class PostService {
     post.contributor.reputation += post.reputationVoteDown
     user.reputation             += post.reputationVoter
     
+    postHistoryService.createReputationHistory(user, post.reputationVoter)
+    postHistoryService.createReputationHistory(post.contributor, post.reputationVoteDown)
+    
     /* Check award. */
     awardService.checkAward(post.contributor)
     awardService.checkAward(user)
@@ -127,6 +132,9 @@ class PostService {
     
     post.contributor.reputation += post.reputationAccepted
     user.reputation             += post.reputationAcceptor
+
+    postHistoryService.createReputationHistory(user, post.reputationAccepted)
+    postHistoryService.createReputationHistory(post.contributor, post.reputationAcceptor)
     
     /* Check award. */
     awardService.checkAward(post.contributor)
