@@ -4,6 +4,8 @@ import org.springframework.dao.DataIntegrityViolationException
 
 import com.sun.org.apache.xalan.internal.xsltc.compiler.ForEach;
 
+import fr.isima.connection.UserRole;
+import fr.isima.connection.Role;
 import grails.plugins.springsecurity.Secured
 
 
@@ -145,7 +147,8 @@ class ContributorController {
     def edit = {
 		def id = params.get("id")
         def user = Contributor.get(id)
-        [user: user]
+		def userRole = UserRole.findByUser(user)
+        [user: user, role:userRole.role]
     }
 
   /**
@@ -163,6 +166,7 @@ class ContributorController {
         def location = params.get("location")
         def birthDate = params.get("birthDate")
         def avatar = params.get("avatar")
+		def rights = params.rights
 
         def Contributor c = Contributor.get(id)
 
@@ -175,6 +179,14 @@ class ContributorController {
             c.setBirthDate(birthDate)	
             c.setAvatar(avatar)		 
         }
+		
+		def userRole = UserRole.findByUser(c)
+		def role = Role.findByAuthority(rights)
+		
+		if (userRole.role != role ) {
+			UserRole.remove(userRole.user, userRole.role, true )
+			UserRole.create(userRole.user, role, true)
+		}
 
 
       // Insert the contributor in the DB

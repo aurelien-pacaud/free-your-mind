@@ -39,6 +39,8 @@ class UserRole implements Serializable {
 			return false
 		}
 
+		print "instance" + instance.user.id + " " + instance.role.id
+		
 		instance.delete(flush: flush)
 		true
 	}

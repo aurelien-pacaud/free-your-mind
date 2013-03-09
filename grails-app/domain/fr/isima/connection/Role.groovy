@@ -11,4 +11,9 @@ class Role {
 	static constraints = {
 		authority blank: false, unique: true
 	}
+		
+}
+
+enum  RoleType {
+	ROLE_ADMIN, ROLE_CONTRIBUTOR, ROLE_USER
 }
