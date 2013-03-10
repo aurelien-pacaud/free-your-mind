@@ -31,10 +31,10 @@
                   onSuccess="\$('#comment-${post.id}').hide(); removeFormError('#commentArea-${post.id}');" 
                   onFailure="displayFormError('#commentArea-${post.id}');">
       <div id="commentArea-${post.id}">
-        <span></span>
+        <span style="display: none"><g:message code="default.blank.message" /></span>
         <g:textArea name="content" id="commentContent" class="commentContent"></g:textArea>
       </div>
-      <g:submitButton name="submit" value="Add comment" class="btn btn-primary pull-right formButton"/>
+      <g:submitButton name="submit" value="${message(code: 'comment.creation.button')}" class="btn btn-primary pull-right formButton"/>
     </g:formRemote>
   </div>
   <div class="postBlankSpace"></div>

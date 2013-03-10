@@ -21,7 +21,7 @@ class AnswerController {
 
       postService.update(answer)
       
-      flash.message = "Answer edit with success!"
+      flash.message = message(code: "edition.success")
       redirect action: "display", controller: "question", id: answer.question.id
     }
     catch (e) {
@@ -62,7 +62,7 @@ class AnswerController {
 
     postService.delete(answer)
 
-    flash.message = "Answer deleted with success!"
+    flash.message = message(code: "deletion.success")
     redirect action: "display", controller: "question", id: question.id
   }
 }

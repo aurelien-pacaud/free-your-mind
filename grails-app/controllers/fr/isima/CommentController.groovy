@@ -17,6 +17,7 @@ class CommentController {
 
       postService.save(comment, PostType.COMMENTED)
       
+      flash.message = message(code: "creation.success")
       render template: 'commentTemplate', collection: Post.get(params.idPost).comments, var: 'comment'
     }
     catch (e) {
@@ -46,7 +47,7 @@ class CommentController {
       try {
         postService.update(comment)
 
-        flash.message = "Comment edit with success!"
+        flash.message = message(code: "edition.success")
         
         def question = comment.post
 
@@ -76,7 +77,7 @@ class CommentController {
 
     postService.delete(comment)
 
-    flash.message = "Comment deleted with success!"
+    flash.message = message(code: "deletion.success")
     redirect action: "display", controller: "question", id: question.id
   }
 

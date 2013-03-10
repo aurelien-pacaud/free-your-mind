@@ -43,7 +43,7 @@ class TagController {
       /* Try to update the tag. */
       tagService.update(tag)
       
-      flash.message = "Tag edited with success!"
+      flash.message = message(code: "edition.success")
       redirect action: "show", id: tag.id 
     }
     catch (e) {
@@ -65,7 +65,7 @@ class TagController {
       /* Try to save the new tag. */
       tagService.save(tag)
       
-      flash.message = "Tag added with success!"
+      flash.message = message(code: "creation.success")
       redirect action: "show", id: tag.id 
     }
     catch (e) {
@@ -82,7 +82,7 @@ class TagController {
       /* Try to delete the tag. */
       tagService.delete(tag)
       
-      flash.message = "Tag deleted with success!"
+      flash.message = message(code: "deletion.success")
       redirect action: "list"
     }
     catch (e) {

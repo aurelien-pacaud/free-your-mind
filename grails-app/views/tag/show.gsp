@@ -7,7 +7,7 @@
   <body>
     <div style="width : 28%; float : left;">
       <div>
-        <h2>Tags <g:render template="/tag/tagTemplate" var="tag" bean="${tag}" />
+        <h2><g:message code="global.tag" args="[0]"/> <g:render template="/tag/tagTemplate" var="tag" bean="${tag}" />
           <sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_MODERATOR">
             
             <span class="pull-right">
@@ -33,7 +33,7 @@
     </div>
 
     <div style="width : 70%; float : right;">
-      <h2>Related questions</h2>
+      <h2><g:message code="tag.relatedQuestion" args="[tag.questions.size()]"/></h2>
       <g:render template="/post/postItemListTemplate" var="post" collection="${tag.questions}" />
     </div>
     <div style="clear : both;"></div>

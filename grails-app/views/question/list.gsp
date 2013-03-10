@@ -5,7 +5,7 @@
     <title>Free your mind -- Questions list</title>		
   </head>
   <body>
-    <h2><g:message code="global.questions"/> (${questionsCount})</h2>
+    <h2><g:message code="global.question" args="[questionsCount]"/> (${questionsCount})</h2>
                       
     <g:render template="/post/postItemListTemplate" var="post" collection="${questions}" />
     <div class="pagination">

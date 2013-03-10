@@ -5,7 +5,7 @@
 		<title>Free your mind -- User Profil</title>		
 	</head>
 	<body>	
-		<h2>Awards
+		<h2><g:message code="global.award" args="[awards.size()]"/>
 			<sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_MODERATOR">
 		        <span class="pull-right">
 		          <g:link action="create" controller="award">

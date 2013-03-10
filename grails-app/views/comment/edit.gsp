@@ -6,7 +6,7 @@
   </head>
   <body>
 
-    <h2>Answer</h2>
+    <h2><g:message code="global.answer" args="[0]" /></h2>
     <div class="postContent">
       <markdown:renderHtml>${post.content}</markdown:renderHtml>
        
@@ -22,10 +22,10 @@
         </g:if>
         <g:else>
           <div class="commentPost">
-            <h2>Edit comment</h2>
+            <h2><g:message code="comment.update.title" /></h2>
             <g:form controller="comment" action="update" id="${comment.id}">
               <g:render template="/answer/formAnswer" var="answer" bean="${comment}" />
-              <g:submitButton name="sumbit" value="Edit this comment" class="btn ${comment?.hasErrors() ? 'btn-danger' : 'btn-primary'} pull-right formButton"/>
+              <g:submitButton name="sumbit" value="${message(code: 'comment.update.button')}" class="btn ${comment?.hasErrors() ? 'btn-danger' : 'btn-primary'} pull-right formButton"/>
               <br />
             </g:form>
           </div>

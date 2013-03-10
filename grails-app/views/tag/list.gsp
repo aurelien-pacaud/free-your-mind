@@ -6,7 +6,7 @@
   </head>
   <body>
     
-    <h2><g:message code="global.tags"/> (${tags.size()})
+    <h2><g:message code="global.tag" args="[tags.size()]"/> (${tags.size()})
       <sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_MODERATOR">
         <span class="pull-right">
           <g:link action="create" controller="tag">

@@ -75,7 +75,7 @@ class QuestionController {
     
       postService.update(question)			
       
-      flash.message = message(code: "fr.isima.Post.edition.success", args: [message(code: "fr.isima.Question.name")])
+      flash.message = message(code: "edition.success")
       redirect action: "display", id: question.id
     }
     catch (e) {
@@ -101,7 +101,7 @@ class QuestionController {
     
       postService.save(question, PostType.ASKED)			
       
-      flash.message = message(code: "fr.isima.Post.creation.success", args: [message(code: "fr.isima.Question.name")])
+      flash.message = message(code: "creation.success")
       redirect action: "display", id: question.id
     }
     catch (e) {
@@ -140,6 +140,8 @@ class QuestionController {
   def delete = {
 
     postService.delete(Question.get(params.id)) 
+    
+    flash.message = message(code: "deletion.success")
     redirect action: "index", controller: "index"
   }
 

@@ -11,13 +11,13 @@ if (typeof jQuery !== 'undefined') {
 function displayFormError(idForm) {
 
   $(idForm).addClass('alert-error'); 
-  $(idForm + ' span').html('Content cant be empty!')
+  $(idForm + ' span').show()
   $(idForm).siblings('#submit').addClass('btn-danger');
 }
 
 function removeFormError(idForm) {
 
   $(idForm).removeClass('alert-error'); 
-  $(idForm + ' span').html('')
+  $(idForm + ' span').hide()
   $(idForm).siblings('#submit').removeClass('btn-danger');
 }
