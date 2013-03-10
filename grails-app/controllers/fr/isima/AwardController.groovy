@@ -92,8 +92,7 @@ class AwardController {
 				a = awardService.newAward(title, description, boundVal, tags.getAt(0),
 				    Enum.valueOf(AwardCategory.class, category) , Enum.valueOf(AwardType.class, type));
 			else
-				a = awardService.newAward(title, description, boundVal, 
-					Enum.valueOf(AwardCategory.class, category) , Enum.valueOf(AwardType.class, type));	
+				a = new Award(title: title, bound: bound, category: category, type: type);
 			// Insert the contributor in the DB
 			try {
 				  if (!awardService.save(a)) {

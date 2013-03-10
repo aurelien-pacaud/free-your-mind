@@ -94,6 +94,8 @@
                   <div class="dropdown">
                     <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#" >
                       <sec:loggedInUserInfo field="username" />
+                      <sec:ifAllGranted roles="ROLE_ADMIN"><g:message code="global.rights.admin"/></sec:ifAllGranted>
+                      <sec:ifAllGranted roles="ROLE_MODERATOR"><g:message code="global.rights.moderator"/></sec:ifAllGranted>
                       <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
