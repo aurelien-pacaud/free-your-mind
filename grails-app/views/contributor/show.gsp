@@ -91,7 +91,7 @@
 				  <li><a href="#comments" data-toggle="tab"><g:message code="user.profile.tab.comments"/></a></li>
 				  <li><a href="#tag" data-toggle="tab"><g:message code="user.profile.tab.tags"/></a></li>
 				  <li><a href="#awards" data-toggle="tab"><g:message code="user.profile.tab.awards"/></a></li>
-				  <li><a href="#activity" data-toggle="tab"><g:message code="user.profile.tab.activity"/></a></li>
+				  <li><a href="#activity" data-toggle="tab"><g:message code="user.profile.tab.activity" args="[2]"/></a></li>
 				</ul>
 				<div class="tab-content">
 				  <div class="tab-pane active" id="summary">
@@ -124,7 +124,7 @@
 					<div class="clear"></div>
 				  </div>
 				  <div class="tab-pane" id="activity">
-					<h3 class="summaryHeader">${actions?.size()} <g:message code="user.profile.tab.activity"/></h3>
+					<h3 class="summaryHeader">${actions?.size()} <g:message code="user.profile.tab.activity" args="[actions.size()]"/></h3>
 					<g:render template="activityItemListTemplate" var="action" collection="${actions}" />
 					<div class="clear"></div>
 				  </div>

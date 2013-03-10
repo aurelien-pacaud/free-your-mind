@@ -726,3 +726,17 @@ li #login-content {
 .bronze {
   color : #a67d3d;
 }
+
+.success {
+  color : #468847;
+}
+
+.error {
+  color : #b94a48;
+}
+
+.activityType {
+  float       : left;
+  width       : 180px;
+  margin-left : 10px;
+}
