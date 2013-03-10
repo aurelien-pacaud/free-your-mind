@@ -88,9 +88,12 @@ class PostService {
     post.save();
     
     postHistoryService.createVotedUpHistory(post, user)
-    
-    post.contributor.reputation += post.reputationVoteUp
-    postHistoryService.createReputationHistory(post.contributor, post.reputationVoteUp)
+   
+    if (user != post.contributor) {
+
+      post.contributor.reputation += post.reputationVoteUp
+      postHistoryService.createReputationHistory(post.contributor, post.reputationVoteUp)
+    }
     
     /* Check award. */
     awardService.checkAward(post.contributor)

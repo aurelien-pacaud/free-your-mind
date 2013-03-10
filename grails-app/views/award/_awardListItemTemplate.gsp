@@ -11,7 +11,7 @@
   	</g:else>
     <sec:ifAnyGranted roles="ROLE_ADMIN, ROLE_MODERATOR">
 	    <g:link action="edit" controller="award" id="${award.id}" title="Edit the Award" class="pull-right">
-	      <img src="${fam.icon(name: 'pencil')}" alt="Edit the tag"/>
+	      <img src="${fam.icon(name: 'pencil')}" alt="Edit"/>
 	    </g:link>
 	</sec:ifAnyGranted>
   </div>

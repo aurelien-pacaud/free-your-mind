@@ -8,7 +8,7 @@ class Answer extends Post {
   int getReputationVoter()    { -1 }
   int getReputationAcceptor() { 2 }
 
-  static belongsTo = [question:Question]
+  static belongsTo = [question: Question]
 
   static constraints = {
   }

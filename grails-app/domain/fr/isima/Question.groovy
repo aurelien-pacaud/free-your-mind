@@ -8,7 +8,9 @@ class Question extends Post {
   
   int getReputationVoteUp()   { 5 }
   int getReputationVoteDown() { 0 }
-  
+  Question getQuestion() { return post.question }
+
+
   static hasMany = [tags: Tag, answers: Answer]
   
   static constraints = {

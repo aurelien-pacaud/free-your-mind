@@ -17,10 +17,8 @@ class BootStrap {
     "independent because the program execution is handled by a Virtual Machine called the Java VM or JVM.").save()
     new Tag(name: "C", description: "C").save()
     new Tag(name: "Groovy", description: "Groovy").save()
-
     new Tag(name: "C#", description: "C++ is a widely-used, statically-typed, free-form, compiled, multi-paradigm, multi-level, " +
     "imperative, general-purpose, object-oriented programming language based on C.").save()
-
     new Tag(name: "Grails", description: "C++ is a widely-used, statically-typed, free-form, compiled, multi-paradigm, multi-level, " +
     "imperative, general-purpose, object-oriented programming language based on C.").save()
 
@@ -41,17 +39,25 @@ class BootStrap {
     def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 	
     // Users creation   
-    def user1 = null
+    def user = null
     
     try {
 
-      user1 = new Contributor(username: "Toto", password: "fffffff", email: "", location: "", birthDate: new Date(), isAdmin: true, enabled: true)
-      user1.save(flush : true);
-      UserRole.create(user1, adminRole, true)
+      user = new Contributor(username: "Toto", password: "fffffff", email: "", location: "", birthDate: new Date(), isAdmin: true, enabled: true)
+      user.save(flush : true);
+      UserRole.create(user, adminRole, true)
+      
+      user = new Contributor(username: "Jupal", password: "fffffff", email: "", location: "", birthDate: new Date(), isAdmin: true, enabled: true)
+      user.save(flush : true);
+      UserRole.create(user, adminRole, true)
 
-      user1 = new Contributor(username: "Dudu", password: "fffffff", email: "", location: "", birthDate: new Date(), isAdmin: true, enabled: true)
-      user1.save(flush : true);
-      UserRole.create(user1, userRole, true)
+      
+      (1..10).each {
+
+        user = new Contributor(username: "User" + it, password: "fffffff", email: "", location: "", birthDate: new Date(), enabled: true)
+        user.save(flush : true);
+        UserRole.create(user, userRole, true)
+      }
 
     }
     catch (e) {
