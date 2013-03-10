@@ -50,7 +50,7 @@
 				<div class="rightCol">
 					<table>
 						<tr>
-							<td style="width:30%"><g:message code="user.profile.summary.bio"/> </td>
+							<td style="width:30%"><b><g:message code="user.profile.summary.bio"/></b></td>
 							<td style="width:30%"><g:message code="user.profile.summary.webSite"/></td>
 							<td style="width:30%"></td>
 						</tr>
@@ -65,7 +65,7 @@
 							<td> ${user.age} <g:message code="user.profile.age"/></td>
 						</tr>
 						<tr>
-							<td><g:message code="user.profile.summary.visits"/></td>
+							<td><b><g:message code="user.profile.summary.visits"/></b></td>
 							<td><g:message code="user.profile.summary.memberFor"/></td>
 							<td><prettytime:display date="${user.registrationDate}"></prettytime:display></td>
 						</tr>
@@ -75,7 +75,7 @@
 							<td><prettytime:display date="${user.lastConnectionDate}"></prettytime:display></td>
 						</tr>
 						<tr>
-							<td><g:message code="user.profile.summary.stats"/></td>
+							<td><b><g:message code="user.profile.summary.stats"/></b></td>
 							<td><g:message code="user.profile.summary.profil.views"/></td>
 							<td>${user.nbProfileViews}</td>
 						</tr>

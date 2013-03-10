@@ -1,6 +1,9 @@
 import fr.isima.connection.Role
 import fr.isima.connection.UserRole
 import fr.isima.Tag
+import fr.isima.Award
+import fr.isima.AwardType
+import fr.isima.AwardCategory
 import fr.isima.Contributor
 import grails.converters.JSON
 import java.util.HashMap;
@@ -61,7 +64,27 @@ class BootStrap {
 
     }
     catch (e) {
-      user1.errors.allErrors.each {
+      user.errors.allErrors.each {
+        println it
+      }
+    }
+
+    // Add award
+    def award = null
+
+    try {
+
+     award = new Award(title: "N00b", bound: 1, type: AwardType.REPUTATION, category: AwardCategory.BRONZE)
+     award.save()
+     
+     award = new Award(title: "C++ Beginner", bound: 3, type: AwardType.NB_QUESTIONS, category: AwardCategory.SILVER, tag: Tag.get(1))
+     award.save()
+     
+     award = new Award(title: "C++ Helper", bound: 5, type: AwardType.NB_ANSWERS, category: AwardCategory.SILVER, tag: Tag.get(1))
+     award.save()
+    }
+    catch (e) {
+      award.errors.allErrors.each {
         println it
       }
     }
