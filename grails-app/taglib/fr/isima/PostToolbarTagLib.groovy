@@ -22,7 +22,7 @@ class PostToolbarTagLib {
         question = post.post
 
     def deleteParams = ['action': 'delete', 'controller': post.domainClass.name, 'id': post.id, 'title': 'Delete the post',
-                        'onclick': "return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"
+                        'onclick': "return confirm('${message(code: 'default.button.delete.confirm.message')}');"
                        ]
     
     def editParams = [action: 'edit', controller: post.domainClass.name, id: post.id, title: 'Edit the post']
