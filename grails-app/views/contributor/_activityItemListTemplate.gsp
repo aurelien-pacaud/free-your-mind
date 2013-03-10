@@ -21,7 +21,7 @@
   </div>
   <div class="activityType"><g:message code="user.profile.activity.answered"/></div>
   <div style="float:left;margin-left:10px;">		
-    <g:link class="link" controller="Question" action="display" id="${action.post.question.id}">
+    <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.post.id}">
     <b>${action.post.question.title}</b>
     </g:link>	
   </div>
@@ -73,12 +73,12 @@
   <div style="float:left;margin-left:10px;">		
     <g:if test="${Answer.class.is(action.post.post.class)}">
     <g:link class="link" controller="Question" action="display" id="${action.post.post.question.id}" fragment="post-${action.post.id}">
-    <b>${action.post.content}</b>
+    <b>${action.post.question.title}</b>
     </g:link>
     </g:if>
     <g:else>
     <g:link class="link" controller="Question" action="display" id="${action.post.post.id}" fragment="post-${action.post.id}">
-    <b>${action.post.content}</b>
+    <b>${action.post.title}</b>
     </g:link>
     </g:else>
   </div>
@@ -91,13 +91,13 @@
   <div class="activityType"><g:message code="user.profile.activity.vote.up"/></div>
   <div style="float:left;margin-left:10px;">		
     <g:if test="${Answer.class.is(action.post.class)}">
-    <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.id}">
-    <b>${action.post.content}</b>
+    <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.post.id}">
+    <b>${action.post.question.title}</b>
     </g:link>
     </g:if>
     <g:else>
-    <g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.id}">
-    <b>${action.post.content}</b>
+    <g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.post.id}">
+    <b>${action.post.title}</b>
     </g:link>
     </g:else>
   </div>
@@ -110,13 +110,13 @@
   <div class="activityType"><g:message code="user.profile.activity.vote.down"/></div>
   <div style="float:left;margin-left:10px;">		
     <g:if test="${Answer.class.is(action.post.class)}">
-    <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.id}">
-    <b>${action.post.content}</b>
+    <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.post.id}">
+    <b>${action.post.question.title}</b>
     </g:link>
     </g:if>
     <g:else>
-    <g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.id}">
-    <b>${action.post.content}</b>
+    <g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.post.id}">
+    <b>${action.post.title}</b>
     </g:link>
     </g:else>
   </div>
@@ -126,7 +126,7 @@
   <div class="activityType">
     <prettytime:display date="${action.date}"></prettytime:display>
   </div>
-  <div class="activityType"><g:message code="global.reputation"/></div>
+  <div class="activityType"><g:message code="user.profile.activity.reputation"/></div>
   <div style="float:left;margin-left:10px;">		
     <b class="${action.reputation >= 0 ? 'success' : 'error'}">${action.reputation}</b>
   </div>
@@ -135,7 +135,7 @@
   <div class="activityType">
     <prettytime:display date="${action.date}"></prettytime:display>
   </div>
-  <div class="activityType">Badge</div>
+  <div class="activityType"><g:message code="user.profile.activity.award"/></div>
   <div style="float:left;margin-left:10px;">		
     <g:render template="/award/awardTemplate" bean="${action.award}" var="award" />
   </div>
