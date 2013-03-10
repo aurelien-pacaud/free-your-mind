@@ -1,3 +1,4 @@
+<%@page import="fr.isima.connection.RoleType" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -38,6 +39,13 @@
 			  		<g:renderErrors bean="${user}" field="location"/>
 			  		<g:textField name="location" type="text" value="${user?.location}"/>
 			  	</div>
+			  	<div>
+			  		
+				  	<sec:ifAllGranted roles="ROLE_ADMIN">
+				  		<label><g:message code="user.form.rights"/></label>
+						<g:select name="rights" from="${RoleType}" value="${role.authority}"/>
+				  	</sec:ifAllGranted>
+				 </div>
 			  	<g:hiddenField name="id" value="${user?.id}" />
 			  	<g:submitButton name="submit" type="submit" value="${message(code: 'award.form.submit')}" class="btn ${user?.hasErrors() ? 'btn-danger' : 'btn-primary'} formButton"/>
 			</g:form>

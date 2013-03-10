@@ -44,9 +44,6 @@ class ContributorService {
 			return false
 		} else {
 			c.save()
-			// Add the user Role to the Contributor
-			def role = Role.findByAuthority("ROLE_USER")
-			UserRole.create(c, role, true)
 			return true
 		}
 	}

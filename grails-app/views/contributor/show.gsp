@@ -86,8 +86,8 @@
 			<div class="activity">
 				<ul class="nav nav-tabs" id="myTab">
 				  <li><a href="#summary" data-toggle="tab"><g:message code="user.profile.tab.summary"/></a></li>
-				  <li><a href="#answers" data-toggle="tab"><g:message code="user.profile.tab.answers"/></a></li>
 				  <li><a href="#questions" data-toggle="tab"><g:message code="user.profile.tab.questions"/></a></li>
+				  <li><a href="#answers" data-toggle="tab"><g:message code="user.profile.tab.answers"/></a></li>
 				  <li><a href="#comments" data-toggle="tab"><g:message code="user.profile.tab.comments"/></a></li>
 				  <li><a href="#tag" data-toggle="tab"><g:message code="user.profile.tab.tags"/></a></li>
 				  <li><a href="#awards" data-toggle="tab"><g:message code="user.profile.tab.awards"/></a></li>
