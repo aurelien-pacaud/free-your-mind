@@ -1,0 +1,52 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1224" measuredH="727" mockupW="776" mockupH="727">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="448" y="0" w="776" h="727" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::MenuBar" x="448" y="71" w="776" h="47" measuredW="616" measuredH="29" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%09%09%09%20%20Question%2C%20Tag%2C%20Awards%2C%20Users%2C%20Ask%20a%20Question%2C%20%20%20%20%20%20%09%20%20%20Login</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::TitleWindow" x="601" y="184" w="450" h="299" measuredW="450" measuredH="400" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%09%09%09%09Connection</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::TextInput" x="817" y="260" w="-1" h="-1" measuredW="79" measuredH="26" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::TextInput" x="818" y="326" w="-1" h="-1" measuredW="79" measuredH="26" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Title" x="726" y="264" w="-1" h="-1" measuredW="39" measuredH="19" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Login</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Title" x="711" y="330" w="-1" h="-1" measuredW="69" measuredH="19" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Password</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="780" y="382" w="-1" h="-1" measuredW="72" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Connect</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="785" y="421" w="34" h="-1" measuredW="13" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>or</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Link" x="808" y="423" w="-1" h="-1" measuredW="41" measuredH="19" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sign%20in</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
