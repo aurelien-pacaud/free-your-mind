@@ -85,7 +85,7 @@
 			
 			<div class="activity">
 				<ul class="nav nav-tabs" id="myTab">
-				  <li><a href="#summary" data-toggle="tab"><g:message code="user.profile.tab.summary"/></a></li>
+				  <li class="active"><a href="#summary" data-toggle="tab"><g:message code="user.profile.tab.summary"/></a></li>
 				  <li><a href="#questions" data-toggle="tab"><g:message code="global.question" args="${[questions.size()]}"/></a></li>
 				  <li><a href="#answers" data-toggle="tab"><g:message code="global.answer" args="${[answers.size()]}"/></a></li>
 				  <li><a href="#comments" data-toggle="tab"><g:message code="global.comment" args="${[comments.size()]}"/></a></li>
@@ -130,9 +130,6 @@
 				  </div>
 				</div>
 			</div>
-			<script type="text/javascript">
-				$('#myTab a[href="#summary"]').tab('show')
-			</script>
 		</div>
 	</body>
 </html>

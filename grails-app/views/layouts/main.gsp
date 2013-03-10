@@ -27,7 +27,6 @@
 
             <g:javascript src="main.js" />
             <g:javascript src="application.js" />
-            <g:javascript plugin="twitter-bootstrap" src="bootstrap-dropdown.js"/>
           
             <jq:jquery>
               $(function() {
@@ -155,6 +154,7 @@
               </g:if>
 
               <g:layoutBody/>
+              <r:layoutResources/>
               <br />
             </div>
           </body>
