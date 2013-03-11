@@ -44,7 +44,7 @@
 				  	</div>
 				</div>
                 <div id="tagInput">
-  			  		<label for="tags">Tags (min 1 - 5 max)</label>
+  			  		<label for="tags"><g:message code="global.tag" args=[2]/></label>
                     <div class="${hasErrors(bean:question, field: 'tags', 'alert-error')}">		
                        <g:renderErrors bean="${question}" field="tags" />		
                        <div id="tags" class="${hasErrors(bean:question, field: 'tags', 'error')} uneditable-input">
