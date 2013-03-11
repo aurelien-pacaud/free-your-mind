@@ -4,6 +4,7 @@ import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 class IndexController {
 
+  /* Method use to display the index page. */
   def index = { 
 
     def questions = Question.listOrderByCreationDate(max: 10, order: 'desc')

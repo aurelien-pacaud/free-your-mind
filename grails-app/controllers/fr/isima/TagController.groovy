@@ -86,7 +86,7 @@ class TagController {
       redirect action: "list"
     }
     catch (e) {
-      render view: "create", model: [tag: tag] 
+      render view: "show", id: tag.id 
     }
   }
 }

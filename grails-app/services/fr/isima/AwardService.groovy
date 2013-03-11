@@ -1,117 +1,110 @@
 package fr.isima
 
 class AwardService {
-	
-	def awardHistoryService
+
+  def awardHistoryService
+
+  def save(Award award) {
     
-	def save(Award award) {
-		/* If the award can't be saved. */
-		if (!award.validate()) {
-			print "validation error"
-			throw new Exception("Award can't be saved");
-		}
-		else {
-			print "validation OK"
-			award.save();
-		}
+    /* If the award can't be saved. */
+    if (!award.validate()) {
+      throw new Exception("Award can't be saved");
     }
-	
-	def checkAward (Contributor user) {
-		print "Check award"
-		def awardList = Award.findAll()
-		awardList.each {
-			Award a  = (Award) it
-			switch(a.type) {
-				case AwardType.REPUTATION:
-					print "REPUT"
-					if (user.reputation >= a.bound) {
-						awardHistoryService.createAwardHistory(a,user)
-					}
-					break;
-					
-				case AwardType.NB_QUESTIONS:
-					print "QUESTION"
-					def nbQuestions = 0					
-					if (a.tag != null) {
-						def questions = Question.findAllByContributor(user)
-						
-						questions.each {
-							def q = (Question) it
-							for(Tag t :q.tags) { 
-								if( a.tag.id == t.id)
-									nbQuestions++
-							}
-						}
-					} else {
-						nbQuestions = Question.findAllByContributor(user).size()
-					}
-					
-					if (nbQuestions >= a.bound) {
-						awardHistoryService.createAwardHistory(a,user)
-					} 
-					break;
-					
-				
-				case AwardType.NB_ANSWERS:
-					print "ANSWER"
-					def nbAnswers = 0
-					if (a.tag != null) {
-						def answers = Answer.findAllByContributor(user)
-						answers.each {
-							def answ = (Answer) it
-							for(Tag t : answ.question.tags) {
-								if( a.tag.id == t.id)
-									nbAnswers++
-							}
-						}
-					} else {
-						nbAnswers = Answer.findAllByContributor(user).size()
-					}
-					
-					if (nbAnswers >= a.bound) {
-						awardHistoryService.createAwardHistory(a,user)
-					}
-					break;
-					
-				case AwardType.NB_COMMENTS:
-					print "COMMENT"
-					def nbComment = 0
-					if (a.tag != null) {
-						def comments = Comment.findAllByContributor(user)
-						comments.each {
-							def comm = (Comment) it
-							if (Answer.is(comm.post)) {
-								for(Tag t : comm.post.question.tags) {
-									if( a.tag.id == t.id)
-										nbComment++
-								}
-							} else {
-								for(Tag t : comm.post.tags) {
-									if( a.tag.id == t.id)
-										nbComment++
-								}
-							}
-						}
-					} else {
-						nbComment = Comment.findAllByContributor(user).size()
-					}
-					
-					if (nbComment >= a.bound) {
-						awardHistoryService.createAwardHistory(a,user)
-					}
-					break;
-			}
-			user.save()
-		}
-	}
-	
-	def newAward(String title, String description, int bound, Tag tag, AwardCategory category, AwardType type) {
-		
-		// Description computed for awardType different from Reputation
-		if(tag != null) {
-			title += " " + tag.name
-		}
-		new Award(title: title, bound: bound,	tag: tag, category: category, type: type);
-  
-	}
+    else {
+      award.save();
+    }
+  }
+
+  def checkAward (Contributor user) {
+    
+    def awardList = Award.findAll()
+    awardList.each {
+    
+      Award a  = (Award) it
+      
+      switch(a.type) {
+      
+        case AwardType.REPUTATION:
+        
+          if (user.reputation >= a.bound)
+            awardHistoryService.createAwardHistory(a, user)
+          
+          break;
+
+        case AwardType.NB_QUESTIONS:
+                
+          def nbQuestions = 0					
+          
+          // If the award is determinate by a tag and a bound.
+          if (a.tag != null) {
+            
+            def query = Question.where {
+              tags { id == a.tag.id } && contributor == user
+            }
+
+            nbQuestions = query.count()
+          }
+          else 
+            nbQuestions = Question.countByContributor(user)
+          
+          if (nbQuestions >= a.bound)
+            awardHistoryService.createAwardHistory(a, user)
+          
+          break;
+
+
+        case AwardType.NB_ANSWERS:
+          
+          def nbAnswers = 0
+          
+          if (a.tag != null) {
+            
+            Question.where { tags { id == a.tag.id } }.each { question ->
+              question.answers.each {
+                if (it.contributor == user)
+                  nbAnswers++                
+              }
+            }
+          } 
+          else
+            nbAnswers = Answer.countByContributor(user)
+
+          if (nbAnswers >= a.bound)
+            awardHistoryService.createAwardHistory(a, user)
+            
+          break;
+
+        case AwardType.NB_COMMENTS:
+        
+          def nbComment = 0
+          
+          if (a.tag != null) {
+         
+           Question.where { tags { id == a.tag.id } }.each { question ->
+              question.comments.each {
+                if (it.contributor == user)
+                  nbComment++                
+              }
+            }
+          } 
+          else
+            nbComment = Comment.countByContributor(user)
+
+          if (nbComment >= a.bound)
+            awardHistoryService.createAwardHistory(a, user)
+
+          break;
+        }
+    }
+  }
+
+  def newAward(String title, String description, int bound, Tag tag, AwardCategory category, AwardType type) {
+
+    // Description computed for awardType different from Reputation
+    if(tag != null) {
+      title += " " + tag.name
+    }
+
+    new Award(title: title, bound: bound, tag: tag, category: category, type: type);
+  }
 }

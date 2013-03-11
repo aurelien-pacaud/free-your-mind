@@ -15,6 +15,7 @@ class CommentController {
 
     try {
 
+      /* Try to save the comment.*/
       postService.save(comment, PostType.COMMENTED)
       
       flash.message = message(code: "creation.success")
@@ -38,6 +39,7 @@ class CommentController {
     
     def comment = Comment.get(id)
 
+    /* If the comment doesn't exist. */
     if (!comment) {
       render view: "error404"
     }
@@ -45,6 +47,8 @@ class CommentController {
       comment.properties = params
      
       try {
+        
+        /* Try to update the comment.*/
         postService.update(comment)
 
         flash.message = message(code: "edition.success")

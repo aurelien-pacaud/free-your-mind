@@ -55,7 +55,7 @@ class BootStrap {
       UserRole.create(user, adminRole, true)
 
       
-      (1..10).each {
+      (1..100).each {
 
         user = new Contributor(username: "User" + it, password: "fffffff", email: "", location: "", birthDate: new Date(), enabled: true)
         user.save(flush : true);
