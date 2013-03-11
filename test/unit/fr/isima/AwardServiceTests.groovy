@@ -22,10 +22,10 @@ class AwardServiceTests {
     
       defineBeans {
 
-        awardHistoryService(AwardHistoryService){ bean ->
+        awardHistoryService(AwardHistoryService) { bean ->
           bean.autowire = true
         }
-        postHistoryService(PostHistoryService){ bean ->
+        postHistoryService(PostHistoryService) { bean ->
           bean.autowire = true
         }
       }

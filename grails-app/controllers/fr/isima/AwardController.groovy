@@ -1,6 +1,7 @@
 package fr.isima
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.plugins.springsecurity.Secured
 
 import fr.isima.AwardType;
 
@@ -19,10 +20,12 @@ class AwardController {
     [awards: Award.list(params), awardsCount: Award.count()]
   }
 
+  @Secured(['IS_AUTHENTICATED_FULLY'])
   def create = {
     [tags: Tag.json()]
   }
 
+  @Secured(['IS_AUTHENTICATED_FULLY'])
   def edit = {
     def award = Award.get(params.id)	
     def tagIds = []
