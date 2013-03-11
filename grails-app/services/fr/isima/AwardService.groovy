@@ -23,7 +23,8 @@ class AwardService {
       Award a  = (Award) it
       
       switch(a.type) {
-      
+     
+        // Check reputation
         case AwardType.REPUTATION:
         
           if (user.reputation >= a.bound)
@@ -31,6 +32,7 @@ class AwardService {
           
           break;
 
+        // Check number of questions
         case AwardType.NB_QUESTIONS:
                 
           def nbQuestions = 0					
@@ -52,11 +54,12 @@ class AwardService {
           
           break;
 
-
+        // Check number of answers
         case AwardType.NB_ANSWERS:
           
           def nbAnswers = 0
           
+          // If the award is determinate by a tag and a bound.
           if (a.tag != null) {
             
             Question.where { tags { id == a.tag.id } }.each { question ->
@@ -74,14 +77,21 @@ class AwardService {
             
           break;
 
+        // Check number of comments
         case AwardType.NB_COMMENTS:
         
           def nbComment = 0
           
+          // If the award is determinate by a tag and a bound.
           if (a.tag != null) {
          
            Question.where { tags { id == a.tag.id } }.each { question ->
               question.comments.each {
+                if (it.contributor == user)
+                  nbComment++                
+              }
+
+              question.answers.each {
                 if (it.contributor == user)
                   nbComment++                
               }

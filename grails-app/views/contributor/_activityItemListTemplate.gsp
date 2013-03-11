@@ -39,8 +39,8 @@
     </g:link>
     </g:if>
     <g:else>
-    <g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.post.id}">
-    <b>${action.post.title}</b>
+    <g:link class="link" controller="Question" action="display" id="${action.post.question.id}" fragment="post-${action.post.id}">
+    <b>${action.post.question.title}</b>
     </g:link>
     </g:else>
   </div>
@@ -78,7 +78,7 @@
     </g:if>
     <g:else>
     <g:link class="link" controller="Question" action="display" id="${action.post.post.id}" fragment="post-${action.post.id}">
-    <b>${action.post.title}</b>
+    <b>${action.post.post.title}</b>
     </g:link>
     </g:else>
   </div>
@@ -116,7 +116,7 @@
     </g:if>
     <g:else>
     <g:link class="link" controller="Question" action="display" id="${action.post.id}" fragment="post-${action.post.id}">
-    <b>${action.post.title}</b>
+    <b>${action.post.question.title}</b>
     </g:link>
     </g:else>
   </div>

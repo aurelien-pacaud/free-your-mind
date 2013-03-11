@@ -9,7 +9,7 @@ import org.junit.*
 @TestFor(AnswerController)
 class AnswerControllerTests {
 
-    void testSomething() {
-       assertTrue(true);
-    }
+  void test() {
+    assertTrue(true)
+  }
 }

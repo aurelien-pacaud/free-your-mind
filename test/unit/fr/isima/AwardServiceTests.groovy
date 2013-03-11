@@ -52,10 +52,10 @@ class AwardServiceTests {
       awardAnswer = new Award(title: "Helper", bound: 1, type: AwardType.NB_ANSWERS, category: AwardCategory.SILVER)
       awardAnswer.save()
 
-      awardCommentTag = new Award(title: "C++ Commentator", bound: 1, type: AwardType.NB_COMMENTS, category: AwardCategory.SILVER, tag: tag)
+      awardCommentTag = new Award(title: "C++ Commentator", bound: 2, type: AwardType.NB_COMMENTS, category: AwardCategory.SILVER, tag: tag)
       awardCommentTag.save()
       
-      awardComment = new Award(title: "Commentator", bound: 1, type: AwardType.NB_COMMENTS, category: AwardCategory.SILVER)
+      awardComment = new Award(title: "Commentator", bound: 2, type: AwardType.NB_COMMENTS, category: AwardCategory.SILVER)
       awardComment.save()
 
       def q = new Question(title: "a", content: "a", tags: [tag], contributor: user, editionContributor: user)
@@ -66,6 +66,9 @@ class AwardServiceTests {
     
       def c = new Comment(content: "a", post: q, contributor: user, editionContributor: user)
       c.save(flush: true)
+      
+      def c2 = new Comment(content: "a", post: a, contributor: user, editionContributor: user)
+      c2.save(flush: true)
     }
 
     void testCheckAward() {
@@ -93,6 +96,10 @@ class AwardServiceTests {
       assertEquals AwardHistory.get(7).award.type, AwardType.NB_COMMENTS
       assertEquals AwardHistory.get(7).award.title, "Commentator"
 
+      assertEquals 7, AwardHistory.count() 
+     
+      // Check if awards not add more that once
+      service.checkAward(user)
       assertEquals 7, AwardHistory.count() 
     }
 }
