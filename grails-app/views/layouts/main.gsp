@@ -66,22 +66,22 @@
                 <ul id="listMenu">
                   <li id="menuItem">
                     <g:link controller="question" action="list" class="${params.controller == 'question' && params.action != 'create' ? 'active' : '' }">
-                      <g:message code="global.question" args="[0]"/>
+                      <g:message code="global.question" args="[2]"/>
                     </g:link>
                   </li>
                   <li id="menuItem">
                     <g:link controller="Tag" action="list" class="${params.controller == 'tag' ? 'active' : '' }">
-                      <g:message code="global.tag" args="[0]"/>
+                      <g:message code="global.tag" args="[2]"/>
                     </g:link>
                   </li>
                   <li id="menuItem">
                     <g:link controller="Award" action="list" class="${params.controller == 'baward' ? 'active' : '' }">
-                      <g:message code="global.award" args="[0]"/>
+                      <g:message code="global.award" args="[2]"/>
                     </g:link>
                   </li>
                   <li id="menuItem">
                     <g:link controller="Contributor" action="list" class="${params.controller == 'contributor' ? 'active' : '' }">
-                      <g:message code="global.user" args="[0]"/>
+                      <g:message code="global.user" args="[2]"/>
                     </g:link>
                   </li>
                   <li id="menuItem">
